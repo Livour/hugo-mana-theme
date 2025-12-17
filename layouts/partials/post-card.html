@@ -1,0 +1,33 @@
+{{ $page := .page }}
+{{ $limit := default 3 .limit }}
+{{ $dataYearMonth := .dataYearMonth }}
+{{ $dataTags := .dataTags }}
+{{ if and (not $dataYearMonth) $page.Date }}
+  {{ $dataYearMonth = printf "%s %s" ($page.Date.Format "2006") ($page.Date.Format "January") }}
+{{ end }}
+{{ if and (not $dataTags) $page.Params.tags }}
+  {{ $dataTags = delimit $page.Params.tags "," }}
+{{ end }}
+<article class="post-card" 
+         data-post-url="{{ $page.RelPermalink }}"
+         {{ if $dataYearMonth }}data-year-month="{{ $dataYearMonth }}"{{ end }}
+         {{ if $dataTags }}data-tags="{{ $dataTags }}"{{ end }}>
+  {{ partial "post-image.html" $page }}
+  
+  <div class="post-content">
+    <h3 class="post-title">
+      <a href="{{ $page.RelPermalink }}" onclick="event.stopPropagation();">{{ $page.Title }}</a>
+    </h3>
+    
+    {{ if $page.Description }}
+    <p class="post-description">{{ $page.Description }}</p>
+    {{ else if $page.Summary }}
+    <p class="post-description">{{ $page.Summary | truncate 150 }}</p>
+    {{ end }}
+    
+    {{ partial "post-meta-inline.html" $page }}
+    
+    {{ partial "post-tags-inline.html" (dict "Params" $page.Params "limit" $limit) }}
+  </div>
+</article>
+

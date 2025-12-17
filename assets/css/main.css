@@ -719,11 +719,11 @@ main {
   max-height: 0;
   overflow: hidden;
   opacity: 0;
-  transition: max-height 0.3s ease-out, padding 0.3s ease-out, opacity 0.3s ease-out;
+  transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), padding 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease-out;
 }
 
 .posts-filter.expanded {
-  max-height: 2000px;
+  max-height: 300px;
   padding-top: var(--spacing-lg);
   padding-bottom: var(--spacing-lg);
   opacity: 1;
@@ -740,6 +740,8 @@ main {
 .filter-group-tags {
   flex: 1 1 100%;
   min-width: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 .filter-label {
@@ -843,6 +845,10 @@ main {
   flex-wrap: wrap;
   gap: var(--spacing-sm);
   margin-top: var(--spacing-xs);
+  min-height: 40px;
+  max-height: 40px;
+  overflow-y: auto;
+  align-content: flex-start;
 }
 
 .filter-tag-checkbox {

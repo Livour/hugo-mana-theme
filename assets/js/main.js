@@ -573,9 +573,29 @@
     
     filterToggleBtn.addEventListener('click', () => {
       const isExpanded = filterToggleBtn.getAttribute('aria-expanded') === 'true';
+      
+      if (!isExpanded) {
+        // Expanding - measure actual height
+        filterContent.style.maxHeight = 'none';
+        const height = filterContent.scrollHeight;
+        filterContent.style.maxHeight = '0px';
+        
+        // Force reflow
+        filterContent.offsetHeight;
+        
+        // Set to measured height (minimum 300px)
+        filterContent.style.maxHeight = Math.max(height, 300) + 'px';
+        filterContent.classList.add('expanded');
+      } else {
+        // Collapsing
+        filterContent.style.maxHeight = filterContent.scrollHeight + 'px';
+        filterContent.offsetHeight; // Force reflow
+        filterContent.style.maxHeight = '0px';
+        filterContent.classList.remove('expanded');
+      }
+      
       filterToggleBtn.setAttribute('aria-expanded', !isExpanded);
       filterToggleBtn.classList.toggle('expanded', !isExpanded);
-      filterContent.classList.toggle('expanded', !isExpanded);
     });
   }
 })();

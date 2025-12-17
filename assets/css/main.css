@@ -1,5 +1,10 @@
 /* Theme variables are loaded separately in head */
 
+/* Prevent horizontal scrolling */
+body {
+  overflow-x: hidden;
+}
+
 /* Header & Navigation */
 .sticky-header {
   position: sticky;
@@ -20,6 +25,7 @@
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 var(--spacing-lg);
+  box-sizing: border-box;
 }
 
 .header-nav {
@@ -34,6 +40,15 @@
   align-items: center;
   justify-content: space-between;
   width: 100%;
+  min-width: 0;
+  gap: var(--spacing-sm);
+  box-sizing: border-box;
+}
+
+.header-logo {
+  flex-shrink: 1;
+  min-width: 0;
+  overflow: hidden;
 }
 
 .header-logo .logo-link {
@@ -42,6 +57,10 @@
   color: var(--text-primary);
   text-decoration: none;
   transition: color var(--transition-fast);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: block;
 }
 
 .header-logo .logo-link:hover {
@@ -52,6 +71,7 @@
   display: flex;
   align-items: center;
   gap: var(--spacing-md);
+  flex-shrink: 0;
 }
 
 .menu-list {
@@ -1799,16 +1819,55 @@ main {
 /* Responsive Design */
 @media (max-width: 768px) {
   .header-container {
-    padding: 0 var(--spacing-md);
+    padding: 0 var(--spacing-sm);
+  }
+
+  .header-content {
+    gap: var(--spacing-xs);
+  }
+
+  .header-logo {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+
+  .header-logo .logo-link {
+    font-size: 1rem;
+    max-width: 100%;
+  }
+
+  .header-menu {
+    gap: var(--spacing-xs);
+    flex-shrink: 0;
   }
 
   .menu-list {
-    gap: var(--spacing-sm);
+    gap: var(--spacing-xs);
   }
 
   .menu-link {
     padding: var(--spacing-xs) var(--spacing-sm);
     font-size: 0.875rem;
+    white-space: nowrap;
+  }
+
+  .search-toggle,
+  .theme-toggle {
+    padding: var(--spacing-xs);
+    width: 1.5rem;
+    height: 1.5rem;
+    flex-shrink: 0;
+  }
+
+  .search-icon {
+    width: 1rem;
+    height: 1rem;
+  }
+
+  .theme-toggle .icon-sun,
+  .theme-toggle .icon-moon {
+    width: 1rem;
+    height: 1rem;
   }
 
   main {
@@ -1846,6 +1905,37 @@ main {
 }
 
 @media (max-width: 480px) {
+  .header-container {
+    padding: 0 var(--spacing-xs);
+  }
+
+  .header-content {
+    gap: 0.25rem;
+  }
+
+  .header-logo {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+
+  .header-logo .logo-link {
+    font-size: 0.875rem;
+    max-width: 100%;
+  }
+
+  .header-menu {
+    gap: 0.25rem;
+  }
+
+  .menu-list {
+    gap: 0.25rem;
+  }
+
+  .menu-link {
+    padding: var(--spacing-xs);
+    font-size: 0.75rem;
+  }
+
   .about-content {
     gap: var(--spacing-sm);
   }
@@ -1856,7 +1946,7 @@ main {
   }
 
   .about-name {
-    font-size: 1.5rem;
+    font-size: 1.25rem;
   }
 
   .post-title-main {

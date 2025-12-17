@@ -1791,19 +1791,19 @@ main {
 /* Scroll to Top */
 .scroll-to-top {
   position: fixed;
-  bottom: var(--spacing-lg);
+  bottom: calc(var(--spacing-lg) + 60px);
   right: var(--spacing-lg);
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  background-color: var(--accent-primary);
-  color: white;
+  background-color: transparent;
+  color: var(--accent-primary);
   border: none;
   cursor: pointer;
   display: none;
   align-items: center;
   justify-content: center;
-  box-shadow: var(--shadow-md);
+  box-shadow: none;
   transition: all var(--transition-base);
   z-index: 999;
 }
@@ -1813,9 +1813,10 @@ main {
 }
 
 .scroll-to-top:hover {
-  background-color: var(--accent-hover);
+  background-color: transparent;
   transform: translateY(-2px);
-  box-shadow: var(--shadow-lg);
+  box-shadow: none;
+  color: var(--accent-hover);
 }
 
 .scroll-to-top svg {
@@ -1959,12 +1960,15 @@ main {
   .buy-me-coffee {
     width: 45px;
     height: 45px;
-    bottom: var(--spacing-md);
     right: var(--spacing-md);
   }
 
-  .buy-me-coffee {
+  .scroll-to-top {
     bottom: calc(var(--spacing-md) + 55px);
+  }
+
+  .buy-me-coffee {
+    bottom: var(--spacing-md);
   }
 }
 

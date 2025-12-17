@@ -1,8 +1,4 @@
-{{ if site.Params.buyMeACoffee }}
-<a href="{{ site.Params.buyMeACoffee }}" target="_blank" rel="noopener noreferrer" class="buy-me-coffee" aria-label="Buy me a coffee">
-  <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 11h14M5 11a2 2 0 01-2-2V9a2 2 0 012-2h14a2 2 0 012 2v2a2 2 0 01-2 2M5 11v6a2 2 0 002 2h10a2 2 0 002-2v-6M9 7V5a2 2 0 012-2h2a2 2 0 012 2v2"></path>
-  </svg>
-</a>
+{{ if site.Params.buyMeACoffee.enabled }}
+<script data-name="BMC-Widget" data-cfasync="false" src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js" data-id="{{ site.Params.buyMeACoffee.id }}" data-description="{{ site.Params.buyMeACoffee.description }}" data-message="{{ site.Params.buyMeACoffee.message }}" data-color="{{ site.Params.buyMeACoffee.color }}" data-position="{{ site.Params.buyMeACoffee.position }}" data-x_margin="{{ site.Params.buyMeACoffee.x_margin }}" data-y_margin="{{ site.Params.buyMeACoffee.y_margin }}"></script>
 {{ end }}
 

@@ -361,6 +361,8 @@ main {
   flex: 1;
   min-width: 0;
   max-width: 800px;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
 }
 
 @media (max-width: 1024px) {
@@ -609,6 +611,9 @@ main {
   font-size: 1.125rem;
   line-height: 1.8;
   color: var(--text-primary);
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  max-width: 100%;
 }
 
 .post-content-main h2 {
@@ -637,6 +642,23 @@ main {
 
 .post-content-main a:hover {
   color: var(--accent-hover);
+}
+
+.post-content-main pre {
+  overflow-x: auto;
+  max-width: 100%;
+  word-break: normal;
+}
+
+.post-content-main code {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.post-content-main pre code {
+  white-space: pre;
+  word-break: normal;
+  overflow-wrap: normal;
 }
 
 .post-footer {

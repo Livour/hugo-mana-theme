@@ -535,6 +535,8 @@ main {
   gap: var(--spacing-lg);
   padding: var(--spacing-lg);
   background-color: var(--bg-secondary);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border-radius: 0.5rem;
   border: 1px solid var(--border-color);
   transition: all var(--transition-base);

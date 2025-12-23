@@ -71,8 +71,11 @@ html {
 
 [data-theme="light"] {
   --bg-primary: #ffffff;
-  --bg-secondary: #f8fafc;
-  --bg-tertiary: #f1f5f9;
+  /* Light theme glassmorphism - semi-transparent dark overlays */
+  --glass-surface: rgba(0, 0, 0, 0.03); /* Subtle dark overlay for glass effect */
+  --glass-border: rgba(0, 0, 0, 0.08); /* Subtle dark border */
+  --bg-secondary: var(--glass-surface); /* Use glass-surface for glass effect */
+  --bg-tertiary: rgba(0, 0, 0, 0.05);
   --text-primary: #0f172a;
   --text-secondary: #475569;
   --text-muted: #64748b;
@@ -82,7 +85,7 @@ html {
   --accent-light-purple: #9333EA; /* Medium-dark purple for light accent */
   --accent-secondary: #7e22ce;
   --accent-hover: #7C3AED;
-  --border-color: #e2e8f0;
+  --border-color: var(--glass-border);
   /* Light theme rgba values for effects - darker purples for better contrast */
   --accent-primary-rgba-03: rgba(107, 33, 168, 0.3);
   --accent-primary-rgba-05: rgba(107, 33, 168, 0.5);

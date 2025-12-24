@@ -131,13 +131,16 @@ body {
 
 [data-theme="light"] body {
   background-color: #ffffff;
-  /* Light theme radial gradient: subtle lavender/purple tint in center, fading to white */
+  /* Light theme radial gradient: subtle purple/lavender tint in center, fading to white at edges */
   background-image: radial-gradient(
     circle at center,
-    rgba(196, 181, 253, 0.15) 0%,
-    rgba(243, 244, 246, 0.3) 40%,
+    rgba(196, 133, 246, 0.2) 0%,
+    rgba(243, 232, 255, 0.4) 40%,
     #ffffff 100%
   );
+  background-attachment: fixed;
+  background-size: 100% 100%;
+  background-position: center center;
 }
 
 /* SVG noise/grain texture overlay with opacity 0.05 to prevent banding */

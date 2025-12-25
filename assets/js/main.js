@@ -59,6 +59,7 @@
   const searchModalBackdrop = document.getElementById('search-modal-backdrop');
   const searchModalClose = document.getElementById('search-modal-close');
   const searchInput = document.getElementById('search-input');
+  const searchInputClear = document.getElementById('search-input-clear');
   const searchResults = document.getElementById('search-results');
   
   let searchIndex = [];
@@ -78,16 +79,26 @@
     }
   }
   
+  // Toggle search results visibility
+  function toggleSearchResults() {
+    if (!searchResults) return;
+    const hasContent = searchResults.innerHTML.trim().length > 0;
+    searchResults.style.display = hasContent ? 'block' : 'none';
+  }
+  
   // Perform search
   function performSearch(query) {
     if (!searchResults) return;
     
-    if (!query || query.length < 2) {
+    // Trim whitespace and check if query has meaningful content
+    const trimmedQuery = query ? query.trim() : '';
+    if (!trimmedQuery || trimmedQuery.length < 2) {
       searchResults.innerHTML = '';
+      toggleSearchResults();
       return;
     }
     
-    const queryLower = query.toLowerCase().trim();
+    const queryLower = trimmedQuery.toLowerCase();
     const seenPermalinks = new Set();
     const results = searchIndex.filter(item => {
       if (!item || !item.permalink) return false;
@@ -105,23 +116,68 @@
     
     if (results.length === 0) {
       searchResults.innerHTML = '<div class="search-result-empty">No results found</div>';
+      toggleSearchResults();
       return;
+    }
+    
+    // Format date for display
+    function formatDate(dateString) {
+      if (!dateString) return '';
+      try {
+        const date = new Date(dateString);
+        const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+        return `${months[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`;
+      } catch (e) {
+        return dateString;
+      }
     }
     
     searchResults.innerHTML = results.map(item => `
       <a href="${item.permalink}" class="search-result-item">
         <div class="search-result-title">${highlightMatch(item.title || '', query)}</div>
         ${item.summary ? `<div class="search-result-summary">${highlightMatch(item.summary.substring(0, 150), query)}...</div>` : ''}
-        ${item.date ? `<div class="search-result-date">${item.date}</div>` : ''}
+        ${item.date ? `<div class="search-result-date">
+          <svg class="search-result-date-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+          </svg>
+          ${formatDate(item.date)}
+        </div>` : ''}
       </a>
     `).join('');
+    
+    toggleSearchResults();
   }
   
   // Highlight matching text
   function highlightMatch(text, query) {
     if (!text || !query) return text;
-    const regex = new RegExp(`(${query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
-    return text.replace(regex, '<mark>$1</mark>');
+    
+    // Check if query ends with a space
+    const hasTrailingSpace = query.endsWith(' ');
+    const trimmedQuery = query.trim();
+    if (!trimmedQuery) return text;
+    
+    // Escape special regex characters
+    const escapedQuery = trimmedQuery.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    
+    // Match the query (without trailing space for matching)
+    const regex = new RegExp(`(${escapedQuery})`, 'gi');
+    
+    return text.replace(regex, (match) => {
+      // If query had trailing space, add it to the mark content
+      return hasTrailingSpace ? `<mark>${match} </mark>` : `<mark>${match}</mark>`;
+    });
+  }
+  
+  // Show/hide clear button based on input value
+  function toggleClearButton() {
+    if (searchInputClear && searchInput) {
+      if (searchInput.value.length > 0) {
+        searchInputClear.classList.add('visible');
+      } else {
+        searchInputClear.classList.remove('visible');
+      }
+    }
   }
   
   function openSearchModal() {
@@ -130,6 +186,7 @@
       document.body.style.overflow = 'hidden';
       setTimeout(() => {
         searchInput?.focus();
+        toggleClearButton();
       }, 100);
     }
   }
@@ -140,9 +197,11 @@
       document.body.style.overflow = '';
       if (searchInput) {
         searchInput.value = '';
+        toggleClearButton();
       }
       if (searchResults) {
         searchResults.innerHTML = '';
+        searchResults.style.display = 'none';
       }
     }
   }
@@ -151,12 +210,36 @@
   if (searchInput) {
     searchInput.addEventListener('input', (e) => {
       const query = e.target.value;
+      toggleClearButton();
       
       // Debounce search
       clearTimeout(searchTimeout);
       searchTimeout = setTimeout(() => {
         performSearch(query);
       }, 200);
+    });
+    
+    // Initial state
+    toggleClearButton();
+  }
+  
+  // Clear input when trash icon is clicked
+  if (searchInputClear) {
+    searchInputClear.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      if (searchInput) {
+        searchInput.value = '';
+        searchInput.focus();
+        toggleClearButton();
+        // Clear search results
+        if (searchResults) {
+          searchResults.innerHTML = '';
+          searchResults.style.display = 'none';
+        }
+        // Trigger input event to clear any pending search
+        searchInput.dispatchEvent(new Event('input', { bubbles: true }));
+      }
     });
   }
   

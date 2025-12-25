@@ -682,11 +682,39 @@ main {
   width: 260px;
   flex-shrink: 0;
   padding: 0;
-  background-color: var(--bg-secondary);
+  background-color: var(--bg-deep);
+  background-image: radial-gradient(
+    circle at center,
+    rgba(30, 58, 138, 0.3) 0%,
+    rgba(15, 23, 42, 0.5) 40%,
+    var(--bg-deep) 100%
+  );
+  background-attachment: fixed;
+  background-size: 100% 100%;
+  background-position: center center;
   border: 1px solid var(--border-color);
   border-radius: 0.5rem;
   overflow: hidden;
   z-index: 50;
+}
+
+.post-toc::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-color: var(--bg-secondary);
+  border-radius: 0.5rem;
+  pointer-events: none;
+  z-index: 1;
+}
+
+[data-theme="light"] .post-toc {
+  background-image: radial-gradient(
+    circle at center,
+    rgba(196, 133, 246, 0.2) 0%,
+    rgba(243, 232, 255, 0.4) 40%,
+    #ffffff 100%
+  );
 }
 
 .toc-toggle {
@@ -830,6 +858,7 @@ main {
     width: 100%;
     margin-bottom: var(--spacing-lg);
     order: -1;
+    /* Same layered approach - pseudo-element handles the overlay */
   }
   
   .toc-content.expanded {

@@ -20,6 +20,7 @@ html {
   --accent-secondary: #00FFFF; /* Cyber Cyan */
   --glass-surface: rgba(255, 255, 255, 0.05);
   --glass-border: rgba(255, 255, 255, 0.1);
+  --glass-block: rgb(255, 255, 255);
   
   /* Legacy variables for compatibility */
   --bg-primary: var(--bg-deep);
@@ -74,6 +75,7 @@ html {
   /* Light theme glassmorphism - minimal white overlay, backdrop blur creates the glassy effect */
   --glass-surface: rgba(255, 255, 255, 0.2); /* Minimal white overlay - backdrop blur does the work */
   --glass-border: rgba(196, 181, 253, 0.5); /* More defined purple-tinted border for better visibility */
+  --glass-block: rgba(255, 255, 255, 0.8);
   --bg-secondary: var(--glass-surface); /* Use glass-surface for glass effect */
   --bg-tertiary: rgba(255, 255, 255, 0.25); /* Slightly more visible for tertiary surfaces */
   --text-primary: #0f172a;

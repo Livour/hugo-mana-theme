@@ -1,6 +1,10 @@
 {{ $themeCss := resources.Get "css/theme.css" }}
 <link rel="stylesheet" href="{{ $themeCss.RelPermalink }}">
 
-{{ $css := resources.Get "css/main.css" | minify | fingerprint }}
+{{ $baseCss := resources.Get "css/base.css" }}
+{{ $codeBlocksCss := resources.Get "css/code-blocks.css" }}
+{{ $searchCss := resources.Get "css/search.css" }}
+{{ $mainCss := resources.Get "css/main.css" }}
+{{ $css := slice $baseCss $codeBlocksCss $searchCss $mainCss | resources.Concat "css/main.css" | minify | fingerprint }}
 <link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}">
 

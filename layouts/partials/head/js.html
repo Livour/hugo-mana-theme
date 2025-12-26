@@ -1,3 +1,12 @@
-{{ $js := resources.Get "js/main.js" | minify | fingerprint }}
-<script src="{{ $js.RelPermalink }}" defer></script>
+{{ $constants := resources.Get "js/common/constants.js" }}
+{{ $utils := resources.Get "js/utils.js" }}
+{{ $themeToggle := resources.Get "js/theme-toggle.js" }}
+{{ $search := resources.Get "js/search.js" }}
+{{ $scrollToTop := resources.Get "js/scroll-to-top.js" }}
+{{ $navigation := resources.Get "js/navigation.js" }}
+{{ $toc := resources.Get "js/toc.js" }}
+{{ $filters := resources.Get "js/filters.js" }}
+{{ $codeBlocks := resources.Get "js/code-blocks.js" }}
+{{ $js := slice $constants $utils $themeToggle $search $scrollToTop $navigation $toc $filters $codeBlocks | resources.Concat "js/main.js" | minify | fingerprint }}
+<script src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}" defer></script>
 

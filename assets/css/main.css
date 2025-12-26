@@ -839,6 +839,73 @@ main {
   padding: inherit;
 }
 
+/* Collapsible code blocks */
+.code-block-wrapper {
+  position: relative;
+  margin: var(--spacing-md) 0;
+}
+
+.code-block-toggle {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  z-index: 10;
+  background: rgba(30, 30, 45, 0.9);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 0.375rem;
+  padding: 0.375rem 0.75rem;
+  color: var(--text-secondary);
+  font-size: 0.75rem;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  transition: all var(--transition-fast);
+  font-family: var(--font-body);
+}
+
+.code-block-toggle:hover {
+  background: rgba(30, 30, 45, 0.95);
+  border-color: var(--accent-primary);
+  color: var(--accent-primary);
+}
+
+.code-block-toggle svg {
+  width: 0.875rem;
+  height: 0.875rem;
+  transition: transform var(--transition-fast);
+}
+
+.code-block-wrapper.collapsed .code-block-toggle svg {
+  transform: rotate(180deg);
+}
+
+.code-block-content {
+  transition: opacity var(--transition-base);
+  overflow: visible;
+}
+
+.code-block-wrapper.collapsed .code-block-content {
+  max-height: 150px;
+  overflow: hidden;
+  opacity: 0.7;
+  position: relative;
+}
+
+.code-block-wrapper.collapsed .code-block-content::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 80px;
+  background: linear-gradient(to bottom, transparent, var(--bg-primary));
+  pointer-events: none;
+}
+
 .post-footer {
   margin-top: var(--spacing-xl);
   padding-top: var(--spacing-lg);

@@ -28,16 +28,16 @@
   </footer>
   {{ end }}
 
-    <nav class="post-navigation">
+    <nav class="post-navigation" aria-label="Post navigation">
       {{ with .PrevInSection }}
-      <a href="{{ .RelPermalink }}" class="nav-link nav-prev">
+      <a href="{{ .RelPermalink }}" class="nav-link nav-prev" aria-label="Previous post: {{ .Title }}">
         <span class="nav-label">Previous</span>
         <span class="nav-title">{{ .Title }}</span>
       </a>
       {{ end }}
       
       {{ with .NextInSection }}
-      <a href="{{ .RelPermalink }}" class="nav-link nav-next">
+      <a href="{{ .RelPermalink }}" class="nav-link nav-next" aria-label="Next post: {{ .Title }}">
         <span class="nav-label">Next</span>
         <span class="nav-title">{{ .Title }}</span>
       </a>

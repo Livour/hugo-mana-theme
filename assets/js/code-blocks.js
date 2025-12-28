@@ -72,6 +72,9 @@ function initCollapsibleCodeBlocks() {
           const copyIcon = copyButton.querySelector('.copy-icon');
           const checkmarkIcon = copyButton.querySelector('.checkmark-icon');
           
+          // Update aria-label for accessibility
+          copyButton.setAttribute('aria-label', 'Code copied');
+          
           // Change icon to checkmark
           copyIcon.style.display = 'none';
           checkmarkIcon.style.display = 'block';
@@ -82,6 +85,9 @@ function initCollapsibleCodeBlocks() {
             copiedText.style.display = 'inline';
           }
           copyButton.classList.add('copied');
+          
+          // Update aria-label for accessibility
+          copyButton.setAttribute('aria-label', 'Code copied');
           
           // Reset after 2 seconds
           setTimeout(() => {
@@ -94,6 +100,7 @@ function initCollapsibleCodeBlocks() {
               copyText.style.display = 'inline';
             }
             copyButton.classList.remove('copied');
+            copyButton.setAttribute('aria-label', 'Copy code');
           }, 2000);
         } catch (err) {
           // Fallback for older browsers
@@ -120,6 +127,7 @@ function initCollapsibleCodeBlocks() {
               copiedText.style.display = 'inline';
             }
             copyButton.classList.add('copied');
+            copyButton.setAttribute('aria-label', 'Code copied');
             setTimeout(() => {
               // Change icon back to copy
               copyIcon.style.display = 'block';
@@ -130,6 +138,7 @@ function initCollapsibleCodeBlocks() {
                 copiedText.style.display = 'none';
               }
               copyButton.classList.remove('copied');
+              copyButton.setAttribute('aria-label', 'Copy code');
             }, 2000);
           } catch (fallbackErr) {
             console.error('Failed to copy code:', fallbackErr);

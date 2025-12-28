@@ -3,7 +3,7 @@
 /* Skip to main content link - accessibility */
 .skip-to-main {
   position: absolute;
-  top: -40px;
+  top: -100px;
   left: 0;
   background: var(--accent-primary);
   color: var(--bg-deep);
@@ -13,10 +13,22 @@
   z-index: 1000;
   border-radius: 0 0 0.25rem 0;
   transition: top 0.2s ease;
+  /* Visually hidden by default */
+  clip: rect(0, 0, 0, 0);
+  clip-path: inset(50%);
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
 }
 
 .skip-to-main:focus {
   top: 0;
+  /* Make visible when focused */
+  clip: auto;
+  clip-path: none;
+  width: auto;
+  height: auto;
+  overflow: visible;
 }
 
 /* Prevent horizontal scrolling */

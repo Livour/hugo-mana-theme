@@ -38,17 +38,16 @@
 {{ partial "head/css.html" . }}
 
 <!-- Favicons -->
-<!-- Root favicon for Google and other crawlers - Google prefers larger sizes (48x48+) -->
-<link rel="icon" type="image/x-icon" href="/favicon.ico">
-<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
-<!-- Primary PNG favicon - Google also checks for /favicon.png -->
-<link rel="icon" type="image/png" href="/favicon.png">
-<!-- Primary favicon - Google prefers 32x32 or larger -->
+<!-- Primary favicon for Google Search - must be on home page header -->
+<!-- Per Google guidelines: https://developers.google.com/search/docs/appearance/favicon-in-search -->
+<!-- Google supports rel="icon" and rel="shortcut icon" - using 192x192 PNG (Google recommends >48x48px) -->
+<link rel="icon" href="/favicon/logo-transparent/android-chrome-192x192.png">
+<!-- Legacy shortcut icon support for Google and older browsers -->
+<link rel="shortcut icon" href="/favicon.ico">
+<!-- Additional favicon formats for various devices and browsers -->
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon/logo-transparent/favicon-32x32.png">
-<!-- Additional favicon formats -->
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon/logo-transparent/favicon-16x16.png">
 <link rel="apple-touch-icon" sizes="180x180" href="/favicon/logo-transparent/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="192x192" href="/favicon/logo-transparent/android-chrome-192x192.png">
 <link rel="icon" type="image/png" sizes="512x512" href="/favicon/logo-transparent/android-chrome-512x512.png">
 <link rel="manifest" href="/favicon/logo-transparent/site.webmanifest">
 

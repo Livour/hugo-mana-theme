@@ -1,3 +1,4 @@
+# This is a config file for https://themes.gohugo.io/. Look at example.toml for the theme's config
 name = "Mana"
 license = "MIT"
 licenselink = "https://github.com/Livour/hugo-mana-theme/blob/main/LICENSE"
@@ -5,7 +6,7 @@ description = "Futuristic theme featuring a dark theme, clean aesthetics, and mo
 homepage = "https://github.com/Livour/hugo-mana-theme"
 demosite = "https://managuide.blog/"
 
-tags = ["blog", "responsive", "personal", "dark", "minimal", "modern", "code-highlighting", "light", "dark mode", "popular", "light mode]
+tags = ["blog", "responsive", "personal", "dark", "minimal", "modern", "code-highlighting", "light", "dark mode", "popular", "light mode"]
 features = ["responsive", "dark mode", "light mode", "blog", "social icons", "code highlighting", "clean design", "sticky header", "search", "table of contents", "syntax highlighting", "post filtering", "tag search", "archive pages"]
 
 [author]

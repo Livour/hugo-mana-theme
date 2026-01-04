@@ -24,7 +24,12 @@ theme = "mana"
   
   # Avatar
   [params.avatar]
+    # If you have a hosted image you want to use as-is. The template will attempt to use this if set.
     url = "https://example.com/avatar.jpg"
+    # If you have an image you want to provide as an asset and run through Hugo's pipes to resize based on use.
+    # This will only be used if "url" is *not* set.
+    # This path is relative to the "assets" folder.
+    assetPath = "images/avatar.png"
   
   # Buy Me a Coffee Widget
   # Set enabled = true and provide your widget ID to use the floating widget
@@ -41,6 +46,13 @@ theme = "mana"
   
   # Alternative: Simple Buy Me a Coffee link (if widget is disabled)
   # buyMeACoffee = "https://buymeacoffee.com/yourusername"
+
+  # Info for the copyright notice in the footer.
+  [params.copyright]
+    # Set this if you want a range, rather than just the current year (as of the last time you ran "hugo build").
+    startYear = 2025
+    # Set this if you don't want the copyright owner to be the same value as the "title" field above.
+    owner = "Your name here"
   
   # Footer text (optional)
   footerText = "Built with Hugo and Mana theme"

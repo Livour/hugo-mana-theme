@@ -7,7 +7,13 @@
       </h1>
       
       {{ if site.Params.avatar.url }}
-      <img src="{{ site.Params.avatar.url }}" alt="{{ site.Title }}" class="about-page-avatar">
+        <img src="{{ site.Params.avatar.url }}" alt="{{ site.Title }}" class="about-page-avatar">
+      {{ else }}
+        {{ with resources.Get site.Params.avatar.assetPath }}
+          {{ with .Resize "120x jpg" }}
+            <img src="{{ .RelPermalink }}" alt="{{ site.Title }}" class="about-page-avatar">
+          {{ end }}
+        {{ end }}
       {{ end }}
       
       {{ if site.Params.description }}

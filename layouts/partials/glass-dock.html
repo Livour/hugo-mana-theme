@@ -1,19 +1,24 @@
 <nav class="glass-dock" role="navigation" aria-label="Main navigation">
   <!-- Mobile hamburger button -->
-  <button class="glass-dock-toggle" aria-label="Toggle navigation menu" aria-expanded="false" type="button">
+  <button
+    class="glass-dock-toggle"
+    aria-label="Toggle navigation menu"
+    aria-expanded="false"
+    type="button">
     <span class="glass-dock-toggle-icon"></span>
     <span class="glass-dock-toggle-icon"></span>
     <span class="glass-dock-toggle-icon"></span>
   </button>
-  
+
   <ul class="glass-dock-list">
     {{ range site.Menus.main }}
-    <li class="glass-dock-item">
-      <a href="{{ .URL | relLangURL }}" class="glass-dock-link {{ if $.IsMenuCurrent "main" . }}active{{ end }}">
-        {{ .Name }}
-      </a>
-    </li>
+      <li class="glass-dock-item">
+        <a
+          href="{{ .URL | relLangURL }}"
+          class="glass-dock-link {{ if $.IsMenuCurrent "main" . }}active{{ end }}">
+          {{ .Name }}
+        </a>
+      </li>
     {{ end }}
   </ul>
 </nav>
-

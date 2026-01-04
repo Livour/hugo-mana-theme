@@ -165,7 +165,11 @@
   width: 4rem;
   height: 4rem;
   border-radius: 50%;
-  background: linear-gradient(135deg, var(--accent-primary), var(--accent-light-purple));
+  background: linear-gradient(
+    135deg,
+    var(--accent-primary),
+    var(--accent-light-purple)
+  );
   display: flex;
   align-items: center;
   justify-content: center;
@@ -320,7 +324,9 @@
   text-decoration: underline;
   text-decoration-color: transparent;
   text-underline-offset: 0.25em;
-  transition: text-decoration-color var(--transition-base), color var(--transition-base);
+  transition:
+    text-decoration-color var(--transition-base),
+    color var(--transition-base);
 }
 
 .tag-post-card:hover .tag-post-title {
@@ -440,4 +446,3 @@
 .tag-nav-link:hover {
   color: var(--accent-primary);
 }
-

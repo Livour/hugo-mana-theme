@@ -1,5 +1,7 @@
 /* Modern CSS Reset */
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -14,14 +16,14 @@ html {
 :root {
   /* Nebula Glass Color Palette */
   --bg-deep: #020617; /* Deep Midnight Blue */
-  --accent-primary: #B063E0; /* Primary Purple */
-  --accent-mid-purple: #C485F6; /* Mid Purple */
-  --accent-light-purple: #DBABFF; /* Light Purple */
-  --accent-secondary: #00FFFF; /* Cyber Cyan */
+  --accent-primary: #b063e0; /* Primary Purple */
+  --accent-mid-purple: #c485f6; /* Mid Purple */
+  --accent-light-purple: #dbabff; /* Light Purple */
+  --accent-secondary: #00ffff; /* Cyber Cyan */
   --glass-surface: rgba(255, 255, 255, 0.05);
   --glass-border: rgba(255, 255, 255, 0.1);
   --glass-block: rgb(255, 255, 255);
-  
+
   /* Legacy variables for compatibility */
   --bg-primary: var(--bg-deep);
   --bg-secondary: var(--glass-surface);
@@ -29,7 +31,7 @@ html {
   --text-primary: #f1f5f9;
   --text-secondary: #cbd5e1;
   --text-muted: #94a3b8;
-  --accent-hover: #C485F6;
+  --accent-hover: #c485f6;
   --border-color: var(--glass-border);
   /* Dark theme rgba values for effects */
   --accent-primary-rgba-03: rgba(176, 99, 224, 0.3);
@@ -45,11 +47,11 @@ html {
   --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
   --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4);
   --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
-  
+
   /* Scroll to top & Buy Me a Coffee */
-  --yellow-accent: #FFDD00;
-  --yellow-hover: #FFC700;
-  
+  --yellow-accent: #ffdd00;
+  --yellow-hover: #ffc700;
+
   /* Spacing */
   --spacing-xs: 0.25rem;
   --spacing-sm: 0.5rem;
@@ -57,19 +59,25 @@ html {
   --spacing-lg: 1.5rem;
   --spacing-xl: 2rem;
   --spacing-2xl: 3rem;
-  
+
   /* Typography - Nebula Glass Theme */
-  --font-heading: 'Space Grotesk', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  --font-logo: 'Outfit', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-heading:
+    "Space Grotesk", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-body:
+    "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+  --font-logo:
+    "Outfit", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   --font-sans: var(--font-body); /* Legacy support */
-  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-  
+  --font-mono:
+    "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+    "Liberation Mono", "Courier New", monospace;
+
   /* Transitions */
   --transition-fast: 150ms ease-in-out;
   --transition-base: 300ms ease-in-out;
   --transition-slow: 500ms ease-in-out;
-  
+
   /* Icon sizes */
   --icon-sm: 1rem;
   --icon-md: 1.25rem;
@@ -79,20 +87,35 @@ html {
 [data-theme="light"] {
   --bg-primary: #ffffff;
   /* Light theme glassmorphism - minimal white overlay, backdrop blur creates the glassy effect */
-  --glass-surface: rgba(255, 255, 255, 0.2); /* Minimal white overlay - backdrop blur does the work */
-  --glass-border: rgba(196, 181, 253, 0.5); /* More defined purple-tinted border for better visibility */
+  --glass-surface: rgba(
+    255,
+    255,
+    255,
+    0.2
+  ); /* Minimal white overlay - backdrop blur does the work */
+  --glass-border: rgba(
+    196,
+    181,
+    253,
+    0.5
+  ); /* More defined purple-tinted border for better visibility */
   --glass-block: rgba(255, 255, 255, 0.8);
   --bg-secondary: var(--glass-surface); /* Use glass-surface for glass effect */
-  --bg-tertiary: rgba(255, 255, 255, 0.25); /* Slightly more visible for tertiary surfaces */
+  --bg-tertiary: rgba(
+    255,
+    255,
+    255,
+    0.25
+  ); /* Slightly more visible for tertiary surfaces */
   --text-primary: #0f172a;
   --text-secondary: #475569;
   --text-muted: #64748b;
   /* Light theme purple palette - much darker, more saturated for contrast on light backgrounds */
-  --accent-primary: #6B21A8; /* Very dark purple for primary */
-  --accent-mid-purple: #7C3AED; /* Dark purple for mid */
-  --accent-light-purple: #9333EA; /* Medium-dark purple for light accent */
+  --accent-primary: #6b21a8; /* Very dark purple for primary */
+  --accent-mid-purple: #7c3aed; /* Dark purple for mid */
+  --accent-light-purple: #9333ea; /* Medium-dark purple for light accent */
   --accent-secondary: #7e22ce;
-  --accent-hover: #7C3AED;
+  --accent-hover: #7c3aed;
   --border-color: var(--glass-border);
   /* Light theme rgba values for effects - darker purples for better contrast */
   --accent-primary-rgba-03: rgba(107, 33, 168, 0.3);
@@ -104,7 +127,7 @@ html {
   --accent-mid-purple-rgba-02: rgba(124, 58, 237, 0.2);
   /* Tag styling for light theme - lighter background, darker purple text */
   --tag-bg: rgba(124, 58, 237, 0.1);
-  --tag-color: #6B21A8;
+  --tag-color: #6b21a8;
   --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
   --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
   --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
@@ -116,8 +139,10 @@ body {
   color: var(--text-primary);
   line-height: 1.6;
   min-height: 100vh;
-  transition: background-color var(--transition-base), color var(--transition-base);
-  
+  transition:
+    background-color var(--transition-base),
+    color var(--transition-base);
+
   /* Nebula Glass Background: Radial gradient (lighter blue in center, black at edges) */
   background-image: radial-gradient(
     circle at center,
@@ -128,7 +153,7 @@ body {
   background-attachment: fixed;
   background-size: 100% 100%;
   background-position: center center;
-  
+
   position: relative;
 }
 
@@ -153,7 +178,7 @@ body {
 
 /* SVG noise/grain texture overlay with opacity 0.05 to prevent banding */
 body::before {
-  content: '';
+  content: "";
   position: fixed;
   top: 0;
   left: 0;
@@ -172,4 +197,3 @@ body > * {
   position: relative;
   z-index: 1;
 }
-

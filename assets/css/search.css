@@ -42,7 +42,7 @@
   -webkit-backdrop-filter: blur(12px);
   border-radius: 12px;
   border: 1px solid transparent;
-  box-shadow: 
+  box-shadow:
     0 10px 40px rgba(0, 0, 0, 0.4),
     0 0 10px rgba(160, 32, 240, 0.1);
   overflow: hidden;
@@ -62,7 +62,11 @@
 .search-input {
   flex: 1;
   height: 60px;
-  padding: 0 calc(var(--spacing-lg) + 2rem + var(--spacing-sm) + 2rem + var(--spacing-lg)) 0 calc(var(--spacing-lg) + 1.5rem + var(--spacing-md));
+  padding: 0
+    calc(
+      var(--spacing-lg) + 2rem + var(--spacing-sm) + 2rem + var(--spacing-lg)
+    )
+    0 calc(var(--spacing-lg) + 1.5rem + var(--spacing-md));
   background: transparent;
   border: none;
   color: rgba(255, 255, 255, 0.95);
@@ -156,7 +160,7 @@
   -webkit-backdrop-filter: blur(12px);
   border-radius: 12px;
   border: 1px solid transparent;
-  box-shadow: 
+  box-shadow:
     0 10px 40px rgba(0, 0, 0, 0.4),
     0 0 10px rgba(160, 32, 240, 0.1);
   display: none;
@@ -245,4 +249,3 @@
     max-height: 60vh;
   }
 }
-

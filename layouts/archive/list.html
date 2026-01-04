@@ -1,58 +1,70 @@
 {{ define "main" }}
-{{ $posts := where site.RegularPages "Type" "posts" }}
-<div class="tag-page">
-  <div class="tag-header">
-    <div class="tag-header-content">
-      <svg xmlns="http://www.w3.org/2000/svg" class="tag-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-      </svg>
-      <h1 class="tag-title">Archive</h1>
-    </div>
-    <div class="tag-count">
-      {{ len $posts }} {{ if eq (len $posts) 1 }}post{{ else }}posts{{ end }}
-    </div>
-  </div>
-
-  <!-- Posts grouped by year and month -->
-  <div class="tag-posts-grouped">
-    {{ range $posts.GroupByDate "2006" }}
-    <div class="year-group">
-      <!-- Year indicator -->
-      <div class="year-indicator">
-        <div class="year-circle">
-          <span class="year-text">{{ .Key }}</span>
-          <div class="year-glow"></div>
-        </div>
-        <div class="year-line">
-          <span class="year-count-inline">{{ len .Pages }} {{ if eq (len .Pages) 1 }}post{{ else }}posts{{ end }}</span>
-        </div>
+  {{ $posts := where site.RegularPages "Type" "posts" }}
+  <div class="tag-page">
+    <div class="tag-header">
+      <div class="tag-header-content">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="tag-icon"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor">
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+        </svg>
+        <h1 class="tag-title">Archive</h1>
       </div>
-      
-      <!-- Months -->
-      <div class="year-months">
-        {{ range .Pages.GroupByDate "January" }}
-        <div class="month-group">
-          <div class="month-indicator">
-            <span class="month-text">{{ .Key }}</span>
-            <div class="month-line">
-              <span class="month-count-inline">{{ len .Pages }} {{ if eq (len .Pages) 1 }}post{{ else }}posts{{ end }}</span>
+      <div class="tag-count">
+        {{ len $posts }} {{ if eq (len $posts) 1 }}post{{ else }}posts{{ end }}
+      </div>
+    </div>
+
+    <!-- Posts grouped by year and month -->
+    <div class="tag-posts-grouped">
+      {{ range $posts.GroupByDate "2006" }}
+        <div class="year-group">
+          <!-- Year indicator -->
+          <div class="year-indicator">
+            <div class="year-circle">
+              <span class="year-text">{{ .Key }}</span>
+              <div class="year-glow"></div>
+            </div>
+            <div class="year-line">
+              <span class="year-count-inline"
+                >{{ len .Pages }} {{ if eq (len .Pages) 1 }}post{{ else }}posts{{ end }}</span
+              >
             </div>
           </div>
-          
-          <div class="month-posts">
-            {{ range .Pages.ByDate.Reverse }}
-            {{ partial "post-card.html" (dict "page" . "limit" 0) }}
+
+          <!-- Months -->
+          <div class="year-months">
+            {{ range .Pages.GroupByDate "January" }}
+              <div class="month-group">
+                <div class="month-indicator">
+                  <span class="month-text">{{ .Key }}</span>
+                  <div class="month-line">
+                    <span class="month-count-inline"
+                      >{{ len .Pages }} {{ if eq (len .Pages) 1 }}post{{ else }}posts{{ end }}</span
+                    >
+                  </div>
+                </div>
+
+                <div class="month-posts">
+                  {{ range .Pages.ByDate.Reverse }}
+                    {{ partial "post-card.html" (dict "page" . "limit" 0) }}
+                  {{ end }}
+                </div>
+              </div>
             {{ end }}
           </div>
         </div>
-        {{ end }}
-      </div>
+      {{ end }}
     </div>
-    {{ end }}
-  </div>
-  
-  <!-- Navigation links -->
-  {{ partial "back-to-home.html" . }}
-</div>
-{{ end }}
 
+    <!-- Navigation links -->
+    {{ partial "back-to-home.html" . }}
+  </div>
+{{ end }}

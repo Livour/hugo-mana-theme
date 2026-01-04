@@ -1,29 +1,33 @@
-<!DOCTYPE html>
-<html lang="{{ site.Language.LanguageCode }}" dir="{{ or site.Language.LanguageDirection `ltr` }}" class="h-full">
-<head>
-  {{ partial "head.html" . }}
-</head>
-<body class="flex flex-col min-h-screen">
-  <a href="#main-content" class="skip-to-main" aria-label="Skip to main content">Skip to main content</a>
-  <header class="sticky-header">
-    <div class="header-container">
-      {{ partial "header.html" . }}
-    </div>
-  </header>
-  
-  <main id="main-content" class="flex-1" role="main">
-    {{ block "main" . }}{{ end }}
-  </main>
-  
-  <footer>
-    {{ partial "footer.html" . }}
-  </footer>
+<!doctype html>
+<html
+  lang="{{ site.Language.LanguageCode }}"
+  dir="{{ or site.Language.LanguageDirection `ltr` }}"
+  class="h-full">
+  <head>
+    {{ partial "head.html" . }}
+  </head>
+  <body class="flex flex-col min-h-screen">
+    <a href="#main-content" class="skip-to-main" aria-label="Skip to main content"
+      >Skip to main content</a
+    >
+    <header class="sticky-header">
+      <div class="header-container">
+        {{ partial "header.html" . }}
+      </div>
+    </header>
 
-  {{ partial "search-modal.html" . }}
-  {{ partial "buy-me-coffee.html" . }}
-  {{ partial "scroll-to-top.html" . }}
-  
-  {{ partial "head/js.html" . }}
-</body>
+    <main id="main-content" class="flex-1" role="main">
+      {{ block "main" . }}{{ end }}
+    </main>
+
+    <footer>
+      {{ partial "footer.html" . }}
+    </footer>
+
+    {{ partial "search-modal.html" . }}
+    {{ partial "buy-me-coffee.html" . }}
+    {{ partial "scroll-to-top.html" . }}
+
+    {{ partial "head/js.html" . }}
+  </body>
 </html>
-

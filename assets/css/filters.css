@@ -97,7 +97,10 @@
   max-height: 0;
   overflow: hidden;
   opacity: 0;
-  transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), padding 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease-out;
+  transition:
+    max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+    padding 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 0.3s ease-out;
 }
 
 .posts-filter.expanded {
@@ -308,4 +311,3 @@
   color: var(--text-muted);
   font-size: 0.875rem;
 }
-

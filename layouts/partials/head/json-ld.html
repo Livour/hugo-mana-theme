@@ -28,32 +28,32 @@
 {{ end }}
 
 {{ if and .IsPage (not .IsHome) }}
-{{ $postsPage := site.GetPage "/posts" }}
-{{ $breadcrumbItems := slice (dict "@type" "ListItem" "position" 1 "name" site.Title "item" site.BaseURL) }}
-{{ if $postsPage }}
-{{ $breadcrumbItems = $breadcrumbItems | append (dict "@type" "ListItem" "position" 2 "name" "Posts" "item" $postsPage.Permalink) }}
-{{ end }}
-{{ $breadcrumbItems = $breadcrumbItems | append (dict "@type" "ListItem" "position" (cond $postsPage 3 2) "name" .Title "item" .Permalink) }}
+  {{ $postsPage := site.GetPage "/posts" }}
+  {{ $breadcrumbItems := slice (dict "@type" "ListItem" "position" 1 "name" site.Title "item" site.BaseURL) }}
+  {{ if $postsPage }}
+    {{ $breadcrumbItems = $breadcrumbItems | append (dict "@type" "ListItem" "position" 2 "name" "Posts" "item" $postsPage.Permalink) }}
+  {{ end }}
+  {{ $breadcrumbItems = $breadcrumbItems | append (dict "@type" "ListItem" "position" (cond $postsPage 3 2) "name" .Title "item" .Permalink) }}
 <script type="application/ld+json">{{ dict "@context" "https://schema.org" "@type" "BreadcrumbList" "itemListElement" $breadcrumbItems | jsonify | safeHTML }}</script>
 {{ end }}
 
 {{ if .IsHome }}
-{{ $webSite := dict
-  "@context" "https://schema.org"
-  "@type" "WebSite"
-  "name" site.Title
-  "url" site.BaseURL
-  "description" site.Params.description
-}}
-{{ if site.Params.social }}
-{{ $webSite = merge $webSite (dict "author" (dict "@type" "Person" "name" (cond (ne (site.Params.author | default "") "") site.Params.author site.Title))) }}
-{{ if site.Params.social.email }}
-{{ $webSite = merge $webSite (dict "author" (merge ($webSite.author) (dict "email" site.Params.social.email))) }}
-{{ end }}
-{{ end }}
-{{ if site.Params.avatar }}
-{{ $webSite = merge $webSite (dict "publisher" (dict "@type" "Organization" "name" site.Title "logo" (dict "@type" "ImageObject" "url" site.Params.avatar.url))) }}
-{{ end }}
-{{ $webSite = merge $webSite (dict "potentialAction" (dict "@type" "SearchAction" "target" (dict "@type" "EntryPoint" "urlTemplate" (printf "%s?q={search_term_string}" site.BaseURL)) "query-input" "required name=search_term_string")) }}
+  {{ $webSite := dict
+    "@context" "https://schema.org"
+    "@type" "WebSite"
+    "name" site.Title
+    "url" site.BaseURL
+    "description" site.Params.description
+  }}
+  {{ if site.Params.social }}
+    {{ $webSite = merge $webSite (dict "author" (dict "@type" "Person" "name" (cond (ne (site.Params.author | default "") "") site.Params.author site.Title))) }}
+    {{ if site.Params.social.email }}
+      {{ $webSite = merge $webSite (dict "author" (merge ($webSite.author) (dict "email" site.Params.social.email))) }}
+    {{ end }}
+  {{ end }}
+  {{ if site.Params.avatar }}
+    {{ $webSite = merge $webSite (dict "publisher" (dict "@type" "Organization" "name" site.Title "logo" (dict "@type" "ImageObject" "url" site.Params.avatar.url))) }}
+  {{ end }}
+  {{ $webSite = merge $webSite (dict "potentialAction" (dict "@type" "SearchAction" "target" (dict "@type" "EntryPoint" "urlTemplate" (printf "%s?q={search_term_string}" site.BaseURL)) "query-input" "required name=search_term_string")) }}
 <script type="application/ld+json">{{ $webSite | jsonify | safeHTML }}</script>
 {{ end }}

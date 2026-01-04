@@ -8,18 +8,25 @@
             <span class="hero-title-line2">404</span>
             <span class="hero-title-line1">This Page Does Not Exist</span>
           </h1>
-          <p class="hero-subtitle">&gt; {{ if site.Params.custom404Message }}{{ site.Params.custom404Message | safeHTML }}{{ else }}Sorry, the page you are looking for could not be found.{{ end }}</p>
+          <p class="hero-subtitle">
+            &gt;
+            {{ if site.Params.custom404Message }}
+              {{ site.Params.custom404Message | safeHTML }}
+            {{ else }}
+              Sorry, the page you are looking for could not be found.
+            {{ end }}
+          </p>
           <div class="hero-social" style="margin-top: var(--spacing-lg);">
-            <a href="{{ .Site.Home.RelPermalink }}" class="post-tag">
-              Return to the home page
-            </a>
+            <a href="{{ .Site.Home.RelPermalink }}" class="post-tag"> Return to the home page </a>
           </div>
         </div>
         <div class="hero-image">
-          <img src="/favicon/logo-transparent/android-chrome-512x512.png" alt="{{ site.Title }}" class="hero-logo">
+          <img
+            src="/favicon/logo-transparent/android-chrome-512x512.png"
+            alt="{{ site.Title }}"
+            class="hero-logo">
         </div>
       </div>
     </div>
   </section>
 {{ end }}
-

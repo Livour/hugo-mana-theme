@@ -1,16 +1,19 @@
 <footer class="site-footer">
   <div class="footer-content">
     <p class="footer-text">
-      &copy; {{ if site.Params.copyright.startYear }}{{ site.Params.copyright.startYear }}-{{ end }}{{ now.Year }} {{ site.Params.copyright.owner | default site.Title }}.
+      &copy;
+      {{ if site.Params.copyright.startYear }}
+        {{ site.Params.copyright.startYear }}-
+      {{ end }}{{ now.Year }}
+      {{ site.Params.copyright.owner | default site.Title }}.
       {{ if site.Params.footerText }}
-      {{ site.Params.footerText }}
+        {{ site.Params.footerText }}
       {{ end }}
     </p>
     {{ if site.Params.social }}
-    <div class="footer-social">
-      {{ partial "social-links.html" . }}
-    </div>
+      <div class="footer-social">
+        {{ partial "social-links.html" . }}
+      </div>
     {{ end }}
   </div>
 </footer>
-

@@ -139,7 +139,7 @@
 }
 
 .code-block-wrapper.collapsed .code-block-content::after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: 0;
   left: 0;
@@ -148,4 +148,3 @@
   background: linear-gradient(to bottom, transparent, var(--bg-primary));
   pointer-events: none;
 }
-

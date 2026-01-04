@@ -1,33 +1,32 @@
 {{ define "main" }}
-<div class="archives-page">
-  <header class="archives-header">
-    <h1 class="archives-title">{{ .Title }}</h1>
-    {{ if .Description }}
-    <p class="archives-description">{{ .Description }}</p>
-    {{ end }}
-  </header>
-
-  <div class="archives-content">
-    {{ range .Pages.GroupByDate "2006" }}
-    <section class="archive-year">
-      <h2 class="archive-year-title">{{ .Key }}</h2>
-      
-      {{ range .Pages.GroupByDate "January 2006" }}
-      <div class="archive-month">
-        <h3 class="archive-month-title">{{ .Key }}</h3>
-        <ul class="archive-posts">
-          {{ range .Pages }}
-          <li class="archive-post-item">
-            <time class="archive-date">{{ .Date.Format "Jan 2" }}</time>
-            <a href="{{ .RelPermalink }}" class="archive-link">{{ .Title }}</a>
-          </li>
-          {{ end }}
-        </ul>
-      </div>
+  <div class="archives-page">
+    <header class="archives-header">
+      <h1 class="archives-title">{{ .Title }}</h1>
+      {{ if .Description }}
+        <p class="archives-description">{{ .Description }}</p>
       {{ end }}
-    </section>
-    {{ end }}
-  </div>
-</div>
-{{ end }}
+    </header>
 
+    <div class="archives-content">
+      {{ range .Pages.GroupByDate "2006" }}
+        <section class="archive-year">
+          <h2 class="archive-year-title">{{ .Key }}</h2>
+
+          {{ range .Pages.GroupByDate "January 2006" }}
+            <div class="archive-month">
+              <h3 class="archive-month-title">{{ .Key }}</h3>
+              <ul class="archive-posts">
+                {{ range .Pages }}
+                  <li class="archive-post-item">
+                    <time class="archive-date">{{ .Date.Format "Jan 2" }}</time>
+                    <a href="{{ .RelPermalink }}" class="archive-link">{{ .Title }}</a>
+                  </li>
+                {{ end }}
+              </ul>
+            </div>
+          {{ end }}
+        </section>
+      {{ end }}
+    </div>
+  </div>
+{{ end }}

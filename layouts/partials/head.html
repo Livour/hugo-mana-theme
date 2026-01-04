@@ -4,25 +4,35 @@
 <meta name="language" content="{{ site.Language.LanguageCode }}">
 <script>
   // Set theme immediately to prevent flash
-  (function() {
-    const storedTheme = localStorage.getItem('theme');
-    const systemPrefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
-    const theme = storedTheme || (systemPrefersLight ? 'light' : 'dark');
-    document.documentElement.setAttribute('data-theme', theme);
+  (function () {
+    const storedTheme = localStorage.getItem("theme");
+    const systemPrefersLight = window.matchMedia("(prefers-color-scheme: light)").matches;
+    const theme = storedTheme || (systemPrefersLight ? "light" : "dark");
+    document.documentElement.setAttribute("data-theme", theme);
   })();
 </script>
 <title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }} | {{ site.Title }}{{ end }}</title>
-<meta name="description" content="{{ if .Description }}{{ .Description }}{{ else if .IsHome }}{{ site.Params.description }}{{ else }}{{ .Summary | plainify | truncate 160 }}{{ end }}">
+<meta
+  name="description"
+  content="{{ if .Description }}
+    {{ .Description }}
+  {{ else if .IsHome }}
+    {{ site.Params.description }}
+  {{ else }}
+    {{ .Summary | plainify | truncate 160 }}
+  {{ end }}
+  ">
 
 {{ if .Params.tags }}
-<meta name="keywords" content="{{ delimit .Params.tags ", " }}">
+  <meta name="keywords" content="{{ delimit .Params.tags ", " }}">
 {{ end }}
 
 {{ if .Params.author }}
-<meta name="author" content="{{ .Params.author }}">
+  <meta name="author" content="{{ .Params.author }}">
 {{ else if site.Params.author }}
-<meta name="author" content="{{ site.Params.author }}">
+  <meta name="author" content="{{ site.Params.author }}">
 {{ end }}
+
 
 <link rel="canonical" href="{{ .Permalink }}">
 
@@ -30,12 +40,16 @@
 {{ partial "head/opengraph.html" . }}
 {{ partial "head/json-ld.html" . }}
 
+
 <!-- Google Fonts: Space Grotesk (headings), Inter (body), Outfit (logo), and JetBrains Mono (code) -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link
+  href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+  rel="stylesheet">
 
 {{ partial "head/css.html" . }}
+
 
 <!-- Favicons -->
 <!-- Root favicon for Google and other crawlers - Google prefers larger sizes (48x48+) -->
@@ -48,22 +62,36 @@
 <!-- Additional favicon formats -->
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon/logo-transparent/favicon-16x16.png">
 <link rel="apple-touch-icon" sizes="180x180" href="/favicon/logo-transparent/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="192x192" href="/favicon/logo-transparent/android-chrome-192x192.png">
-<link rel="icon" type="image/png" sizes="512x512" href="/favicon/logo-transparent/android-chrome-512x512.png">
+<link
+  rel="icon"
+  type="image/png"
+  sizes="192x192"
+  href="/favicon/logo-transparent/android-chrome-192x192.png">
+<link
+  rel="icon"
+  type="image/png"
+  sizes="512x512"
+  href="/favicon/logo-transparent/android-chrome-512x512.png">
 <link rel="manifest" href="/favicon/logo-transparent/site.webmanifest">
 
 {{ range .AlternativeOutputFormats }}
-<link rel="{{ .Rel }}" type="{{ .MediaType.Type }}" href="{{ .Permalink }}">
+  <link rel="{{ .Rel }}" type="{{ .MediaType.Type }}" href="{{ .Permalink }}">
 {{ end }}
 
 {{ with .Site.Home }}
   {{ with .OutputFormats.Get "RSS" }}
-  <link rel="alternate" type="application/rss+xml" href="{{ .RelPermalink }}" title="{{ site.Title }}">
+    <link
+      rel="alternate"
+      type="application/rss+xml"
+      href="{{ .RelPermalink }}"
+      title="{{ site.Title }}">
   {{ end }}
 {{ end }}
 
 {{ if site.Params.umami.websiteId }}
-<!-- Umami Analytics -->
-<script defer src="https://cloud.umami.is/script.js" data-website-id="{{ site.Params.umami.websiteId }}"></script>
+  <!-- Umami Analytics -->
+  <script
+    defer
+    src="https://cloud.umami.is/script.js"
+    data-website-id="{{ site.Params.umami.websiteId }}"></script>
 {{ end }}
-

@@ -26,7 +26,7 @@ function debounce(func, wait) {
  */
 function throttle(func) {
   let ticking = false;
-  return function(...args) {
+  return function (...args) {
     if (!ticking) {
       window.requestAnimationFrame(() => {
         func(...args);
@@ -59,7 +59,7 @@ function isMobileScreen() {
  * @returns {string} Escaped string
  */
 function escapeRegex(string) {
-  return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  return string.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
 
 /**
@@ -68,14 +68,27 @@ function escapeRegex(string) {
  * @returns {string} Formatted date string
  */
 function formatDate(dateString) {
-  if (!dateString) return '';
-  
+  if (!dateString) return "";
+
   try {
     const date = new Date(dateString);
-    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    const months = [
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec",
+    ];
     return `${months[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`;
   } catch (error) {
-    console.error('Error formatting date:', error);
+    console.error("Error formatting date:", error);
     return dateString;
   }
 }
@@ -85,10 +98,9 @@ function formatDate(dateString) {
  * @param {Function} initFunction - Function to initialize
  */
 function initOnReady(initFunction) {
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initFunction);
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initFunction);
   } else {
     initFunction();
   }
 }
-

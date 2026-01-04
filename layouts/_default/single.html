@@ -1,51 +1,58 @@
 {{ define "main" }}
-<div class="single-post-wrapper">
-  <article class="single-post">
-    {{ partial "post-image-single.html" . }}
-    
-    <header class="post-header">
-      <h1 class="post-title-main">{{ .Title }}</h1>
-      
-      {{ if .Description }}
-      <p class="post-description-main">{{ .Description }}</p>
-      {{ end }}
-      
-      {{ partial "post-meta.html" . }}
-    </header>
+  <div class="single-post-wrapper">
+    <article class="single-post">
+      {{ partial "post-image-single.html" . }}
 
-    <div class="post-content-main">
-      {{ .Content }}
-    </div>
 
-  {{ if .Params.tags }}
-  <footer class="post-footer">
-    <div class="post-tags-footer">
-      <span class="tags-label">Tags:</span>
-      {{ range .Params.tags }}
-      <a href="{{ "/tags/" | relLangURL }}{{ . | urlize }}" class="post-tag">{{ . }}</a>
-      {{ end }}
-    </div>
-  </footer>
-  {{ end }}
+      <header class="post-header">
+        <h1 class="post-title-main">{{ .Title }}</h1>
 
-    <nav class="post-navigation" aria-label="Post navigation">
-      {{ with .PrevInSection }}
-      <a href="{{ .RelPermalink }}" class="nav-link nav-prev" aria-label="Previous post: {{ .Title }}">
-        <span class="nav-label">Previous</span>
-        <span class="nav-title">{{ .Title }}</span>
-      </a>
+        {{ if .Description }}
+          <p class="post-description-main">{{ .Description }}</p>
+        {{ end }}
+
+        {{ partial "post-meta.html" . }}
+      </header>
+
+      <div class="post-content-main">
+        {{ .Content }}
+      </div>
+
+      {{ if .Params.tags }}
+        <footer class="post-footer">
+          <div class="post-tags-footer">
+            <span class="tags-label">Tags:</span>
+            {{ range .Params.tags }}
+              <a href="{{ "/tags/" | relLangURL }}{{ . | urlize }}" class="post-tag">{{ . }}</a>
+            {{ end }}
+          </div>
+        </footer>
       {{ end }}
-      
-      {{ with .NextInSection }}
-      <a href="{{ .RelPermalink }}" class="nav-link nav-next" aria-label="Next post: {{ .Title }}">
-        <span class="nav-label">Next</span>
-        <span class="nav-title">{{ .Title }}</span>
-      </a>
-      {{ end }}
-    </nav>
-  </article>
-  
-  {{ partial "toc.html" . }}
-</div>
+
+
+      <nav class="post-navigation" aria-label="Post navigation">
+        {{ with .PrevInSection }}
+          <a
+            href="{{ .RelPermalink }}"
+            class="nav-link nav-prev"
+            aria-label="Previous post: {{ .Title }}">
+            <span class="nav-label">Previous</span>
+            <span class="nav-title">{{ .Title }}</span>
+          </a>
+        {{ end }}
+
+        {{ with .NextInSection }}
+          <a
+            href="{{ .RelPermalink }}"
+            class="nav-link nav-next"
+            aria-label="Next post: {{ .Title }}">
+            <span class="nav-label">Next</span>
+            <span class="nav-title">{{ .Title }}</span>
+          </a>
+        {{ end }}
+      </nav>
+    </article>
+
+    {{ partial "toc.html" . }}
+  </div>
 {{ end }}
-

@@ -21,6 +21,7 @@
   {{- $description = .Summary | plainify | truncate 160 -}}
 {{- end -}}
 
+
 <!-- Open Graph / Facebook -->
 <meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}">
 <meta property="og:title" content="{{ $title }}">
@@ -28,34 +29,36 @@
 <meta property="og:url" content="{{ .Permalink }}">
 <meta property="og:site_name" content="{{ site.Title }}">
 {{- if $image -}}
-<meta property="og:image" content="{{ $image }}">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
+  <meta property="og:image" content="{{ $image }}">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
 {{- end -}}
 {{- if .IsPage -}}
-<meta property="article:published_time" content="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">
-<meta property="article:modified_time" content="{{ .Lastmod.Format "2006-01-02T15:04:05Z07:00" }}">
-{{- if .Params.author -}}
-<meta property="article:author" content="{{ .Params.author }}">
+  <meta property="article:published_time" content="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">
+  <meta
+    property="article:modified_time"
+    content="{{ .Lastmod.Format "2006-01-02T15:04:05Z07:00" }}">
+  {{- if .Params.author -}}
+    <meta property="article:author" content="{{ .Params.author }}">
+  {{- end -}}
+  {{- if .Params.tags -}}
+    {{- $firstTag := index .Params.tags 0 -}}
+    <meta property="article:section" content="{{ $firstTag }}">
+    {{- range .Params.tags -}}
+      <meta property="article:tag" content="{{ . }}">
+    {{- end -}}
+  {{- end -}}
 {{- end -}}
-{{- if .Params.tags -}}
-{{- $firstTag := index .Params.tags 0 -}}
-<meta property="article:section" content="{{ $firstTag }}">
-{{- range .Params.tags -}}
-<meta property="article:tag" content="{{ . }}">
-{{- end -}}
-{{- end -}}
-{{- end -}}
+
 
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="{{ $title }}">
 <meta name="twitter:description" content="{{ $description }}">
 {{- if $image -}}
-<meta name="twitter:image" content="{{ $image }}">
+  <meta name="twitter:image" content="{{ $image }}">
 {{- end -}}
 {{- if site.Params.social.twitter -}}
-<meta name="twitter:site" content="@{{ site.Params.social.twitter }}">
-<meta name="twitter:creator" content="@{{ site.Params.social.twitter }}">
+  <meta name="twitter:site" content="@{{ site.Params.social.twitter }}">
+  <meta name="twitter:creator" content="@{{ site.Params.social.twitter }}">
 {{- end -}}
-

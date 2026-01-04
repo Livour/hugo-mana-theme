@@ -1,106 +1,144 @@
 {{ define "main" }}
-<div class="tag-page">
-  <div class="tag-header">
-    <div class="tag-header-content">
-      <svg xmlns="http://www.w3.org/2000/svg" class="tag-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" />
-      </svg>
-      <h1 class="tag-title">{{ .Title }}</h1>
-    </div>
-    <div class="tag-count">
-      {{ len .Pages }} {{ if eq (len .Pages) 1 }}post{{ else }}posts{{ end }}
-    </div>
-  </div>
-
-  <!-- Posts grouped by year -->
-  <div class="tag-posts-grouped">
-    {{ range .Pages.GroupByDate "2006" }}
-    <div class="year-group">
-      <!-- Year indicator -->
-      <div class="year-indicator">
-        <div class="year-circle">
-          <span class="year-text">{{ .Key }}</span>
-          <div class="year-glow"></div>
-        </div>
-        <div class="year-line"></div>
+  <div class="tag-page">
+    <div class="tag-header">
+      <div class="tag-header-content">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="tag-icon"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor">
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" />
+        </svg>
+        <h1 class="tag-title">{{ .Title }}</h1>
       </div>
-      
-      <!-- Posts list -->
-      <div class="year-posts">
-        {{ range .Pages.ByDate.Reverse }}
-        <div class="tag-post-card">
-          <a href="{{ .RelPermalink }}" class="tag-post-link" aria-label="{{ .Title }}"></a>
-          <div class="tag-post-content">
-            <div class="tag-post-header">
-              <h3 class="tag-post-title">{{ .Title }}</h3>
-              <time class="tag-post-date">{{ .Date.Format "January 2" }}</time>
+      <div class="tag-count">
+        {{ len .Pages }} {{ if eq (len .Pages) 1 }}post{{ else }}posts{{ end }}
+      </div>
+    </div>
+
+    <!-- Posts grouped by year -->
+    <div class="tag-posts-grouped">
+      {{ range .Pages.GroupByDate "2006" }}
+        <div class="year-group">
+          <!-- Year indicator -->
+          <div class="year-indicator">
+            <div class="year-circle">
+              <span class="year-text">{{ .Key }}</span>
+              <div class="year-glow"></div>
             </div>
-            
-            {{ if .Summary }}
-            <div class="tag-post-summary">
-              {{ .Summary | plainify | truncate 140 }}
-            </div>
+            <div class="year-line"></div>
+          </div>
+
+          <!-- Posts list -->
+          <div class="year-posts">
+            {{ range .Pages.ByDate.Reverse }}
+              <div class="tag-post-card">
+                <a href="{{ .RelPermalink }}" class="tag-post-link" aria-label="{{ .Title }}"></a>
+                <div class="tag-post-content">
+                  <div class="tag-post-header">
+                    <h3 class="tag-post-title">{{ .Title }}</h3>
+                    <time class="tag-post-date">{{ .Date.Format "January 2" }}</time>
+                  </div>
+
+                  {{ if .Summary }}
+                    <div class="tag-post-summary">
+                      {{ .Summary | plainify | truncate 140 }}
+                    </div>
+                  {{ end }}
+
+                  {{ if .Params.tags }}
+                    <div class="tag-post-tags">
+                      {{ range .Params.tags }}
+                        {{ $isCurrentTag := eq . $.Title }}
+                        <a
+                          href="{{ "/tags/" | relLangURL }}{{ . | urlize }}"
+                          class="tag-chip {{ if $isCurrentTag }}tag-chip-active{{ end }}"
+                          onclick="event.stopPropagation();">
+                          {{ . }}
+                        </a>
+                      {{ end }}
+                    </div>
+                  {{ end }}
+
+
+                  <div class="tag-post-read-more">
+                    <span class="read-more-text">Read more</span>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="read-more-icon"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor">
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                    </svg>
+                  </div>
+                </div>
+              </div>
             {{ end }}
-            
-            {{ if .Params.tags }}
-            <div class="tag-post-tags">
-              {{ range .Params.tags }}
-              {{ $isCurrentTag := eq . $.Title }}
-              <a href="{{ "/tags/" | relLangURL }}{{ . | urlize }}" 
-                 class="tag-chip {{ if $isCurrentTag }}tag-chip-active{{ end }}"
-                 onclick="event.stopPropagation();">
-                {{ . }}
-              </a>
-              {{ end }}
-            </div>
-            {{ end }}
-            
-            <div class="tag-post-read-more">
-              <span class="read-more-text">Read more</span>
-              <svg xmlns="http://www.w3.org/2000/svg" class="read-more-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-              </svg>
-            </div>
           </div>
         </div>
+      {{ end }}
+    </div>
+
+    <!-- Pagination -->
+    {{ if or .Paginator.HasPrev .Paginator.HasNext }}
+      <div class="tag-pagination">
+        {{ if .Paginator.HasPrev }}
+          <a href="{{ .Paginator.Prev.URL }}" class="pagination-btn pagination-prev">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="pagination-icon"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor">
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M15 19l-7-7 7-7" />
+            </svg>
+            Previous
+          </a>
+        {{ else }}
+          <div></div>
+        {{ end }}
+
+        {{ if .Paginator.HasNext }}
+          <a href="{{ .Paginator.Next.URL }}" class="pagination-btn pagination-next">
+            Next
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="pagination-icon"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor">
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M9 5l7 7-7 7" />
+            </svg>
+          </a>
+        {{ else }}
+          <div></div>
         {{ end }}
       </div>
-    </div>
     {{ end }}
-  </div>
-  
-  <!-- Pagination -->
-  {{ if or .Paginator.HasPrev .Paginator.HasNext }}
-  <div class="tag-pagination">
-    {{ if .Paginator.HasPrev }}
-    <a href="{{ .Paginator.Prev.URL }}" class="pagination-btn pagination-prev">
-      <svg xmlns="http://www.w3.org/2000/svg" class="pagination-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
-      </svg>
-      Previous
-    </a>
-    {{ else }}
-    <div></div>
-    {{ end }}
-    
-    {{ if .Paginator.HasNext }}
-    <a href="{{ .Paginator.Next.URL }}" class="pagination-btn pagination-next">
-      Next
-      <svg xmlns="http://www.w3.org/2000/svg" class="pagination-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-      </svg>
-    </a>
-    {{ else }}
-    <div></div>
-    {{ end }}
-  </div>
-  {{ end }}
-  
-  <!-- Navigation links -->
-  <div class="tag-nav-links">
-    <a href="{{ "/tags" | relURL }}" class="tag-nav-link">All Tags</a>
-    <a href="{{ "/" | relLangURL }}" class="tag-nav-link">Back to Home</a>
-  </div>
-</div>
-{{ end }}
 
+
+    <!-- Navigation links -->
+    <div class="tag-nav-links">
+      <a href="{{ "/tags" | relURL }}" class="tag-nav-link">All Tags</a>
+      <a href="{{ "/" | relLangURL }}" class="tag-nav-link">Back to Home</a>
+    </div>
+  </div>
+{{ end }}

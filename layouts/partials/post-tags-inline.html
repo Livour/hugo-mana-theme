@@ -1,15 +1,24 @@
 {{ $limit := default 0 .limit }}
 {{ if .Params.tags }}
-<div class="post-tags">
-  {{ if gt $limit 0 }}
-    {{ range first $limit .Params.tags }}
-    <a href="{{ "/tags/" | relLangURL }}{{ . | urlize }}" class="post-tag" onclick="event.stopPropagation();">{{ . }}</a>
+  <div class="post-tags">
+    {{ if gt $limit 0 }}
+      {{ range first $limit .Params.tags }}
+        <a
+          href="{{ "/tags/" | relLangURL }}{{ . | urlize }}"
+          class="post-tag"
+          onclick="event.stopPropagation();"
+          >{{ . }}</a
+        >
+      {{ end }}
+    {{ else }}
+      {{ range .Params.tags }}
+        <a
+          href="{{ "/tags/" | relLangURL }}{{ . | urlize }}"
+          class="post-tag"
+          onclick="event.stopPropagation();"
+          >{{ . }}</a
+        >
+      {{ end }}
     {{ end }}
-  {{ else }}
-    {{ range .Params.tags }}
-    <a href="{{ "/tags/" | relLangURL }}{{ . | urlize }}" class="post-tag" onclick="event.stopPropagation();">{{ . }}</a>
-    {{ end }}
-  {{ end }}
-</div>
+  </div>
 {{ end }}
-

@@ -6,36 +6,48 @@
 
 {{- if $syntaxDark -}}
   {{- $syntaxDarkMin := $syntaxDark | minify | fingerprint -}}
-  <link rel="stylesheet" href="{{ $syntaxDarkMin.RelPermalink }}" integrity="{{ $syntaxDarkMin.Data.Integrity }}" id="syntax-dark-theme" class="syntax-theme">
+  <link
+    rel="stylesheet"
+    href="{{ $syntaxDarkMin.RelPermalink }}"
+    integrity="{{ $syntaxDarkMin.Data.Integrity }}"
+    id="syntax-dark-theme"
+    class="syntax-theme">
 {{- end -}}
 
 {{- if $syntaxLight -}}
   {{- $syntaxLightMin := $syntaxLight | minify | fingerprint -}}
-  <link rel="stylesheet" href="{{ $syntaxLightMin.RelPermalink }}" integrity="{{ $syntaxLightMin.Data.Integrity }}" id="syntax-light-theme" class="syntax-theme" disabled>
+  <link
+    rel="stylesheet"
+    href="{{ $syntaxLightMin.RelPermalink }}"
+    integrity="{{ $syntaxLightMin.Data.Integrity }}"
+    id="syntax-light-theme"
+    class="syntax-theme"
+    disabled>
 {{- end -}}
+
 
 <script>
   // Set initial syntax highlighting theme based on current theme
-  (function() {
-    const storedTheme = localStorage.getItem('theme');
-    const systemPrefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
-    const theme = storedTheme || (systemPrefersLight ? 'light' : 'dark');
-    
-    const syntaxDark = document.getElementById('syntax-dark-theme');
-    const syntaxLight = document.getElementById('syntax-light-theme');
-    
-    if (theme === 'light') {
+  (function () {
+    const storedTheme = localStorage.getItem("theme");
+    const systemPrefersLight = window.matchMedia("(prefers-color-scheme: light)").matches;
+    const theme = storedTheme || (systemPrefersLight ? "light" : "dark");
+
+    const syntaxDark = document.getElementById("syntax-dark-theme");
+    const syntaxLight = document.getElementById("syntax-light-theme");
+
+    if (theme === "light") {
       if (syntaxDark) syntaxDark.disabled = true;
       if (syntaxLight) syntaxLight.disabled = false;
     } else {
       if (syntaxDark) syntaxDark.disabled = false;
       if (syntaxLight) syntaxLight.disabled = true;
     }
-    
+
     // Listen for theme changes
     const observer = new MutationObserver(() => {
-      const currentTheme = document.documentElement.getAttribute('data-theme');
-      if (currentTheme === 'light') {
+      const currentTheme = document.documentElement.getAttribute("data-theme");
+      if (currentTheme === "light") {
         if (syntaxDark) syntaxDark.disabled = true;
         if (syntaxLight) syntaxLight.disabled = false;
       } else {
@@ -43,11 +55,10 @@
         if (syntaxLight) syntaxLight.disabled = true;
       }
     });
-    
+
     observer.observe(document.documentElement, {
       attributes: true,
-      attributeFilter: ['data-theme']
+      attributeFilter: ["data-theme"],
     });
   })();
 </script>
-

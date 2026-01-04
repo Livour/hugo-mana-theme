@@ -1,5 +1,8 @@
 {{ $themeCss := resources.Get "css/theme.css" | minify | fingerprint }}
-<link rel="stylesheet" href="{{ $themeCss.RelPermalink }}" integrity="{{ $themeCss.Data.Integrity }}">
+<link
+  rel="stylesheet"
+  href="{{ $themeCss.RelPermalink }}"
+  integrity="{{ $themeCss.Data.Integrity }}">
 
 {{ partial "head/syntax-highlight.html" . }}
 
@@ -22,5 +25,7 @@
   (resources.Get "css/responsive.css")
 }}
 {{ $bundledCss := $cssFiles | resources.Concat "css/bundle.css" | minify | fingerprint }}
-<link rel="stylesheet" href="{{ $bundledCss.RelPermalink }}" integrity="{{ $bundledCss.Data.Integrity }}">
-
+<link
+  rel="stylesheet"
+  href="{{ $bundledCss.RelPermalink }}"
+  integrity="{{ $bundledCss.Data.Integrity }}">

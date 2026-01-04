@@ -7,16 +7,16 @@
     gap: var(--spacing-xl);
     text-align: center;
   }
-  
+
   .hero-image {
     order: -1;
   }
-  
+
   .hero-logo,
   .hero-logo-placeholder {
     max-width: 150px;
   }
-  
+
   .hero-title-line1,
   .hero-title-line2 {
     font-size: clamp(2rem, 8vw, 3rem);
@@ -36,7 +36,7 @@
     margin-bottom: var(--spacing-lg);
     order: -1;
   }
-  
+
   .toc-content.expanded {
     max-height: 300px;
   }
@@ -243,4 +243,3 @@
     right: calc(1rem + 85px);
   }
 }
-

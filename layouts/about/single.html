@@ -1,43 +1,42 @@
 {{ define "main" }}
-<article class="about-page">
-  <header class="about-header">
-    <div class="about-page-info">
-      <h1 class="about-page-name">
-        <span class="list-title-line2">{{ .Title | upper }}</span>
-      </h1>
-      
-      {{ $avatarUrl := site.Params.avatar.about.url | default site.Params.avatar.url }}
-      {{ $avatarAsset := site.Params.avatar.about.assetPath | default site.Params.avatar.assetPath }}
-      {{ $enableResize := site.Params.avatar.about.enableResize | default site.Params.avatar.enableResize | default false }}
-      
-      {{ if $avatarUrl }}
-        <img src="{{ $avatarUrl }}" alt="{{ site.Title }}" class="about-page-avatar">
-      {{ else if $avatarAsset }}
-        {{ with resources.Get $avatarAsset }}
-          {{ if $enableResize }}
-            {{ with .Resize "120x" }}
+  <article class="about-page">
+    <header class="about-header">
+      <div class="about-page-info">
+        <h1 class="about-page-name">
+          <span class="list-title-line2">{{ .Title | upper }}</span>
+        </h1>
+
+        {{ $avatarUrl := site.Params.avatar.about.url | default site.Params.avatar.url }}
+        {{ $avatarAsset := site.Params.avatar.about.assetPath | default site.Params.avatar.assetPath }}
+        {{ $enableResize := site.Params.avatar.about.enableResize | default site.Params.avatar.enableResize | default false }}
+
+        {{ if $avatarUrl }}
+          <img src="{{ $avatarUrl }}" alt="{{ site.Title }}" class="about-page-avatar">
+        {{ else if $avatarAsset }}
+          {{ with resources.Get $avatarAsset }}
+            {{ if $enableResize }}
+              {{ with .Resize "120x" }}
+                <img src="{{ .RelPermalink }}" alt="{{ site.Title }}" class="about-page-avatar">
+              {{ end }}
+            {{ else }}
               <img src="{{ .RelPermalink }}" alt="{{ site.Title }}" class="about-page-avatar">
             {{ end }}
-          {{ else }}
-            <img src="{{ .RelPermalink }}" alt="{{ site.Title }}" class="about-page-avatar">
           {{ end }}
         {{ end }}
-      {{ end }}
-      {{ if site.Params.description }}
-      <p class="about-page-description">{{ site.Params.description }}</p>
-      {{ end }}
-      
-      {{ if site.Params.social }}
-      <div class="about-page-social">
-        {{ partial "social-links.html" . }}
+        {{ if site.Params.description }}
+          <p class="about-page-description">{{ site.Params.description }}</p>
+        {{ end }}
+
+        {{ if site.Params.social }}
+          <div class="about-page-social">
+            {{ partial "social-links.html" . }}
+          </div>
+        {{ end }}
       </div>
-      {{ end }}
+    </header>
+
+    <div class="about-content-full">
+      {{ .Content }}
     </div>
-  </header>
-
-  <div class="about-content-full">
-    {{ .Content }}
-  </div>
-</article>
+  </article>
 {{ end }}
-

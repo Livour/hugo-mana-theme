@@ -1,0 +1,19 @@
+{
+  "name": "mana-theme",
+  "version": "1.5.0",
+  "description": "Mana Hugo theme",
+  "private": true,
+  "scripts": {
+    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,css,html}\"",
+    "format:check": "prettier --check \"**/*.{js,jsx,ts,tsx,css,html}\"",
+    "format:js": "prettier --write \"assets/js/**/*.{js,jsx,ts,tsx}\"",
+    "format:css": "prettier --write \"assets/css/**/*.css\"",
+    "format:html": "prettier --write \"layouts/**/*.html\""
+  },
+  "devDependencies": {
+    "@awmottaz/prettier-plugin-void-html": "^2.0.0",
+    "prettier": "^3.7.4",
+    "prettier-plugin-go-template": "^0.0.15"
+  }
+}
+

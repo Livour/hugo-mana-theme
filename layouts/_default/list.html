@@ -1,89 +1,119 @@
 {{ define "main" }}
-{{ $allPosts := where site.RegularPages "Type" "posts" }}
-{{ $allTags := slice }}
-{{ range $allPosts }}
-  {{ if .Params.tags }}
-    {{ range .Params.tags }}
-      {{ $allTags = $allTags | append . }}
+  {{ $allPosts := where site.RegularPages "Type" "posts" }}
+  {{ $allTags := slice }}
+  {{ range $allPosts }}
+    {{ if .Params.tags }}
+      {{ range .Params.tags }}
+        {{ $allTags = $allTags | append . }}
+      {{ end }}
     {{ end }}
   {{ end }}
-{{ end }}
-{{ $uniqueTags := $allTags | uniq | sort }}
-{{ $yearMonths := slice }}
-{{ range $allPosts }}
-  {{ $yearMonth := printf "%s %s" (.Date.Format "2006") (.Date.Format "January") }}
-  {{ $yearMonths = $yearMonths | append $yearMonth }}
-{{ end }}
-{{ $uniqueYearMonths := $yearMonths | uniq | sort }}
+  {{ $uniqueTags := $allTags | uniq | sort }}
+  {{ $yearMonths := slice }}
+  {{ range $allPosts }}
+    {{ $yearMonth := printf "%s %s" (.Date.Format "2006") (.Date.Format "January") }}
+    {{ $yearMonths = $yearMonths | append $yearMonth }}
+  {{ end }}
+  {{ $uniqueYearMonths := $yearMonths | uniq | sort }}
 
-<div class="list-container">
-  <header class="list-header">
-    <h1 class="list-title">
-      <span class="list-title-line2">POSTS</span>
-    </h1>
-    {{ if .Description }}
-    <p class="list-description">{{ .Description }}</p>
-    {{ end }}
-    <div class="list-count">
-      <span id="filtered-count">{{ len .Paginator.Pages }}</span> {{ if eq (len .Paginator.Pages) 1 }}post{{ else }}posts{{ end }}
+
+  <div class="list-container">
+    <header class="list-header">
+      <h1 class="list-title">
+        <span class="list-title-line2">POSTS</span>
+      </h1>
+      {{ if .Description }}
+        <p class="list-description">{{ .Description }}</p>
+      {{ end }}
+      <div class="list-count">
+        <span id="filtered-count">{{ len .Paginator.Pages }}</span>
+        {{ if eq (len .Paginator.Pages) 1 }}post{{ else }}posts{{ end }}
+      </div>
+    </header>
+
+    <!-- Filter Controls -->
+    <div class="filter-accordion">
+      <button
+        class="filter-toggle-btn"
+        id="filter-toggle-btn"
+        aria-expanded="false"
+        aria-label="Toggle filters"
+        aria-controls="posts-filter-content">
+        <span class="filter-toggle-text">Filters</span>
+        <svg
+          class="filter-toggle-icon"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          aria-hidden="true">
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M19 9l-7 7-7-7"></path>
+        </svg>
+      </button>
+      <div class="posts-filter" id="posts-filter-content">
+        <div class="filter-group filter-group-tags">
+          <label class="filter-label" for="tag-search-input">Tags</label>
+          <div class="tag-search-container">
+            <input
+              type="text"
+              id="tag-search-input"
+              class="tag-search-input"
+              placeholder="Search for tags..."
+              aria-label="Search for tags">
+            <div
+              id="tag-search-results"
+              class="tag-search-results"
+              role="listbox"
+              aria-label="Tag search results"></div>
+          </div>
+          <div class="filter-tags" id="selected-tags-container">
+            <!-- Selected tags will appear here -->
+          </div>
+          <div id="all-tags-data" style="display: none;">
+            {{ range $uniqueTags }}
+              <span data-tag="{{ . }}">{{ . }}</span>
+            {{ end }}
+          </div>
+        </div>
+
+        <div class="filter-group">
+          <label for="filter-year-month" class="filter-label">Year & Month</label>
+          <select
+            id="filter-year-month"
+            class="filter-select"
+            aria-label="Filter by year and month">
+            <option value="">All Dates</option>
+            {{ range $uniqueYearMonths }}
+              <option value="{{ . }}">{{ . }}</option>
+            {{ end }}
+          </select>
+        </div>
+
+        <button id="clear-filters" class="filter-clear-btn" aria-label="Clear all filters">
+          Clear Filters
+        </button>
+      </div>
     </div>
-  </header>
 
-  <!-- Filter Controls -->
-  <div class="filter-accordion">
-    <button class="filter-toggle-btn" id="filter-toggle-btn" aria-expanded="false" aria-label="Toggle filters" aria-controls="posts-filter-content">
-      <span class="filter-toggle-text">Filters</span>
-      <svg class="filter-toggle-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-      </svg>
-    </button>
-    <div class="posts-filter" id="posts-filter-content">
-      <div class="filter-group filter-group-tags">
-      <label class="filter-label" for="tag-search-input">Tags</label>
-      <div class="tag-search-container">
-        <input type="text" id="tag-search-input" class="tag-search-input" placeholder="Search for tags..." aria-label="Search for tags">
-        <div id="tag-search-results" class="tag-search-results" role="listbox" aria-label="Tag search results"></div>
-      </div>
-      <div class="filter-tags" id="selected-tags-container">
-        <!-- Selected tags will appear here -->
-      </div>
-      <div id="all-tags-data" style="display: none;">
-        {{ range $uniqueTags }}
-        <span data-tag="{{ . }}">{{ . }}</span>
+    <div class="posts-list" id="posts-container">
+      {{ range .Paginator.Pages }}
+        {{ $dataTags := "" }}
+        {{ if .Params.tags }}
+          {{ $dataTags = delimit .Params.tags "," }}
         {{ end }}
-      </div>
+        {{ partial "post-card.html" (dict
+          "page" .
+          "limit" 3
+          "dataYearMonth" (printf "%s %s" (.Date.Format "2006") (.Date.Format "January"))
+          "dataTags" $dataTags)
+        }}
+      {{ end }}
     </div>
-    
-    <div class="filter-group">
-      <label for="filter-year-month" class="filter-label">Year & Month</label>
-      <select id="filter-year-month" class="filter-select" aria-label="Filter by year and month">
-        <option value="">All Dates</option>
-        {{ range $uniqueYearMonths }}
-        <option value="{{ . }}">{{ . }}</option>
-        {{ end }}
-      </select>
-    </div>
-    
-    <button id="clear-filters" class="filter-clear-btn" aria-label="Clear all filters">Clear Filters</button>
-    </div>
-  </div>
 
-  <div class="posts-list" id="posts-container">
-    {{ range .Paginator.Pages }}
-    {{ $dataTags := "" }}
-    {{ if .Params.tags }}
-      {{ $dataTags = delimit .Params.tags "," }}
-    {{ end }}
-    {{ partial "post-card.html" (dict 
-      "page" . 
-      "limit" 3
-      "dataYearMonth" (printf "%s %s" (.Date.Format "2006") (.Date.Format "January"))
-      "dataTags" $dataTags) }}
-    {{ end }}
+    <!-- Navigation links -->
+    {{ partial "back-to-home.html" . }}
   </div>
-  
-  <!-- Navigation links -->
-  {{ partial "back-to-home.html" . }}
-</div>
 {{ end }}
-

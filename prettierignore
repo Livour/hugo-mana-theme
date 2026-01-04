@@ -1,0 +1,47 @@
+# Hugo template files that look like JSON
+layouts/**/*.json
+themes/mana/layouts/**/*.json
+
+# Generated/minified files
+*.min.css
+*.min.js
+
+# Build outputs
+public/
+public/**
+dist/
+dist/**
+.hugo_cache/
+.hugo_cache/**
+build/
+build/**
+
+# Generated files
+*.min.css
+*.min.js
+
+# Hugo generated
+resources/
+
+# Git
+.git/
+
+# Images and binaries
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.ico
+*.svg
+*.webp
+*.woff
+*.woff2
+*.ttf
+*.eot
+
+# Lock files
+package-lock.json
+yarn.lock
+
+# Config files
+LICENSE

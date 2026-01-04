@@ -40,7 +40,7 @@
 }
 
 .post-toc::before {
-  content: '';
+  content: "";
   position: absolute;
   inset: 0;
   background-color: var(--bg-secondary);
@@ -397,4 +397,3 @@
   color: var(--text-primary);
   font-weight: 600;
 }
-

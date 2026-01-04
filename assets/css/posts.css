@@ -73,7 +73,9 @@
   text-decoration: underline;
   text-decoration-color: transparent;
   text-underline-offset: 0.25em;
-  transition: text-decoration-color var(--transition-base), color var(--transition-base);
+  transition:
+    text-decoration-color var(--transition-base),
+    color var(--transition-base);
 }
 
 .post-card:hover .post-title a {
@@ -143,4 +145,3 @@
   color: var(--tag-color);
   box-shadow: 0 0 8px var(--accent-light-purple-rgba-03);
 }
-

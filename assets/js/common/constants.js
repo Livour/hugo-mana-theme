@@ -4,7 +4,7 @@
 const MIN_SEARCH_QUERY_LENGTH = 2;
 const SEARCH_RESULTS_LIMIT = 10;
 const SEARCH_DEBOUNCE_DELAY = 200;
-const SEARCH_INDEX_URL = '/index.json';
+const SEARCH_INDEX_URL = "/index.json";
 const MODAL_FOCUS_DELAY = 100;
 
 // Scroll constants
@@ -20,4 +20,3 @@ const TOC_RESIZE_DEBOUNCE = 150;
 
 // General constants
 const DEBOUNCE_DELAY = 200;
-

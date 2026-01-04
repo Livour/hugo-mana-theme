@@ -1,37 +1,45 @@
 {{ define "main" }}
-<div class="tags-page">
-  <h1 class="tags-title">
-    <span class="list-title-line2">{{ .Title | upper }}</span>
-  </h1>
-  
-  <!-- Help text -->
-  <div class="tags-help">
-    <p>Click any tag to view related posts</p>
-  </div>
-  
-  <!-- Tag cloud -->
-  <div class="tags-cloud">
-    <div class="tags-list">
-      {{ range .Data.Terms.ByCount }}
-      <a href="{{ .Page.RelPermalink }}" class="tag-item">
-        <div class="tag-chip-large">
-          <span class="tag-name">{{ .Page.Title }}</span>
-          <span class="tag-count-badge">{{ .Count }}</span>
-        </div>
+  <div class="tags-page">
+    <h1 class="tags-title">
+      <span class="list-title-line2">{{ .Title | upper }}</span>
+    </h1>
+
+    <!-- Help text -->
+    <div class="tags-help">
+      <p>Click any tag to view related posts</p>
+    </div>
+
+    <!-- Tag cloud -->
+    <div class="tags-cloud">
+      <div class="tags-list">
+        {{ range .Data.Terms.ByCount }}
+          <a href="{{ .Page.RelPermalink }}" class="tag-item">
+            <div class="tag-chip-large">
+              <span class="tag-name">{{ .Page.Title }}</span>
+              <span class="tag-count-badge">{{ .Count }}</span>
+            </div>
+          </a>
+        {{ end }}
+      </div>
+    </div>
+
+    <!-- Back to home link -->
+    <div class="tags-back">
+      <a href="{{ "/" | relLangURL }}" class="tags-back-link">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="back-icon"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor">
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+        </svg>
+        Back to Home
       </a>
-      {{ end }}
     </div>
   </div>
-  
-  <!-- Back to home link -->
-  <div class="tags-back">
-    <a href="{{ "/" | relLangURL }}" class="tags-back-link">
-      <svg xmlns="http://www.w3.org/2000/svg" class="back-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-      </svg>
-      Back to Home
-    </a>
-  </div>
-</div>
 {{ end }}
-

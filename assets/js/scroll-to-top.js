@@ -5,13 +5,13 @@
  * Toggle scroll button visibility
  */
 function toggleScrollButton() {
-  const scrollToTopBtn = document.getElementById('scroll-to-top');
+  const scrollToTopBtn = document.getElementById("scroll-to-top");
   if (!scrollToTopBtn) return;
-  
+
   if (window.scrollY > SCROLL_THRESHOLD) {
-    scrollToTopBtn.classList.add('visible');
+    scrollToTopBtn.classList.add("visible");
   } else {
-    scrollToTopBtn.classList.remove('visible');
+    scrollToTopBtn.classList.remove("visible");
   }
 }
 
@@ -21,7 +21,7 @@ function toggleScrollButton() {
 function scrollToTop() {
   window.scrollTo({
     top: 0,
-    behavior: 'smooth'
+    behavior: "smooth",
   });
 }
 
@@ -29,19 +29,18 @@ function scrollToTop() {
  * Initialize scroll to top functionality
  */
 function initScrollToTop() {
-  const scrollToTopBtn = document.getElementById('scroll-to-top');
+  const scrollToTopBtn = document.getElementById("scroll-to-top");
   if (!scrollToTopBtn) return;
-  
-  window.addEventListener('scroll', toggleScrollButton);
-  scrollToTopBtn.addEventListener('click', scrollToTop);
+
+  window.addEventListener("scroll", toggleScrollButton);
+  scrollToTopBtn.addEventListener("click", scrollToTop);
 }
 
 // Initialize on page load
-(function() {
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initScrollToTop);
+(function () {
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initScrollToTop);
   } else {
     initScrollToTop();
   }
 })();
-

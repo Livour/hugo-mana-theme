@@ -12,8 +12,16 @@
   {{ end }}
 {{ end }}
 {{ if $image }}
-<div class="post-image-single">
-  <img src="{{ $image | relURL }}" alt="{{ if .Description }}{{ .Description }}{{ else }}{{ .Title }} - Featured image{{ end }}" loading="eager" width="1200" height="630">
-</div>
+  <div class="post-image-single">
+    <img
+      src="{{ $image | relURL }}"
+      alt="{{ if .Description }}
+        {{ .Description }}
+      {{ else }}
+        {{ .Title }} - Featured image
+      {{ end }}"
+      loading="eager"
+      width="1200"
+      height="630">
+  </div>
 {{ end }}
-

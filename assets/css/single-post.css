@@ -294,6 +294,27 @@
   margin-bottom: var(--spacing-md);
 }
 
+.post-content-main ul,
+.post-content-main ol {
+  margin-bottom: var(--spacing-md);
+  padding-left: 1.5em;
+  margin-left: 0;
+}
+
+.post-content-main li {
+  margin-bottom: 0.5em;
+  line-height: 1.8;
+}
+
+.post-content-main ul ul,
+.post-content-main ol ol,
+.post-content-main ul ol,
+.post-content-main ol ul {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+  padding-left: 1.5em;
+}
+
 .post-content-main a {
   color: var(--accent-primary);
   text-decoration: underline;

@@ -1,5 +1,19 @@
 {{ $image := .Params.image }}
-{{ if not $image }}
+{{ $imageResource := false }}
+
+{{ if $image }}
+  {{/* Try to resolve as page resource first (content folder) */}}
+  {{ $imageResource = .Resources.Get $image }}
+  {{ if not $imageResource }}
+    {{ $imageResource = .Resources.GetMatch $image }}
+  {{ end }}
+  
+  {{/* If not found as page resource, try as static resource */}}
+  {{ if not $imageResource }}
+    {{ $imageResource = resources.Get $image }}
+  {{ end }}
+{{ else }}
+  {{/* Auto-discovery: try to find image based on title */}}
   {{ $titleSlug := .Title | urlize }}
   {{ $imageExtensions := slice ".png" ".jpg" ".jpeg" ".webp" }}
   {{ range $imageExtensions }}
@@ -7,14 +21,16 @@
     {{ $staticPath := printf "static/images/%s%s" $titleSlug . }}
     {{ if (fileExists $staticPath) }}
       {{ $image = $potentialImage }}
+      {{ $imageResource = resources.Get $image }}
       {{ break }}
     {{ end }}
   {{ end }}
 {{ end }}
+
 {{ if $image }}
   <div class="post-image-single">
     <img
-      src="{{ $image | relURL }}"
+      src="{{ if $imageResource }}{{ $imageResource.RelPermalink }}{{ else }}{{ $image | relURL }}{{ end }}"
       alt="{{ if .Description }}
         {{ .Description }}
       {{ else }}

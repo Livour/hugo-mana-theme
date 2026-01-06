@@ -1,0 +1,13 @@
+# Alert/Admonition translations
+note = "Note"
+tip = "Tip"
+important = "Important"
+warning = "Warning"
+caution = "Caution"
+info = "Info"
+success = "Success"
+question = "Question"
+danger = "Danger"
+bug = "Bug"
+example = "Example"
+

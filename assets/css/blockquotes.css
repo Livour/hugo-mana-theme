@@ -10,7 +10,6 @@
   -webkit-backdrop-filter: blur(12px);
   border-radius: 0.5rem;
   color: var(--text-primary);
-  font-style: italic;
   position: relative;
 }
 

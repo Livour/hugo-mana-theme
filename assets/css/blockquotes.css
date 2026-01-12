@@ -275,10 +275,13 @@
 
 /* Responsive Design */
 @media (max-width: 768px) {
-  .post-content-main blockquote.blockquote-regular,
-  .post-content-main .alert {
+  .post-content-main blockquote.blockquote-regular {
     margin: var(--spacing-sm) 0;
     padding: var(--spacing-sm) var(--spacing-md);
+  }
+
+  .post-content-main .alert {
+    margin: var(--spacing-sm) 0;
   }
 
   .post-content-main .alert-header {

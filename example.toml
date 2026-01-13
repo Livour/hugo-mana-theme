@@ -148,3 +148,9 @@ weight = 40
   priority = 0.5
   filename = "sitemap.xml"
 
+# Admonitions Configuration
+[params.admonitions]
+    # Choose between "emoji" and "favicon" (image)
+    alertStyle = "favicon" 
+
+

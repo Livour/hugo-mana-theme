@@ -156,6 +156,12 @@
   left: 0;
   right: 0;
   height: 50px;
-  background: linear-gradient(to bottom, transparent, var(--bg-primary));
+  /* Match the chroma code block background color */
+  background: linear-gradient(to bottom, transparent, #24273a);
   pointer-events: none;
+}
+
+/* Light theme - use light syntax theme background */
+[data-theme="light"] .code-block-wrapper.collapsed .code-block-content::after {
+  background: linear-gradient(to bottom, transparent, #303446);
 }

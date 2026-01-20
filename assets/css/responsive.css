@@ -156,27 +156,33 @@
     overflow-x: hidden;
   }
 
-  /* Adjust code block buttons on mobile */
-  .code-block-copy {
-    right: calc(0.5rem + 85px + 0.5rem);
+  /* Adjust code block header and buttons on mobile */
+  .code-block-header {
     padding: 0.375rem 0.5rem;
     font-size: 0.7rem;
-    width: auto;
-    min-width: 32px;
-    box-sizing: border-box;
-    margin-right: 0;
+  }
+
+  .code-block-buttons {
+    gap: 0.375rem;
+  }
+
+  .code-block-copy,
+  .code-block-toggle {
+    padding: 0.375rem;
+    min-width: 1.75rem;
+    height: 1.75rem;
+  }
+
+  .code-block-copy svg,
+  .code-block-toggle svg {
+    width: 0.875rem;
+    height: 0.875rem;
   }
 
   .code-block-copy .copy-text,
-  .code-block-copy .copied-text {
+  .code-block-copy .copied-text,
+  .code-block-toggle .toggle-text {
     display: none;
-  }
-
-  .code-block-toggle {
-    padding: 0.375rem 0.5rem;
-    font-size: 0.7rem;
-    width: 85px;
-    box-sizing: border-box;
   }
 }
 
@@ -238,8 +244,19 @@
     font-size: 0.875rem;
   }
 
-  /* Ensure code block buttons maintain gap on very small screens */
-  .code-block-copy {
-    right: calc(1rem + 85px);
+  /* Ensure code block header is compact on very small screens */
+  .code-block-header {
+    padding: 0.375rem;
+  }
+
+  .code-block-buttons {
+    gap: 0.25rem;
+  }
+
+  .code-block-copy,
+  .code-block-toggle {
+    min-width: 1.5rem;
+    height: 1.5rem;
+    padding: 0.25rem;
   }
 }

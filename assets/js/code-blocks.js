@@ -1,6 +1,51 @@
 // Collapsible Code Blocks
 
 /**
+ * Extract language from code block
+ */
+function extractLanguage(block) {
+  // Try to find code element inside highlight block
+  const codeElement = block.querySelector("code");
+  if (codeElement) {
+    // Check data-lang attribute first
+    const dataLang = codeElement.getAttribute("data-lang");
+    if (dataLang) {
+      return dataLang;
+    }
+    // Check for language-* class
+    const classList = Array.from(codeElement.classList);
+    const langClass = classList.find((cls) => cls.startsWith("language-"));
+    if (langClass) {
+      return langClass.replace("language-", "");
+    }
+  }
+  return null;
+}
+
+/**
+ * Capitalize first letter of language name
+ */
+function capitalizeLanguage(lang) {
+  if (!lang) return "";
+  return lang.charAt(0).toUpperCase() + lang.slice(1);
+}
+
+/**
+ * Count lines in code block
+ */
+function countCodeLines(block) {
+  const codeElement = block.querySelector("code") || block;
+  const text = codeElement.textContent || codeElement.innerText || "";
+  // Split by newlines and count all lines
+  const lines = text.split("\n");
+  // Remove trailing empty line if present (common in code blocks)
+  if (lines.length > 0 && lines[lines.length - 1].trim().length === 0) {
+    lines.pop();
+  }
+  return lines.length;
+}
+
+/**
  * Initialize collapsible code blocks
  */
 function initCollapsibleCodeBlocks() {
@@ -22,21 +67,53 @@ function initCollapsibleCodeBlocks() {
     let wrapper = block.closest(".code-block-wrapper");
     let isNewWrapper = false;
 
+    // Check if block should be collapsed by default (via data attribute)
+    const shouldCollapse = block.hasAttribute("data-collapse") && 
+                           block.getAttribute("data-collapse") === "true";
+
+    // Count lines to determine if collapse should be available
+    const lineCount = countCodeLines(block);
+    const isCollapsible = lineCount >= 5;
+
     // If not wrapped, create wrapper
     if (!wrapper) {
       wrapper = document.createElement("div");
-      wrapper.className = "code-block-wrapper collapsed";
+      // Default to expanded, unless data-collapse="true" is set AND block is collapsible
+      // If block has less than 5 lines, ignore shouldCollapse
+      const shouldBeCollapsed = isCollapsible && shouldCollapse;
+      wrapper.className = shouldBeCollapsed ? "code-block-wrapper collapsed" : "code-block-wrapper";
       isNewWrapper = true;
     }
 
-    // Check if copy button already exists
-    let copyButton = wrapper.querySelector(".code-block-copy");
+    // Extract language
+    const language = extractLanguage(block);
+    const languageLabel = capitalizeLanguage(language);
 
-    // Create copy button if it doesn't exist
-    if (!copyButton) {
-      copyButton = document.createElement("button");
+    // Check if header bar already exists
+    let headerBar = wrapper.querySelector(".code-block-header");
+
+    // Create header bar if it doesn't exist
+    if (!headerBar && isNewWrapper) {
+      headerBar = document.createElement("div");
+      headerBar.className = "code-block-header";
+
+      // Language label
+      if (language) {
+        const langLabel = document.createElement("span");
+        langLabel.className = "code-block-lang";
+        langLabel.textContent = languageLabel;
+        headerBar.appendChild(langLabel);
+      }
+
+      // Button container
+      const buttonContainer = document.createElement("div");
+      buttonContainer.className = "code-block-buttons";
+
+      // Copy button
+      const copyButton = document.createElement("button");
       copyButton.className = "code-block-copy";
       copyButton.setAttribute("aria-label", "Copy code");
+      copyButton.setAttribute("title", "Copy code");
       copyButton.innerHTML = `
         <svg class="copy-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
@@ -50,7 +127,6 @@ function initCollapsibleCodeBlocks() {
 
       // Extract code text for copying
       const getCodeText = () => {
-        // Handle .highlight blocks (usually contain <pre><code>)
         const codeElement = block.querySelector("code") || block;
         return codeElement.textContent || codeElement.innerText || "";
       };
@@ -72,22 +148,20 @@ function initCollapsibleCodeBlocks() {
           const copyIcon = copyButton.querySelector(".copy-icon");
           const checkmarkIcon = copyButton.querySelector(".checkmark-icon");
 
-          // Update aria-label for accessibility
+          // Update aria-label and title for accessibility
           copyButton.setAttribute("aria-label", "Code copied");
+          copyButton.setAttribute("title", "Copied!");
 
           // Change icon to checkmark
           copyIcon.style.display = "none";
           checkmarkIcon.style.display = "block";
 
           if (!isMobile) {
-            // On desktop, show text feedback
+            // On desktop, show text feedback temporarily
             copyText.style.display = "none";
             copiedText.style.display = "inline";
           }
           copyButton.classList.add("copied");
-
-          // Update aria-label for accessibility
-          copyButton.setAttribute("aria-label", "Code copied");
 
           // Reset after 2 seconds
           setTimeout(() => {
@@ -101,6 +175,7 @@ function initCollapsibleCodeBlocks() {
             }
             copyButton.classList.remove("copied");
             copyButton.setAttribute("aria-label", "Copy code");
+            copyButton.setAttribute("title", "Copy code");
           }, 2000);
         } catch (err) {
           // Fallback for older browsers
@@ -122,14 +197,13 @@ function initCollapsibleCodeBlocks() {
             checkmarkIcon.style.display = "block";
 
             if (!isMobile) {
-              // On desktop, show text feedback
               copyText.style.display = "none";
               copiedText.style.display = "inline";
             }
             copyButton.classList.add("copied");
             copyButton.setAttribute("aria-label", "Code copied");
+            copyButton.setAttribute("title", "Copied!");
             setTimeout(() => {
-              // Change icon back to copy
               copyIcon.style.display = "block";
               checkmarkIcon.style.display = "none";
 
@@ -139,6 +213,7 @@ function initCollapsibleCodeBlocks() {
               }
               copyButton.classList.remove("copied");
               copyButton.setAttribute("aria-label", "Copy code");
+              copyButton.setAttribute("title", "Copy code");
             }, 2000);
           } catch (fallbackErr) {
             console.error("Failed to copy code:", fallbackErr);
@@ -147,48 +222,56 @@ function initCollapsibleCodeBlocks() {
         }
       });
 
-      // Insert copy button before toggle button if it exists, otherwise prepend to wrapper
-      const toggleButton = wrapper.querySelector(".code-block-toggle");
-      if (toggleButton) {
-        wrapper.insertBefore(copyButton, toggleButton);
-      } else {
-        // If no toggle button exists yet, prepend to wrapper
-        wrapper.insertBefore(copyButton, wrapper.firstChild);
+      buttonContainer.appendChild(copyButton);
+
+      // Toggle button - only add if code block has 5 or more lines
+      if (isCollapsible) {
+        // Determine initial collapsed state (only if data-collapse="true" is set)
+        const initialCollapsed = shouldCollapse;
+        const toggle = document.createElement("button");
+        toggle.className = "code-block-toggle";
+        toggle.setAttribute("aria-label", initialCollapsed ? "Expand code block" : "Collapse code block");
+        toggle.setAttribute("aria-expanded", initialCollapsed ? "false" : "true");
+        toggle.setAttribute("title", initialCollapsed ? "Expand" : "Collapse");
+        toggle.innerHTML = `
+          <svg class="toggle-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+          </svg>
+          <span class="toggle-text">${initialCollapsed ? "Expand" : "Collapse"}</span>
+        `;
+
+        // Add toggle functionality
+        toggle.addEventListener("click", () => {
+          const isCollapsed = wrapper.classList.contains("collapsed");
+          wrapper.classList.toggle("collapsed");
+          toggle.setAttribute("aria-expanded", !isCollapsed);
+          toggle.setAttribute("title", isCollapsed ? "Collapse" : "Expand");
+          toggle.setAttribute("aria-label", isCollapsed ? "Collapse code block" : "Expand code block");
+          const toggleText = toggle.querySelector(".toggle-text");
+          if (toggleText) {
+            toggleText.textContent = isCollapsed ? "Collapse" : "Expand";
+          }
+        });
+
+        buttonContainer.appendChild(toggle);
       }
+
+      headerBar.appendChild(buttonContainer);
+
+      // Prepend header bar to wrapper
+      wrapper.insertBefore(headerBar, wrapper.firstChild);
     }
 
-    // Only create toggle and wrap if this is a new wrapper
+    // Only create content wrapper and wrap if this is a new wrapper
     if (isNewWrapper) {
-      // Create toggle button
-      const toggle = document.createElement("button");
-      toggle.className = "code-block-toggle";
-      toggle.setAttribute("aria-label", "Toggle code block");
-      toggle.setAttribute("aria-expanded", "false");
-      toggle.innerHTML = `
-        <span>Expand</span>
-        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"></path>
-        </svg>
-      `;
-
       // Create content wrapper
       const content = document.createElement("div");
       content.className = "code-block-content";
 
       // Wrap the block
       block.parentNode.insertBefore(wrapper, block);
-      // Copy button is already in wrapper, just append toggle and content
-      wrapper.appendChild(toggle);
       wrapper.appendChild(content);
       content.appendChild(block);
-
-      // Add toggle functionality
-      toggle.addEventListener("click", () => {
-        const isCollapsed = wrapper.classList.contains("collapsed");
-        wrapper.classList.toggle("collapsed");
-        toggle.setAttribute("aria-expanded", !isCollapsed);
-        toggle.querySelector("span").textContent = isCollapsed ? "Collapse" : "Expand";
-      });
     }
   });
 }

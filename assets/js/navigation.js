@@ -94,12 +94,14 @@ function initMobileMenu() {
     mobileMenuToggle.setAttribute("aria-expanded", "true");
     mobileMenu.setAttribute("aria-hidden", "false");
     document.body.style.overflow = "hidden";
+    document.body.classList.add("mobile-menu-open");
   }
 
   function closeMobileMenu() {
     mobileMenuToggle.setAttribute("aria-expanded", "false");
     mobileMenu.setAttribute("aria-hidden", "true");
     document.body.style.overflow = "";
+    document.body.classList.remove("mobile-menu-open");
   }
 
   // Toggle menu on hamburger button click

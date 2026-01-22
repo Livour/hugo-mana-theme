@@ -64,3 +64,30 @@
   width: 1.5rem;
   height: 1.5rem;
 }
+
+/* Buy Me a Coffee Widget - Fade effect when mobile menu is open */
+/* Target the Buy Me a Coffee widget container (common selectors) */
+/* The widget typically creates an iframe or div with id starting with "bmc-wbtn" */
+#bmc-wbtn,
+[id^="bmc-wbtn"],
+iframe[src*="buymeacoffee"],
+iframe[id*="bmc"],
+.bmc-btn-container,
+.bmc-btn {
+  transition: opacity var(--transition-base) ease-in-out, 
+              visibility var(--transition-base) ease-in-out;
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Fade out Buy Me a Coffee widget when mobile menu is open */
+body.mobile-menu-open #bmc-wbtn,
+body.mobile-menu-open [id^="bmc-wbtn"],
+body.mobile-menu-open iframe[src*="buymeacoffee"],
+body.mobile-menu-open iframe[id*="bmc"],
+body.mobile-menu-open .bmc-btn-container,
+body.mobile-menu-open .bmc-btn {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}

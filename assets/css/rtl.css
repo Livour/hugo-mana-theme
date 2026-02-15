@@ -1,0 +1,44 @@
+/* Targeted RTL styling - applied when body has .rtl class */
+
+/* Navbar: reverse menu order (Home right, Posts, Tags, About left) */
+.rtl .menu-list {
+  flex-direction: row-reverse;
+}
+
+/* Hero section: description on right, logo on left */
+.rtl .hero-text {
+  order: 2;
+}
+
+.rtl .hero-image {
+  order: 1;
+}
+
+/* Recent posts: align to the right */
+.rtl .posts-section,
+.rtl .posts-title,
+.rtl .posts-list {
+  text-align: right;
+}
+
+.rtl .post-card {
+  flex-direction: row-reverse;
+  text-align: right;
+}
+
+.rtl .post-content {
+  align-items: flex-end;
+}
+
+/* Post information: align to the right */
+.rtl .post-meta,
+.rtl .post-meta-info,
+.rtl .post-meta-inline {
+  text-align: right;
+  flex-direction: row-reverse;
+}
+
+.rtl .post-meta-info,
+.rtl .post-meta-inline {
+  justify-content: flex-end;
+}

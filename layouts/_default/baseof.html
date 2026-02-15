@@ -1,12 +1,9 @@
 <!doctype html>
-<html
-  lang="{{ site.Language.LanguageCode }}"
-  dir="{{ or site.Language.LanguageDirection `ltr` }}"
-  class="h-full">
+<html lang="{{ site.Language.LanguageCode }}" class="h-full">
   <head>
     {{ partial "head.html" . }}
   </head>
-  <body class="flex flex-col min-h-screen">
+  <body class="flex flex-col min-h-screen{{ if eq site.Language.LanguageDirection "rtl" }} rtl{{ end }}">
     <a href="#main-content" class="skip-to-main" aria-label="{{ i18n "skipToMain" }}"
       >{{ i18n "skipToMain" }}</a
     >

@@ -62,7 +62,7 @@
   transform: translateY(0);
 }
 
-[dir="rtl"] .language-switcher-dropdown {
+.rtl .language-switcher-dropdown {
   right: auto;
   left: 0;
 }
@@ -75,7 +75,7 @@
   margin-bottom: 0.25rem;
 }
 
-[dir="rtl"] .mobile-menu-footer .language-switcher-dropdown {
+.rtl .mobile-menu-footer .language-switcher-dropdown {
   right: auto;
   left: 0;
 }

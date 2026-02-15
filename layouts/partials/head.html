@@ -50,29 +50,7 @@
 
 {{ partial "head/css.html" . }}
 
-
-<!-- Favicons -->
-<!-- Root favicon for Google and other crawlers - Google prefers larger sizes (48x48+) -->
-<link rel="icon" type="image/x-icon" href="/favicon.ico">
-<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
-<!-- Primary PNG favicon - Google also checks for /favicon.png -->
-<link rel="icon" type="image/png" href="/favicon.png">
-<!-- Primary favicon - Google prefers 32x32 or larger -->
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon/logo-transparent/favicon-32x32.png">
-<!-- Additional favicon formats -->
-<link rel="icon" type="image/png" sizes="16x16" href="/favicon/logo-transparent/favicon-16x16.png">
-<link rel="apple-touch-icon" sizes="180x180" href="/favicon/logo-transparent/apple-touch-icon.png">
-<link
-  rel="icon"
-  type="image/png"
-  sizes="192x192"
-  href="/favicon/logo-transparent/android-chrome-192x192.png">
-<link
-  rel="icon"
-  type="image/png"
-  sizes="512x512"
-  href="/favicon/logo-transparent/android-chrome-512x512.png">
-<link rel="manifest" href="/favicon/logo-transparent/site.webmanifest">
+{{ partial "head/favicon.html" . }}
 
 {{ range .AlternativeOutputFormats }}
   <link rel="{{ .Rel }}" type="{{ .MediaType.Type }}" href="{{ .Permalink }}">

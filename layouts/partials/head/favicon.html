@@ -1,0 +1,27 @@
+<!-- Favicons (configurable via site.Params.favicons.*, defaults to standard paths) -->
+{{- $fav := site.Params.favicons | default (dict) -}}
+{{- $ico := default "/favicon.ico" (index $fav "ico") -}}
+{{- $png := default "/favicon.png" (index $fav "png") -}}
+{{- $png16 := default "/favicon-16x16.png" (index $fav "png16") -}}
+{{- $png32 := default "/favicon-32x32.png" (index $fav "png32") -}}
+{{- $apple180 := default "/apple-touch-icon.png" (index $fav "apple180") -}}
+{{- $android192 := default "/android-chrome-192x192.png" (index $fav "android192") -}}
+{{- $android512 := default "/android-chrome-512x512.png" (index $fav "android512") -}}
+{{- $manifest := default "/site.webmanifest" (index $fav "manifest") -}}
+
+<!-- Root favicon for Google and other crawlers - Google prefers larger sizes (48x48+) -->
+<link rel="icon" type="image/x-icon" href="{{ $ico }}">
+<link rel="shortcut icon" type="image/x-icon" href="{{ $ico }}">
+
+<!-- Primary PNG favicon - Google also checks for /favicon.png -->
+<link rel="icon" type="image/png" href="{{ $png }}">
+
+<!-- Primary favicon - Google prefers 32x32 or larger -->
+<link rel="icon" type="image/png" sizes="32x32" href="{{ $png32 }}">
+
+<!-- Additional favicon formats -->
+<link rel="icon" type="image/png" sizes="16x16" href="{{ $png16 }}">
+<link rel="apple-touch-icon" sizes="180x180" href="{{ $apple180 }}">
+<link rel="icon" type="image/png" sizes="192x192" href="{{ $android192 }}">
+<link rel="icon" type="image/png" sizes="512x512" href="{{ $android512 }}">
+<link rel="manifest" href="{{ $manifest }}">

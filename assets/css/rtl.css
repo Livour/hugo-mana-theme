@@ -14,6 +14,38 @@
   order: 1;
 }
 
+/* Hero title: right-aligned */
+.rtl .hero-title {
+  text-align: right;
+}
+
+/* Posts filter: flip layout */
+.rtl .filter-toggle-btn {
+  flex-direction: row-reverse;
+}
+
+.rtl .posts-filter {
+  flex-direction: row-reverse;
+}
+
+.rtl .filter-group {
+  align-items: stretch;
+}
+
+.rtl .filter-label {
+  text-align: right;
+}
+
+.rtl .tag-search-container,
+.rtl .filter-select {
+  width: 100%;
+  min-width: 0;
+}
+
+.rtl .filter-select {
+  background-position: left 0.75rem center;
+}
+
 /* Recent posts: align to the right */
 .rtl .posts-section,
 .rtl .posts-title,
@@ -41,4 +73,58 @@
 .rtl .post-meta-info,
 .rtl .post-meta-inline {
   justify-content: flex-end;
+}
+
+/* Single post: TOC left, post right */
+.rtl .single-post-wrapper {
+  flex-direction: row-reverse;
+}
+
+/* Single post: content text right-aligned */
+.rtl .post-content-main {
+  text-align: right;
+}
+
+.rtl .post-content-main ul,
+.rtl .post-content-main ol {
+  padding-right: 1.5em;
+  padding-left: 0;
+}
+
+.rtl .post-content-main ul ul,
+.rtl .post-content-main ol ol,
+.rtl .post-content-main ul ol,
+.rtl .post-content-main ol ul {
+  padding-right: 1.5em;
+  padding-left: 0;
+}
+
+/* TOC: RTL active indicator and nested lists */
+.rtl .toc-nav a {
+  border-left: none;
+  border-right: 2px solid transparent;
+  border-radius: 0.25rem 0 0 0.25rem;
+}
+
+.rtl .toc-nav a.active {
+  border-right-color: var(--accent-primary);
+}
+
+.rtl .toc-nav ul ul {
+  padding-right: var(--spacing-sm);
+  padding-left: 0;
+  margin-right: 0.5rem;
+  margin-left: 0;
+  border-right: 1px solid var(--border-color);
+  border-left: none;
+}
+
+.rtl .toc-nav ul ul a {
+  padding-right: 0.5rem;
+  padding-left: 0;
+}
+
+/* Post tags footer: label to the right of tags */
+.rtl .post-tags-footer {
+  flex-direction: row-reverse;
 }

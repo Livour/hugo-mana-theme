@@ -62,10 +62,26 @@
   align-items: flex-end;
 }
 
-/* Post information: align to the right */
-.rtl .post-meta {
-  align-items: flex-end;
+/* Single post header: RTL direction and right alignment */
+.rtl .post-header {
+  direction: rtl;
   text-align: right;
+}
+
+.rtl .post-title-main {
+  text-align: right;
+}
+
+/* Post information: RTL direction, flex-start aligns to right in RTL */
+.rtl .post-meta {
+  align-items: flex-start;
+  text-align: right;
+  direction: rtl;
+}
+
+.rtl .post-meta .post-tags {
+  align-self: flex-start;
+  justify-content: flex-start;
 }
 
 .rtl .post-meta-info,
@@ -80,8 +96,9 @@
   flex-direction: row-reverse;
 }
 
-/* Single post: content text right-aligned */
+/* Single post: content text right-aligned with proper RTL direction for punctuation */
 .rtl .post-content-main {
+  direction: rtl;
   text-align: right;
 }
 
@@ -124,7 +141,8 @@
   padding-left: 0;
 }
 
-/* Post tags footer: label to the right of tags */
+/* Post tags footer: with direction rtl, row puts label on right, tags flow left */
 .rtl .post-tags-footer {
-  flex-direction: row-reverse;
+  flex-direction: row;
+  direction: rtl;
 }

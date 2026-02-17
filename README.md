@@ -245,6 +245,66 @@ Enable JSON output for search functionality:
   home = ["HTML", "JSON"]
 ```
 
+### Multilingual Configuration
+
+The theme supports multiple languages with a language switcher in the header.
+
+**Add a language:** Add a `[languages.<lang>]` block and create `themes/mana/i18n/<lang>.toml` (if not already exists) with translated strings (copy from `en.toml`).
+
+**Remove a language:** Delete the `[languages.<lang>]` block. With only one language, the switcher is hidden.
+
+**Content:** Place content in `content/<lang>/` (e.g. `content/en/`, `content/es/`).
+
+**Buy Me a Coffee description:** Add `buyMeACoffeeDescription` to each language's i18n file instead of config.
+
+Example minimal config for English + Spanish:
+
+```toml
+defaultContentLanguage = "en"
+
+[languages.en]
+  languageCode = "en-US"
+  languageName = "English"
+  languageDirection = "ltr"
+  contentDir = "content/en"
+  weight = 1
+  title = "Your Site Title"
+  [languages.en.params]
+    description = "Your site description"
+    author = "Your Name"
+    heroTitleLine1 = "YOUR SITE NAME"
+    heroTitleLine2 = "YOUR TAGLINE"
+    custom404Message = "Sorry, the page you are looking for could not be found."
+    footerText = "Built with Hugo and Mana theme"
+  [[languages.en.menus.main]]
+    name = "Home"
+    pageRef = "/"
+    weight = 10
+  # ... other menu items
+
+[languages.es]
+  languageCode = "es-ES"
+  languageName = "Español"
+  languageDirection = "ltr"
+  contentDir = "content/es"
+  weight = 2
+  title = "Tu sitio"
+  [languages.es.params]
+    description = "La descripción de tu sitio"
+    author = "Tu nombre"
+    heroTitleLine1 = "NOMBRE DE TU SITIO"
+    heroTitleLine2 = "TU ESLOGAN"
+    custom404Message = "Lo sentimos, no encontramos la página que buscas."
+    footerText = "Hecho con Hugo y Mana theme"
+  [[languages.es.menus.main]]
+    name = "Inicio"
+    pageRef = "/"
+    weight = 10
+  # ... other menu items (Shown in example.toml)
+```
+
+See `example.toml` for a complete reference.
+
 ### 404 Page Configuration
 
 Customize the 404 error page message:

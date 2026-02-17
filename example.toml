@@ -1,167 +1,10 @@
 baseURL = 'https://example.com/'
 theme = "mana"
-
-# Multilingual configuration (optional)
-# The language switcher appears in the header when 2+ languages are configured.
-# Each language uses contentDir = "content/<lang>" by default (e.g. content/en, content/he).
-# For RTL languages (e.g. Hebrew, Arabic), set languageDirection = "rtl".
-# Params and menus can be repeated per language under [languages.<lang>.params] and [languages.<lang>.menus.main].
-#
-# defaultContentLanguage = "en"
-#
-# [languages.en]
-#   languageCode = "en-US"
-#   languageName = "English"
-#   languageDirection = "ltr"
-#   contentDir = "content/en"
-#   weight = 1
-#   title = "Your Site Title"
-#   [languages.en.params]
-#     description = "Your site description"
-#     # ... other params
-#   [[languages.en.menus.main]]
-#     name = "Home"
-#     pageRef = "/"
-#     weight = 10
-#   # ... other menu items
-#
-# [languages.he]
-#   languageCode = "he-IL"
-#   languageName = "עברית"
-#   languageDirection = "rtl"
-#   contentDir = "content/he"
-#   weight = 2
-#   title = "כותרת האתר שלך"
-#   [languages.he.params]
-#     description = "תיאור האתר שלך"
-#   [[languages.he.menus.main]]
-#     name = "בית"
-#     pageRef = "/"
-#     weight = 10
-
-# Theme configuration (used when [languages] is not defined)
-languageCode = 'en-US'
-title = "Your Site Title"
-[params]
-  description = "Your site description"
-  author = "Your Name"
-  favicon = "/favicon/logo-transparent/favicon.ico"
-  heroTitleLine1 = "YOUR SITE NAME"
-  heroTitleLine2 = "YOUR TAGLINE"
-  
-  # 404 Page Configuration
-  # Custom message for the 404 error page (supports HTML)
-  # If not set, defaults to: "Sorry, the page you are looking for could not be found."
-  # custom404Message = "Sorry, the page you are looking for could not be found. I guess I don't have a guide for <em>everything</em>"
-  
-  # Social media links
-  [params.social]
-    github = "https://github.com/yourusername"
-    linkedin = "https://www.linkedin.com/in/yourprofile"
-    email = "your.email@example.com"
-  
-  # Avatar Configuration
-  [params.avatar]
-    # General avatar (used as fallback if page-specific avatar not set)
-    # If you have a hosted image you want to use as-is. The template will attempt to use this if set.
-    url = "https://example.com/avatar.jpg"
-    
-    # If you have an image you want to provide as an asset and run through Hugo's pipes to resize based on use.
-    # This will only be used if "url" is *not* set.
-    # This path is relative to the "assets" folder.
-    # assetPath = "images/avatar.png"
-
-    # Enable automatic resizing of avatar images (default: true)
-    # Set to false to use original image size and (May help preserve quality)
-    # enableResize = true
-    
-    # Home page specific avatar (optional - falls back to general avatar if not set)
-    [params.avatar.home]
-      # url = "https://example.com/home-avatar.jpg"
-      # assetPath = "images/home-avatar.png"
-      # enableResize = false  # Override general setting for home page
-    
-    # About page specific avatar (optional - falls back to general avatar if not set)
-    [params.avatar.about]
-      # url = "https://example.com/about-avatar.jpg"
-      # assetPath = "images/about-avatar.png"
-      # enableResize = false  # Override general setting for about page
-  
-  # Favicon configuration (optional)
-  # Keep `params.favicon` above for simple setups; use this block if you want full control.
-  # [params.favicons]
-  #   ico = "/favicon/logo-transparent/favicon.ico"
-  #   png = "/favicon/logo-transparent/favicon.png"
-  #   png16 = "/favicon/logo-transparent/favicon-16x16.png"
-  #   png32 = "/favicon/logo-transparent/favicon-32x32.png"
-  #   apple180 = "/favicon/logo-transparent/apple-touch-icon.png"
-  #   android192 = "/favicon/logo-transparent/android-chrome-192x192.png"
-  #   android512 = "/favicon/logo-transparent/android-chrome-512x512.png"
-  #   manifest = "/favicon/logo-transparent/site.webmanifest"
-
-  # Buy Me a Coffee Widget
-  # Set enabled = true and provide your widget ID to use the floating widget
-  # Leave enabled = false or unset to use a simple link instead
-  [params.buyMeACoffee]
-    enabled = true
-    id = "yourwidgetid"
-    description = "Support me on Buy me a coffee!"
-    message = ""
-    color = "#BD5FFF"
-    position = "Right"
-    x_margin = "18"
-    y_margin = "18"
-  
-  # Alternative: Simple Buy Me a Coffee link (if widget is disabled)
-  # buyMeACoffee = "https://buymeacoffee.com/yourusername"
-
-  # Info for the copyright notice in the footer.
-  [params.copyright]
-    # Set this if you want a range, rather than just the current year (as of the last time you ran "hugo build").
-    startYear = 2025
-    # Set this if you don't want the copyright owner to be the same value as the "title" field above.
-    owner = "Your name here"
-  
-  # Footer text (optional)
-  footerText = "Built with Hugo and Mana theme"
-  
-  # Code syntax highlighting themes
-  # Options: Any valid Chroma style name (e.g., "catppuccin-macchiato", "catppuccin-frappe", "github", "monokai", etc.)
-  [params.codeHighlight]
-    darkTheme = "catppuccin-macchiato"   # Theme for dark mode
-    lightTheme = "catppuccin-frappe"     # Theme for light mode
-
-  # Umami Analytics (optional)
-  # Set your Umami website ID for page tracking
-  # [params.umami]
-  #   websiteId = "your-umami-website-id"
-
-# Main menu
-[[menus.main]]
-name = 'Home'
-pageRef = '/'
-weight = 10
-
-[[menus.main]]
-name = 'Posts'
-pageRef = '/posts'
-weight = 20
-
-[[menus.main]]
-name = 'Tags'
-pageRef = '/tags'
-weight = 30
-
-[[menus.main]]
-name = 'About'
-url = '/about/'
-weight = 40
+defaultContentLanguage = "en"
 
 # Pagination Configuration
-# Configure how many posts to show per page
-# Default is 10 if not specified
 [pagination]
-  pageSize = 10  # Number of posts per page
+  pageSize = 10
 
 # Table of Contents (recommended)
 [markup]
@@ -169,24 +12,18 @@ weight = 40
     startLevel = 1
     endLevel = 6
     ordered = false
-
-# Allow raw HTML within Markdown (for KaTeX, etc.)
   [markup.goldmark]
     [markup.goldmark.renderer]
       unsafe = true
     [markup.goldmark.parser]
-      # Enable block-level attributes for blockquotes and other block elements
-      # Required for blockquote render hooks (alerts/admonitions)
       [markup.goldmark.parser.attribute]
         block = true
         title = true
-
-# Syntax highlighting configuration
   [markup.highlight]
     codeFences = true
     guessSyntax = true
     noClasses = false
-    style = "catppuccin-macchiato"  # Default style (will be overridden by theme-aware CSS)
+    style = "catppuccin-macchiato"
 
 # Output formats for search index
 [outputs]
@@ -198,9 +35,136 @@ weight = 40
   priority = 0.5
   filename = "sitemap.xml"
 
-# Admonitions Configuration
-[params.admonitions]
-    # Choose between "emoji" and "favicon" (image)
-    alertStyle = "favicon" 
+# =============================================================================
+# Shared params (same for all languages)
+# Language separation exists only for custom personalized text:
+# hero titles, description, 404 message, footer, menus
+# =============================================================================
+[params]
+  enableIntegrity = false
 
+  [params.social]
+    github = "https://github.com/yourusername"
+    linkedin = "https://www.linkedin.com/in/yourprofile"
+    email = "your.email@example.com"
 
+  [params.avatar]
+    [params.avatar.home]
+      assetPath = "images/transparent-logo.png"
+    [params.avatar.about]
+      assetPath = "images/logo.png"
+
+  [params.buyMeACoffee]
+    enabled = true
+    id = "yourwidgetid"
+    message = ""
+    color = "#BD5FFF"
+    position = "Right"
+    x_margin = "18"
+    y_margin = "18"
+  # Note: Buy Me a Coffee description is in i18n (buyMeACoffeeDescription in en.toml, es.toml, etc.)
+
+  [params.favicons]
+    ico = "/favicon/logo-transparent/favicon.ico"
+    png = "/favicon/logo-transparent/favicon.png"
+    png16 = "/favicon/logo-transparent/favicon-16x16.png"
+    png32 = "/favicon/logo-transparent/favicon-32x32.png"
+    apple180 = "/favicon/logo-transparent/apple-touch-icon.png"
+    android192 = "/favicon/logo-transparent/android-chrome-192x192.png"
+    android512 = "/favicon/logo-transparent/android-chrome-512x512.png"
+    manifest = "/favicon/logo-transparent/site.webmanifest"
+
+  [params.codeHighlight]
+    darkTheme = "catppuccin-macchiato"
+    lightTheme = "catppuccin-frappe"
+
+  [params.umami]
+    websiteId = "your-umami-website-id"
+
+  [params.copyright]
+    startYear = 2025
+    owner = "Your Name"
+
+  [params.admonitions]
+    alertStyle = "favicon"
+
+# =============================================================================
+# Languages - Configuration for multiple languages, for personalized text per language.
+# Add/remove languages by adding/removing [languages.<lang>] blocks.
+# Create themes/mana/i18n/<lang>.toml for each language (copy from en.toml, if not already exists).
+# Content goes in content/<lang>/ (e.g. content/en/, content/es/).
+# =============================================================================
+
+# English (default)
+[languages.en]
+  languageCode = "en-US"
+  languageName = "English"
+  languageDirection = "ltr"
+  contentDir = "content/en"
+  weight = 1
+  title = "Your Site Title"
+
+  [languages.en.params]
+    description = "Your site description"
+    author = "Your Name"
+    heroTitleLine1 = "YOUR SITE NAME"
+    heroTitleLine2 = "YOUR TAGLINE"
+    custom404Message = "Sorry, the page you are looking for could not be found."
+    footerText = "Built with Hugo and Mana theme"
+
+  [[languages.en.menus.main]]
+    name = "Home"
+    pageRef = "/"
+    weight = 10
+
+  [[languages.en.menus.main]]
+    name = "Posts"
+    pageRef = "/posts"
+    weight = 20
+
+  [[languages.en.menus.main]]
+    name = "Tags"
+    pageRef = "/tags"
+    weight = 30
+
+  [[languages.en.menus.main]]
+    name = "About"
+    url = "/about/"
+    weight = 40
+
+# Spanish (Use for example reference for your specific language)
+# [languages.es]
+#   languageCode = "es-ES"
+#   languageName = "Español"
+#   languageDirection = "ltr"
+#   contentDir = "content/es"
+#   weight = 2
+#   title = "Tu sitio"
+
+#   [languages.es.params]
+#     description = "La descripción de tu sitio"
+#     author = "Your Name"
+#     heroTitleLine1 = "NOMBRE DE TU SITIO"
+#     heroTitleLine2 = "TU ESLOGAN"
+#     custom404Message = "Lo sentimos, no encontramos la página que buscas."
+#     footerText = "Hecho con Hugo y Mana theme"
+
+#   [[languages.es.menus.main]]
+#     name = "Inicio"
+#     pageRef = "/"
+#     weight = 10
+
+#   [[languages.es.menus.main]]
+#     name = "Posts"
+#     pageRef = "/posts"
+#     weight = 20
+
+#   [[languages.es.menus.main]]
+#     name = "Etiquetas"
+#     pageRef = "/tags"
+#     weight = 30
+
+#   [[languages.es.menus.main]]
+#     name = "Acerca"
+#     url = "/about/"
+#     weight = 40

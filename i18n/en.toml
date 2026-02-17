@@ -74,6 +74,9 @@ toggleToc = "Toggle table of contents"
 # Tags page
 tagsHelp = "Click any tag to view related posts"
 
+# Buy Me a Coffee
+buyMeACoffeeDescription = "Support me on Buy me a coffee!"
+
 # 404 page
 404Title = "This Page Does Not Exist"
 404DefaultMessage = "Sorry, the page you are looking for could not be found."

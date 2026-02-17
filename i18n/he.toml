@@ -74,6 +74,9 @@ toggleToc = "הצג/הסתר תוכן עניינים"
 # Tags page
 tagsHelp = "לחץ על תגית כדי לראות פוסטים קשורים"
 
+# Buy Me a Coffee
+buyMeACoffeeDescription = "תמכו בי ב-Buy me a coffee!"
+
 # 404 page
 404Title = "הדף לא קיים"
 404DefaultMessage = "מצטער, הדף שחיפשת לא נמצא."

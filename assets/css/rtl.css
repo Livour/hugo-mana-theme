@@ -5,6 +5,16 @@
   flex-direction: row-reverse;
 }
 
+/* Mobile menu: keep vertical stack (same as LTR), do not apply row-reverse */
+.rtl .mobile-menu-nav .menu-list {
+  flex-direction: column;
+}
+
+.rtl .mobile-menu-nav .menu-link {
+  text-align: right;
+}
+
+
 /* Hero section: description on right, logo on left */
 .rtl .hero-text {
   order: 2;

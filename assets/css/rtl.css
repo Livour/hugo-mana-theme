@@ -119,9 +119,20 @@
   justify-content: flex-end;
 }
 
-/* Single post: TOC left, post right */
+/* Single post: TOC left, post right (desktop only - narrow screens use column) */
 .rtl .single-post-wrapper {
   flex-direction: row-reverse;
+}
+
+@media (max-width: 1024px) {
+  .rtl .single-post-wrapper {
+    flex-direction: column;
+  }
+}
+
+/* TOC toggle: right-align in RTL */
+.rtl .toc-toggle {
+  text-align: right;
 }
 
 /* Single post: content text right-aligned with proper RTL direction for punctuation */

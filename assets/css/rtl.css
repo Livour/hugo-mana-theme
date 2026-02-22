@@ -40,6 +40,19 @@
   text-align: right;
 }
 
+/* Hero section: centered on mobile */
+@media (max-width: 768px) {
+  .rtl .hero-title,
+  .rtl .hero-text,
+  .rtl .hero-subtitle {
+    text-align: center;
+  }
+
+  .rtl .hero-text {
+    align-items: center;
+  }
+}
+
 /* Posts filter: flip layout */
 .rtl .filter-toggle-btn {
   flex-direction: row-reverse;

@@ -3,6 +3,7 @@
 .sticky-header {
   position: sticky;
   top: 0;
+  align-self: flex-start; /* Required for sticky inside flex body (Chrome DevTools device mode) */
   z-index: 100;
   background-color: var(--bg-primary);
   border-bottom: 1px solid var(--border-color);

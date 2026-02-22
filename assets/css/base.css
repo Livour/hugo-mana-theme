@@ -31,9 +31,9 @@
   overflow: visible;
 }
 
-/* Prevent horizontal scrolling */
+/* Prevent horizontal scrolling - use clip (not hidden) to avoid breaking position: sticky */
 body {
-  overflow-x: hidden;
+  overflow-x: clip;
   position: relative;
 }
 

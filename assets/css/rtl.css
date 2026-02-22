@@ -1,5 +1,16 @@
 /* Targeted RTL styling - applied when body has .rtl class */
 
+/* Sticky header: ensure it works in RTL on narrow screens (fixes Chromium/Safari bugs) */
+.rtl .sticky-header {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  align-self: flex-start;
+  inset-inline-start: 0;
+  inset-inline-end: 0;
+  width: 100%;
+}
+
 /* Navbar: reverse menu order (Home right, Posts, Tags, About left) */
 .rtl .menu-list {
   flex-direction: row-reverse;

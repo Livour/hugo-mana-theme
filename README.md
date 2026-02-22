@@ -5,6 +5,7 @@ Futuristic hugo theme featuring clean aesthetics, and modern functionality and r
 ## Features
 
 - **Fully responsive** design with mobile-first approach
+- **RTL support** for Right-to-Left languages (Hebrew, Arabic, etc.) with mirrored layout
 - **Full-text search** with JSON index and keyboard navigation
 - **Syntax highlighting** with theme-aware Chroma (Catppuccin themes)
 - **Table of Contents** with active section highlighting
@@ -49,11 +50,14 @@ Add the following configuration to your `hugo.toml` file. You can also reference
 
 ### Avatar
 
-Configure your avatar image (displayed on home page and about page):
+Configure your avatar image (displayed on home page hero and about page). Use either `assetPath` (project asset) or `url` (external URL):
 
 ```toml
 [params.avatar]
-  url = "https://example.com/avatar.jpg"
+  [params.avatar.home]
+    assetPath = "images/transparent-logo.png"
+  [params.avatar.about]
+    assetPath = "images/logo.png"
 ```
 
 ### Social Links
@@ -75,13 +79,14 @@ Enable the Buy Me a Coffee floating widget:
 [params.buyMeACoffee]
   enabled = true
   id = "yourwidgetid"
-  description = "Support me on Buy me a coffee!"
   message = ""  # Optional message
   color = "#BD5FFF"  # Widget color
   position = "Right"  # "Left" or "Right"
   x_margin = "18"  # Horizontal margin in pixels
   y_margin = "18"  # Vertical margin in pixels
 ```
+
+**Note:** The widget description text is configured per language in i18n files (`buyMeACoffeeDescription` in `en.toml`, `he.toml`, etc.).
 
 ### Menu Configuration
 
@@ -200,6 +205,15 @@ You can also add a custom title:
 
 The syntax is compatible with GitHub Flavored Markdown, Obsidian, and Typora.
 
+#### Admonition Display Style
+
+Choose between favicon icons or emoji for alert headers:
+
+```toml
+[params.admonitions]
+  alertStyle = "favicon"  # "favicon" (default) or "emoji"
+```
+
 ### Code Syntax Highlighting
 
 The theme supports theme-aware syntax highlighting using Chroma. By default, it uses Catppuccin themes:
@@ -253,11 +267,13 @@ The theme supports multiple languages with a language switcher in the header.
 
 **Remove a language:** Delete the `[languages.<lang>]` block. With only one language, the switcher is hidden.
 
-**Content:** Place content in `content/<lang>/` (e.g. `content/en/`, `content/es/`).
+**Content:** Place content in `content/<lang>/` (e.g. `content/en/`, `content/he/`).
+
+**RTL (Right-to-Left) languages:** For Hebrew, Arabic, or other RTL languages, set `languageDirection = "rtl"` in the language block. The theme will automatically apply RTL layout: mirrored navigation, right-aligned text, mobile menu sliding from the right, and proper alignment throughout.
 
 **Buy Me a Coffee description:** Add `buyMeACoffeeDescription` to each language's i18n file instead of config.
 
-Example minimal config for English + Spanish:
+Example minimal config for English + Hebrew (RTL):
 
 ```toml
 defaultContentLanguage = "en"
@@ -282,37 +298,35 @@ defaultContentLanguage = "en"
     weight = 10
   # ... other menu items
 
-[languages.es]
-  languageCode = "es-ES"
-  languageName = "Español"
-  languageDirection = "ltr"
-  contentDir = "content/es"
+[languages.he]
+  languageCode = "he-IL"
+  languageName = "עברית"
+  languageDirection = "rtl"
+  contentDir = "content/he"
   weight = 2
-  title = "Tu sitio"
-  [languages.es.params]
-    description = "La descripción de tu sitio"
-    author = "Tu nombre"
-    heroTitleLine1 = "NOMBRE DE TU SITIO"
-    heroTitleLine2 = "TU ESLOGAN"
-    custom404Message = "Lo sentimos, no encontramos la página que buscas."
-    footerText = "Hecho con Hugo y Mana theme"
-  [[languages.es.menus.main]]
-    name = "Inicio"
+  title = "Your Site Title"
+  [languages.he.params]
+    description = "Your site description"
+    author = "Your Name"
+    heroTitleLine1 = "YOUR SITE NAME"
+    heroTitleLine2 = "YOUR TAGLINE"
+    custom404Message = "Sorry, the page you are looking for could not be found."
+    footerText = "Built with Hugo and Mana theme"
+  [[languages.he.menus.main]]
+    name = "בית"
     pageRef = "/"
     weight = 10
-  # ... other menu items (Shown in example.toml)
+  # ... other menu items (see example.toml for full reference)
 ```
 
 See `example.toml` for a complete reference.
 
 ### 404 Page Configuration
 
-Customize the 404 error page message:
+Customize the 404 error page message per language in `[languages.<lang>.params]`:
 
 ```toml
-[params]
-  # Custom message for the 404 error page (supports HTML)
-  # If not set, defaults to: "Sorry, the page you are looking for could not be found."
+[languages.en.params]
   custom404Message = "Sorry, the page you are looking for could not be found. I guess I don't have a guide for <em>everything</em>"
 ```
 

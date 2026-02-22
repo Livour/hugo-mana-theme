@@ -102,7 +102,8 @@ defaultContentLanguage = "en"
 # Languages - Configuration for multiple languages, for personalized text per language.
 # Add/remove languages by adding/removing [languages.<lang>] blocks.
 # Create themes/mana/i18n/<lang>.toml for each language (copy from en.toml, if not already exists).
-# Content goes in content/<lang>/ (e.g. content/en/, content/es/).
+# Content goes in content/<lang>/ (e.g. content/en/, content/he/).
+# For RTL languages (Hebrew, Arabic): set languageDirection = "rtl" in the language block.
 # =============================================================================
 
 # English (default)
@@ -142,6 +143,41 @@ defaultContentLanguage = "en"
     name = "About"
     url = "/about/"
     weight = 40
+
+# Hebrew (RTL) - Example for Right-to-Left languages (Hebrew, Arabic, etc.)
+# Set languageDirection = "rtl" to enable RTL layout, mirrored navigation, and proper text flow.
+# [languages.he]
+#   languageCode = "he-IL"
+#   languageName = "עברית"
+#   languageDirection = "rtl"
+#   contentDir = "content/he"
+#   weight = 2
+#   title = "Your Site Title"
+
+#   [languages.he.params]
+#     description = "Your site description"
+#     author = "Your Name"
+#     heroTitleLine1 = "YOUR SITE NAME"
+#     heroTitleLine2 = "YOUR TAGLINE"
+#     custom404Message = "Sorry, the page you are looking for could not be found."
+#     footerText = "Built with Hugo and Mana theme"
+
+#   [[languages.he.menus.main]]
+#     name = "בית"
+#     pageRef = "/"
+#     weight = 10
+#   [[languages.he.menus.main]]
+#     name = "Posts"
+#     pageRef = "/posts"
+#     weight = 20
+#   [[languages.he.menus.main]]
+#     name = "Tags"
+#     pageRef = "/tags"
+#     weight = 30
+#   [[languages.he.menus.main]]
+#     name = "About"
+#     url = "/about/"
+#     weight = 40
 
 # Spanish (Use for example reference for your specific language)
 # [languages.es]

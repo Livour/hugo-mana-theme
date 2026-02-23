@@ -1,0 +1,85 @@
+# Alert/Admonition translations
+note = "הערה"
+tip = "טיפ"
+important = "חשוב"
+warning = "אזהרה"
+caution = "זהירות"
+info = "מידע"
+success = "הצלחה"
+question = "שאלה"
+danger = "סכנה"
+bug = "באג"
+example = "דוגמה"
+
+# Header & navigation
+menu = "תפריט"
+search = "חיפוש"
+searchPlaceholder = "חיפוש..."
+clearSearch = "נקה חיפוש"
+closeSearch = "סגור חיפוש"
+toggleMenu = "הצג/הסתר תפריט"
+closeMenu = "סגור תפריט"
+toggleTheme = "החלף ערכת נושא"
+language = "שפה"
+
+# Accessibility
+skipToMain = "דלג לתוכן הראשי"
+scrollToTop = "גלול למעלה"
+
+# Home
+recentPosts = "פוסטים אחרונים"
+
+# List & filters
+posts = "פוסטים"
+filters = "מסננים"
+searchTags = "חפש תגיות..."
+tagsLabel = "תגיות"
+yearMonth = "שנה וחודש"
+allDates = "כל התאריכים"
+clearFilters = "נקה מסננים"
+
+# Pagination
+pageOf = "עמוד %s מתוך %s"
+postSingular = "פוסט"
+postPlural = "פוסטים"
+pageSingular = "עמוד"
+pagePlural = "עמודים"
+postsOnThisPage = "בעמוד זה"
+paginationFirst = "ראשון"
+paginationPrev = "הקודם"
+paginationNext = "הבא"
+paginationLast = "אחרון"
+
+# Navigation links
+backToHome = "חזרה לדף הבית"
+allTags = "כל התגיות"
+readMore = "קרא עוד"
+
+# Archive
+archive = "ארכיון"
+
+# Single post
+tags = "תגיות"
+navPrev = "הקודם"
+navNext = "הבא"
+
+# Post meta
+wordCount = "מילים"
+readingTime = "דק׳"
+
+# Table of contents
+tableOfContents = "תוכן העניינים"
+toggleToc = "הצג/הסתר תוכן עניינים"
+
+# Tags page
+tagsHelp = "לחץ על תגית כדי לראות פוסטים קשורים"
+searchNoResults = "לא נמצאו תוצאות"
+searchNoTagsFound = "לא נמצאו תגיות"
+
+# Buy Me a Coffee
+buyMeACoffeeDescription = "תמכו בי ב-Buy me a coffee!"
+
+# 404 page
+404Title = "הדף לא קיים"
+404DefaultMessage = "מצטער, הדף שחיפשת לא נמצא."
+404ReturnHome = "חזרה לדף הבית"

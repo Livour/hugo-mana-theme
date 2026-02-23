@@ -63,7 +63,7 @@ function escapeRegex(string) {
 }
 
 /**
- * Format date string for display
+ * Format date string for display (locale-aware)
  * @param {string} dateString - ISO date string
  * @returns {string} Formatted date string
  */
@@ -72,21 +72,12 @@ function formatDate(dateString) {
 
   try {
     const date = new Date(dateString);
-    const months = [
-      "Jan",
-      "Feb",
-      "Mar",
-      "Apr",
-      "May",
-      "Jun",
-      "Jul",
-      "Aug",
-      "Sep",
-      "Oct",
-      "Nov",
-      "Dec",
-    ];
-    return `${months[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`;
+    const locale = document.documentElement.lang || "en";
+    return new Intl.DateTimeFormat(locale, {
+      month: "short",
+      day: "numeric",
+      year: "numeric",
+    }).format(date);
   } catch (error) {
     console.error("Error formatting date:", error);
     return dateString;

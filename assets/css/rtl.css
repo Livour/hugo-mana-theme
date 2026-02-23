@@ -1,0 +1,227 @@
+/* Targeted RTL styling - applied when body has .rtl class */
+
+/* Sticky header: ensure it works in RTL on narrow screens (fixes Chromium/Safari bugs) */
+.rtl .sticky-header {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  align-self: flex-start;
+  inset-inline-start: 0;
+  inset-inline-end: 0;
+  width: 100%;
+}
+
+/* Navbar: reverse menu order (Home right, Posts, Tags, About left) */
+.rtl .menu-list {
+  flex-direction: row-reverse;
+}
+
+/* Mobile menu: keep vertical stack (same as LTR), do not apply row-reverse */
+.rtl .mobile-menu-nav .menu-list {
+  flex-direction: column;
+}
+
+.rtl .mobile-menu-nav .menu-link {
+  text-align: right;
+}
+
+
+/* Hero section: description on right, logo on left */
+.rtl .hero-text {
+  order: 2;
+}
+
+.rtl .hero-image {
+  order: 1;
+}
+
+/* Hero title: right-aligned */
+.rtl .hero-title {
+  text-align: right;
+}
+
+/* Hero section: centered on mobile */
+@media (max-width: 768px) {
+  .rtl .hero-title,
+  .rtl .hero-text,
+  .rtl .hero-subtitle {
+    text-align: center;
+  }
+
+  .rtl .hero-text {
+    align-items: center;
+  }
+}
+
+/* Posts filter: flip layout */
+.rtl .filter-toggle-btn {
+  flex-direction: row-reverse;
+}
+
+.rtl .posts-filter {
+  flex-direction: row-reverse;
+}
+
+.rtl .filter-group {
+  align-items: stretch;
+}
+
+.rtl .filter-label {
+  text-align: right;
+}
+
+.rtl .tag-search-container,
+.rtl .filter-select {
+  width: 100%;
+  min-width: 0;
+}
+
+.rtl .filter-select {
+  background-position: left 0.75rem center;
+  text-align: right;
+  direction: rtl;
+}
+
+.rtl .tag-search-input {
+  text-align: right;
+  direction: rtl;
+}
+
+/* Recent posts: align to the right */
+.rtl .posts-section,
+.rtl .posts-title,
+.rtl .posts-list {
+  text-align: right;
+}
+
+.rtl .post-card {
+  flex-direction: row-reverse;
+  text-align: right;
+}
+
+.rtl .post-content {
+  align-items: flex-end;
+}
+
+/* Single post header: RTL direction and right alignment */
+.rtl .post-header {
+  direction: rtl;
+  text-align: right;
+}
+
+.rtl .post-title-main {
+  text-align: right;
+}
+
+/* Post information: RTL direction, flex-start aligns to right in RTL */
+.rtl .post-meta {
+  align-items: flex-start;
+  text-align: right;
+  direction: rtl;
+}
+
+.rtl .post-meta .post-tags {
+  align-self: flex-start;
+  justify-content: flex-start;
+}
+
+.rtl .post-meta-info,
+.rtl .post-meta-inline {
+  text-align: right;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+}
+
+/* Single post: TOC left, post right (desktop only - narrow screens use column) */
+.rtl .single-post-wrapper {
+  flex-direction: row-reverse;
+}
+
+@media (max-width: 1024px) {
+  .rtl .single-post-wrapper {
+    flex-direction: column;
+  }
+}
+
+/* TOC toggle: right-align in RTL */
+.rtl .toc-toggle {
+  text-align: right;
+}
+
+/* Single post: content text right-aligned with proper RTL direction for punctuation */
+.rtl .post-content-main {
+  direction: rtl;
+  text-align: right;
+}
+
+.rtl .post-content-main ul,
+.rtl .post-content-main ol {
+  padding-right: 1.5em;
+  padding-left: 0;
+}
+
+.rtl .post-content-main ul ul,
+.rtl .post-content-main ol ol,
+.rtl .post-content-main ul ol,
+.rtl .post-content-main ol ul {
+  padding-right: 1.5em;
+  padding-left: 0;
+}
+
+/* TOC: RTL active indicator and nested lists */
+.rtl .toc-nav a {
+  border-left: none;
+  border-right: 2px solid transparent;
+  border-radius: 0.25rem 0 0 0.25rem;
+}
+
+.rtl .toc-nav a.active {
+  border-right-color: var(--accent-primary);
+}
+
+.rtl .toc-nav ul ul {
+  padding-right: var(--spacing-sm);
+  padding-left: 0;
+  margin-right: 0.5rem;
+  margin-left: 0;
+  border-right: 1px solid var(--border-color);
+  border-left: none;
+}
+
+.rtl .toc-nav ul ul a {
+  padding-right: 0.5rem;
+  padding-left: 0;
+}
+
+/* Post tags footer: with direction rtl, row puts label on right, tags flow left */
+.rtl .post-tags-footer {
+  flex-direction: row;
+  direction: rtl;
+}
+
+/* Search modal: RTL layout - icon right, input center, close/clear left */
+.rtl .search-input-wrapper {
+  flex-direction: row-reverse;
+}
+
+.rtl .search-input-icon {
+  left: auto;
+  right: var(--spacing-lg);
+}
+
+.rtl .search-input-clear {
+  right: auto;
+  left: calc(var(--spacing-lg) + 2rem + var(--spacing-sm));
+}
+
+.rtl .search-modal-close {
+  right: auto;
+  left: var(--spacing-lg);
+}
+
+.rtl .search-input {
+  text-align: right;
+  direction: rtl;
+  padding: 0 calc(var(--spacing-lg) + 1.5rem + var(--spacing-md)) 0
+    calc(var(--spacing-lg) + 2rem + var(--spacing-sm) + 2rem + var(--spacing-lg));
+}

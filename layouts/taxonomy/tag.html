@@ -17,7 +17,7 @@
         <h1 class="tag-title">{{ .Title }}</h1>
       </div>
       <div class="tag-count">
-        {{ len .Pages }} {{ if eq (len .Pages) 1 }}post{{ else }}posts{{ end }}
+        {{ len .Pages }} {{ if eq (len .Pages) 1 }}{{ i18n "postSingular" }}{{ else }}{{ i18n "postPlural" }}{{ end }}
       </div>
     </div>
 
@@ -42,7 +42,7 @@
                 <div class="tag-post-content">
                   <div class="tag-post-header">
                     <h3 class="tag-post-title">{{ .Title }}</h3>
-                    <time class="tag-post-date">{{ .Date.Format "January 2" }}</time>
+                    <time class="tag-post-date">{{ .Date | time.Format ":date_short" }}</time>
                   </div>
 
                   {{ if .Summary }}
@@ -67,7 +67,7 @@
 
 
                   <div class="tag-post-read-more">
-                    <span class="read-more-text">Read more</span>
+                    <span class="read-more-text">{{ i18n "readMore" }}</span>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       class="read-more-icon"
@@ -91,8 +91,8 @@
 
     <!-- Navigation links -->
     <div class="tag-nav-links">
-      <a href="{{ "/tags" | relURL }}" class="tag-nav-link">All Tags</a>
-      <a href="{{ "/" | relLangURL }}" class="tag-nav-link">Back to Home</a>
+      <a href="{{ "/tags" | relLangURL }}" class="tag-nav-link">{{ i18n "allTags" }}</a>
+      <a href="{{ "/" | relLangURL }}" class="tag-nav-link">{{ i18n "backToHome" }}</a>
     </div>
   </div>
 {{ end }}

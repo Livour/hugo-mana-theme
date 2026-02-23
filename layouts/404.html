@@ -6,18 +6,18 @@
         <div class="hero-text">
           <h1 class="hero-title">
             <span class="hero-title-line2">404</span>
-            <span class="hero-title-line1">This Page Does Not Exist</span>
+            <span class="hero-title-line1">{{ i18n "404Title" }}</span>
           </h1>
           <p class="hero-subtitle">
             &gt;
             {{ if site.Params.custom404Message }}
               {{ site.Params.custom404Message | safeHTML }}
             {{ else }}
-              Sorry, the page you are looking for could not be found.
+              {{ i18n "404DefaultMessage" }}
             {{ end }}
           </p>
           <div class="hero-social" style="margin-top: var(--spacing-lg);">
-            <a href="{{ .Site.Home.RelPermalink }}" class="post-tag"> Return to the home page </a>
+            <a href="{{ .Site.Home.RelPermalink }}" class="post-tag">{{ i18n "404ReturnHome" }}</a>
           </div>
         </div>
         <div class="hero-image">

@@ -56,7 +56,7 @@
   <div class="home-container">
     <!-- Posts List -->
     <section class="posts-section">
-      <h2 class="posts-title">Recent Posts</h2>
+      <h2 class="posts-title">{{ i18n "recentPosts" }}</h2>
 
       <div class="posts-list">
         {{ range where site.RegularPages "Type" "posts" | first 10 }}

@@ -89,7 +89,9 @@ function initFilters() {
     );
 
     if (matchingTags.length === 0) {
-      tagSearchResults.innerHTML = '<div class="tag-search-no-results">No tags found</div>';
+      const noTagsMsg =
+        document.querySelector(".tag-search-container")?.dataset?.noTags || "No tags found";
+      tagSearchResults.innerHTML = `<div class="tag-search-no-results">${noTagsMsg}</div>`;
       tagSearchResults.style.display = "block";
       selectedResultIndex = -1;
       return;

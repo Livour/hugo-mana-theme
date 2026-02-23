@@ -12,13 +12,14 @@
         <section class="archive-year">
           <h2 class="archive-year-title">{{ .Key }}</h2>
 
-          {{ range .Pages.GroupByDate "January 2006" }}
+          {{ range .Pages.GroupByDate "2006-01" }}
             <div class="archive-month">
-              <h3 class="archive-month-title">{{ .Key }}</h3>
+              {{ $monthTime := (printf "%s-01" .Key) | time.AsTime }}
+              <h3 class="archive-month-title">{{ $monthTime | time.Format ":date_long" }}</h3>
               <ul class="archive-posts">
                 {{ range .Pages }}
                   <li class="archive-post-item">
-                    <time class="archive-date">{{ .Date.Format "Jan 2" }}</time>
+                    <time class="archive-date">{{ .Date | time.Format ":date_short" }}</time>
                     <a href="{{ .RelPermalink }}" class="archive-link">{{ .Title }}</a>
                   </li>
                 {{ end }}

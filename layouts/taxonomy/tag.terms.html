@@ -1,12 +1,12 @@
 {{ define "main" }}
   <div class="tags-page">
     <h1 class="tags-title">
-      <span class="list-title-line2">{{ .Title | upper }}</span>
+      <span class="list-title-line2">{{ i18n "tags" | upper }}</span>
     </h1>
 
     <!-- Help text -->
     <div class="tags-help">
-      <p>Click any tag to view related posts</p>
+      <p>{{ i18n "tagsHelp" }}</p>
     </div>
 
     <!-- Tag cloud -->
@@ -38,7 +38,7 @@
             stroke-width="2"
             d="M10 19l-7-7m0 0l7-7m-7 7h18" />
         </svg>
-        Back to Home
+        {{ i18n "backToHome" }}
       </a>
     </div>
   </div>

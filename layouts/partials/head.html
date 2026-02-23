@@ -10,6 +10,8 @@
     const theme = storedTheme || (systemPrefersLight ? "light" : "dark");
     document.documentElement.setAttribute("data-theme", theme);
   })();
+  // Search index URL for current language (multilingual support)
+  window.MANA_SEARCH_INDEX_URL = '{{ "index.json" | relLangURL }}';
 </script>
 <title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }} | {{ site.Title }}{{ end }}</title>
 <meta

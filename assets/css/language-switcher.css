@@ -1,0 +1,101 @@
+/* Language Switcher */
+
+.language-switcher {
+  position: relative;
+}
+
+.language-switcher-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.5rem;
+  background: transparent;
+  border: none;
+  border-radius: var(--radius-md, 0.375rem);
+  color: var(--text-primary);
+  cursor: pointer;
+  font-size: 0.875rem;
+  transition: color var(--transition-fast), background-color var(--transition-fast);
+}
+
+.language-switcher-toggle:hover {
+  color: var(--accent-primary);
+  background-color: var(--bg-secondary, rgba(0, 0, 0, 0.05));
+}
+
+.language-switcher-icon {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.language-switcher-label {
+  display: none;
+}
+
+@media (min-width: 640px) {
+  .language-switcher-label {
+    display: inline;
+  }
+}
+
+.language-switcher-dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: 0.25rem;
+  min-width: 10rem;
+  padding: 0.5rem 0;
+  background: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md, 0.375rem);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  z-index: 200;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-4px);
+  transition: opacity var(--transition-fast), visibility var(--transition-fast), transform var(--transition-fast);
+}
+
+.language-switcher-dropdown[aria-hidden="false"] {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.rtl .language-switcher-dropdown {
+  right: auto;
+  left: 0;
+}
+
+/* Mobile menu: dropdown opens upward */
+.mobile-menu-footer .language-switcher-dropdown {
+  top: auto;
+  bottom: 100%;
+  margin-top: 0;
+  margin-bottom: 0.25rem;
+}
+
+.rtl .mobile-menu-footer .language-switcher-dropdown {
+  right: auto;
+  left: 0;
+}
+
+.language-switcher-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.language-switcher-link {
+  display: block;
+  padding: 0.5rem 1rem;
+  color: var(--text-primary);
+  text-decoration: none;
+  font-size: 0.875rem;
+  transition: background-color var(--transition-fast), color var(--transition-fast);
+}
+
+.language-switcher-link:hover {
+  background-color: var(--bg-secondary, rgba(0, 0, 0, 0.05));
+  color: var(--accent-primary);
+}

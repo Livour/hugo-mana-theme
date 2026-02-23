@@ -15,10 +15,10 @@
             stroke-width="2"
             d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
         </svg>
-        <h1 class="tag-title">Archive</h1>
+        <h1 class="tag-title">{{ i18n "archive" }}</h1>
       </div>
       <div class="tag-count">
-        {{ len $posts }} {{ if eq (len $posts) 1 }}post{{ else }}posts{{ end }}
+        {{ len $posts }} {{ if eq (len $posts) 1 }}{{ i18n "postSingular" }}{{ else }}{{ i18n "postPlural" }}{{ end }}
       </div>
     </div>
 
@@ -34,20 +34,21 @@
             </div>
             <div class="year-line">
               <span class="year-count-inline"
-                >{{ len .Pages }} {{ if eq (len .Pages) 1 }}post{{ else }}posts{{ end }}</span
+                >{{ len .Pages }} {{ if eq (len .Pages) 1 }}{{ i18n "postSingular" }}{{ else }}{{ i18n "postPlural" }}{{ end }}</span
               >
             </div>
           </div>
 
           <!-- Months -->
           <div class="year-months">
-            {{ range .Pages.GroupByDate "January" }}
+            {{ range .Pages.GroupByDate "2006-01" }}
               <div class="month-group">
                 <div class="month-indicator">
-                  <span class="month-text">{{ .Key }}</span>
+                  {{ $monthTime := (printf "%s-01" .Key) | time.AsTime }}
+                  <span class="month-text">{{ $monthTime | time.Format ":date_long" }}</span>
                   <div class="month-line">
                     <span class="month-count-inline"
-                      >{{ len .Pages }} {{ if eq (len .Pages) 1 }}post{{ else }}posts{{ end }}</span
+                      >{{ len .Pages }} {{ if eq (len .Pages) 1 }}{{ i18n "postSingular" }}{{ else }}{{ i18n "postPlural" }}{{ end }}</span
                     >
                   </div>
                 </div>

@@ -11,3 +11,75 @@ danger = "Danger"
 bug = "Bug"
 example = "Example"
 
+# Header & navigation
+menu = "Menu"
+search = "Search"
+searchPlaceholder = "Search..."
+clearSearch = "Clear search"
+closeSearch = "Close search"
+toggleMenu = "Toggle menu"
+closeMenu = "Close menu"
+toggleTheme = "Toggle theme"
+language = "Language"
+
+# Accessibility
+skipToMain = "Skip to main content"
+scrollToTop = "Scroll to top"
+
+# Home
+recentPosts = "Recent Posts"
+
+# List & filters
+posts = "Posts"
+filters = "Filters"
+searchTags = "Search for tags..."
+tagsLabel = "Tags"
+yearMonth = "Year & Month"
+allDates = "All Dates"
+clearFilters = "Clear Filters"
+
+# Pagination
+pageOf = "Page %s of %s"
+postSingular = "post"
+postPlural = "posts"
+pageSingular = "page"
+pagePlural = "pages"
+postsOnThisPage = "on this page"
+paginationFirst = "First"
+paginationPrev = "Previous"
+paginationNext = "Next"
+paginationLast = "Last"
+
+# Navigation links
+backToHome = "Back to Home"
+allTags = "All Tags"
+readMore = "Read more"
+
+# Archive
+archive = "Archive"
+
+# Single post
+tags = "Tags"
+navPrev = "Previous"
+navNext = "Next"
+
+# Post meta
+wordCount = "words"
+readingTime = "min"
+
+# Table of contents
+tableOfContents = "Table of Contents"
+toggleToc = "Toggle table of contents"
+
+# Tags page
+tagsHelp = "Click any tag to view related posts"
+searchNoResults = "No results found"
+searchNoTagsFound = "No tags found"
+
+# Buy Me a Coffee
+buyMeACoffeeDescription = "Support me on Buy me a coffee!"
+
+# 404 page
+404Title = "This Page Does Not Exist"
+404DefaultMessage = "Sorry, the page you are looking for could not be found."
+404ReturnHome = "Return to the home page"

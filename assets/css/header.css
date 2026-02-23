@@ -3,6 +3,7 @@
 .sticky-header {
   position: sticky;
   top: 0;
+  align-self: flex-start; /* Required for sticky inside flex body (Chrome DevTools device mode) */
   z-index: 100;
   background-color: var(--bg-primary);
   border-bottom: 1px solid var(--border-color);
@@ -212,11 +213,10 @@
   transform: translateY(-0.4375rem) rotate(-45deg);
 }
 
-/* Mobile Off-Canvas Menu */
+/* Mobile Off-Canvas Menu - must be direct child of body for correct viewport positioning when scrolled */
 .mobile-menu {
   position: fixed;
-  top: 0;
-  left: 0;
+  inset: 0;
   width: 100%;
   height: 100vh;
   z-index: 1000;

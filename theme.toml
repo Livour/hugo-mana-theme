@@ -6,8 +6,8 @@ description = "Futuristic theme featuring a dark theme, clean aesthetics, and mo
 homepage = "https://github.com/Livour/hugo-mana-theme"
 demosite = "https://managuide.blog/"
 
-tags = ["blog", "responsive", "personal", "dark", "minimal", "modern", "code-highlighting", "light", "dark mode", "popular", "light mode"]
-features = ["responsive", "dark mode", "light mode", "blog", "social icons", "code highlighting", "clean design", "sticky header", "search", "table of contents", "syntax highlighting", "post filtering", "tag search", "archive pages"]
+tags = ["blog", "responsive", "personal", "dark", "minimal", "modern", "code-highlighting", "light", "dark mode", "popular", "light mode","multilingual"]
+features = ["responsive", "dark mode", "light mode", "blog", "social icons", "code highlighting", "clean design", "sticky header", "search", "table of contents", "syntax highlighting", "post filtering", "tag search", "archive pages", "multilingual"]
 
 [author]
   name = "Livour"

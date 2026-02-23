@@ -8,5 +8,6 @@
 {{ $filters := resources.Get "js/filters.js" }}
 {{ $codeBlocks := resources.Get "js/code-blocks.js" }}
 {{ $blockquotes := resources.Get "js/blockquotes.js" }}
-{{ $js := slice $constants $utils $themeToggle $search $scrollToTop $navigation $toc $filters $codeBlocks $blockquotes | resources.Concat "js/main.js" | minify | fingerprint }}
+{{ $languageSwitcher := resources.Get "js/language-switcher.js" }}
+{{ $js := slice $constants $utils $themeToggle $search $scrollToTop $navigation $toc $filters $codeBlocks $blockquotes $languageSwitcher | resources.Concat "js/main.js" | minify | fingerprint }}
 <script src="{{ $js.RelPermalink }}" defer></script>

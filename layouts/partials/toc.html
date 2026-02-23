@@ -1,11 +1,11 @@
 {{ if .TableOfContents }}
-  <aside class="post-toc" id="post-toc" aria-label="Table of contents">
+  <aside class="post-toc" id="post-toc" aria-label="{{ i18n "tableOfContents" }}">
     <button
       class="toc-toggle"
       id="toc-toggle"
       aria-expanded="true"
       aria-controls="toc-content"
-      aria-label="Toggle table of contents">
+      aria-label="{{ i18n "toggleToc" }}">
       <svg
         class="toc-burger-icon"
         viewBox="0 0 24 24"
@@ -19,7 +19,7 @@
         <line x1="3" y1="12" x2="21" y2="12"></line>
         <line x1="3" y1="18" x2="21" y2="18"></line>
       </svg>
-      <span class="toc-toggle-text">Table of Contents</span>
+      <span class="toc-toggle-text">{{ i18n "tableOfContents" }}</span>
       <svg
         class="toc-chevron-icon"
         viewBox="0 0 24 24"
@@ -33,7 +33,7 @@
       </svg>
     </button>
     <div class="toc-content" id="toc-content">
-      <nav class="toc-nav" aria-label="Table of contents">
+      <nav class="toc-nav" aria-label="{{ i18n "tableOfContents" }}">
         {{ .TableOfContents }}
       </nav>
     </div>

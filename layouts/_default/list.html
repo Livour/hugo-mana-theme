@@ -11,7 +11,7 @@
   {{ $uniqueTags := $allTags | uniq | sort }}
   {{ $yearMonths := slice }}
   {{ range $allPosts }}
-    {{ $yearMonth := printf "%s %s" (.Date.Format "2006") (.Date.Format "January") }}
+    {{ $yearMonth := .Date.Format "2006-01" }}
     {{ $yearMonths = $yearMonths | append $yearMonth }}
   {{ end }}
   {{ $uniqueYearMonths := $yearMonths | uniq | sort }}
@@ -20,7 +20,7 @@
   <div class="list-container">
     <header class="list-header">
       <h1 class="list-title">
-        <span class="list-title-line2">POSTS</span>
+        <span class="list-title-line2">{{ i18n "posts" | upper }}</span>
       </h1>
       {{ if .Description }}
         <p class="list-description">{{ .Description }}</p>
@@ -34,9 +34,9 @@
         class="filter-toggle-btn"
         id="filter-toggle-btn"
         aria-expanded="false"
-        aria-label="Toggle filters"
+        aria-label="{{ i18n "filters" }}"
         aria-controls="posts-filter-content">
-        <span class="filter-toggle-text">Filters</span>
+        <span class="filter-toggle-text">{{ i18n "filters" }}</span>
         <svg
           class="filter-toggle-icon"
           fill="none"
@@ -52,14 +52,14 @@
       </button>
       <div class="posts-filter" id="posts-filter-content">
         <div class="filter-group filter-group-tags">
-          <label class="filter-label" for="tag-search-input">Tags</label>
-          <div class="tag-search-container">
+          <label class="filter-label" for="tag-search-input">{{ i18n "tagsLabel" }}</label>
+          <div class="tag-search-container" data-no-tags="{{ i18n "searchNoTagsFound" }}">
             <input
               type="text"
               id="tag-search-input"
               class="tag-search-input"
-              placeholder="Search for tags..."
-              aria-label="Search for tags">
+              placeholder="{{ i18n "searchTags" }}"
+              aria-label="{{ i18n "searchTags" }}">
             <div
               id="tag-search-results"
               class="tag-search-results"
@@ -77,20 +77,21 @@
         </div>
 
         <div class="filter-group">
-          <label for="filter-year-month" class="filter-label">Year & Month</label>
+          <label for="filter-year-month" class="filter-label">{{ i18n "yearMonth" }}</label>
           <select
             id="filter-year-month"
             class="filter-select"
-            aria-label="Filter by year and month">
-            <option value="">All Dates</option>
+            aria-label="{{ i18n "yearMonth" }}">
+            <option value="">{{ i18n "allDates" }}</option>
             {{ range $uniqueYearMonths }}
-              <option value="{{ . }}">{{ . }}</option>
+              {{ $t := (printf "%s-01" .) | time.AsTime }}
+              <option value="{{ . }}">{{ $t | time.Format ":date_long" }}</option>
             {{ end }}
           </select>
         </div>
 
-        <button id="clear-filters" class="filter-clear-btn" aria-label="Clear all filters">
-          Clear Filters
+        <button id="clear-filters" class="filter-clear-btn" aria-label="{{ i18n "clearFilters" }}">
+          {{ i18n "clearFilters" }}
         </button>
       </div>
     </div>
@@ -104,7 +105,7 @@
         {{ partial "post-card.html" (dict
           "page" .
           "limit" 3
-          "dataYearMonth" (printf "%s %s" (.Date.Format "2006") (.Date.Format "January"))
+          "dataYearMonth" (.Date.Format "2006-01")
           "dataTags" $dataTags)
         }}
       {{ end }}

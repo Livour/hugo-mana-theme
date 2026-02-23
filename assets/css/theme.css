@@ -11,6 +11,7 @@ html {
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: clip; /* Prevents horizontal scroll without breaking position: sticky */
 }
 
 :root {

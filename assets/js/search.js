@@ -9,7 +9,8 @@ let searchTimeout = null;
  */
 async function loadSearchIndex() {
   try {
-    const response = await fetch(SEARCH_INDEX_URL);
+    const indexUrl = window.MANA_SEARCH_INDEX_URL || SEARCH_INDEX_URL;
+    const response = await fetch(indexUrl);
     if (response.ok) {
       searchIndex = await response.json();
     } else {
@@ -86,7 +87,9 @@ function performSearch(query) {
     .slice(0, SEARCH_RESULTS_LIMIT);
 
   if (results.length === 0) {
-    searchResults.innerHTML = '<div class="search-result-empty">No results found</div>';
+    const noResultsMsg =
+      document.getElementById("search-modal")?.dataset?.noResults || "No results found";
+    searchResults.innerHTML = `<div class="search-result-empty">${noResultsMsg}</div>`;
     toggleSearchResultsVisibility();
     return;
   }

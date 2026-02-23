@@ -1,8 +1,8 @@
 <div class="list-count">
   <span id="filtered-count">{{ .Paginator.TotalNumberOfElements }}</span>
-  {{ if eq .Paginator.TotalNumberOfElements 1 }}post{{ else }}posts{{ end }}
+  {{ if eq .Paginator.TotalNumberOfElements 1 }}{{ i18n "postSingular" }}{{ else }}{{ i18n "postPlural" }}{{ end }}
   {{ if gt .Paginator.TotalPages 1 }}
-    <span class="list-count-pages">({{ .Paginator.TotalPages }} {{ if eq .Paginator.TotalPages 1 }}page{{ else }}pages{{ end }})</span>
+    <span class="list-count-pages">({{ .Paginator.TotalPages }} {{ if eq .Paginator.TotalPages 1 }}{{ i18n "pageSingular" }}{{ else }}{{ i18n "pagePlural" }}{{ end }})</span>
   {{ end }}
 </div>
 

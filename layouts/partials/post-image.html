@@ -4,7 +4,7 @@
 
 {{ if $image }}
   <div class="post-image">
-    <a href="{{ .RelPermalink }}" onclick="event.stopPropagation();" aria-label="Read {{ .Title }}">
+    <a href="{{ .RelPermalink }}" onclick="event.stopPropagation();" aria-label="{{ i18n "readMore" }} {{ .Title }}">
       <img
         src="{{ if $imageResource }}{{ $imageResource.RelPermalink }}{{ else }}{{ $image | relURL }}{{ end }}"
         alt="{{ if .Description }}

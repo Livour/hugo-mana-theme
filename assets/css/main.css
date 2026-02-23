@@ -1,8 +1,8 @@
 /* Theme variables are loaded separately in head */
 
-/* Prevent horizontal scrolling */
+/* Prevent horizontal scrolling - use clip (not hidden) to avoid breaking position: sticky */
 body {
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 /* Code elements use monospace font */

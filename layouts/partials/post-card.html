@@ -3,7 +3,7 @@
 {{ $dataYearMonth := .dataYearMonth }}
 {{ $dataTags := .dataTags }}
 {{ if and (not $dataYearMonth) $page.Date }}
-  {{ $dataYearMonth = printf "%s %s" ($page.Date.Format "2006") ($page.Date.Format "January") }}
+  {{ $dataYearMonth = $page.Date.Format "2006-01" }}
 {{ end }}
 {{ if and (not $dataTags) $page.Params.tags }}
   {{ $dataTags = delimit $page.Params.tags "," }}

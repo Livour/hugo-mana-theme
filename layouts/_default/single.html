@@ -21,7 +21,7 @@
       {{ if .Params.tags }}
         <footer class="post-footer">
           <div class="post-tags-footer">
-            <span class="tags-label">Tags:</span>
+            <span class="tags-label">{{ i18n "tags" }}:</span>
             {{ range .Params.tags }}
               <a href="{{ "/tags/" | relLangURL }}{{ . | urlize }}" class="post-tag">{{ . }}</a>
             {{ end }}
@@ -36,7 +36,7 @@
             href="{{ .RelPermalink }}"
             class="nav-link nav-prev"
             aria-label="Previous post: {{ .Title }}">
-            <span class="nav-label">Previous</span>
+            <span class="nav-label">{{ i18n "navPrev" }}</span>
             <span class="nav-title">{{ .Title }}</span>
           </a>
         {{ end }}
@@ -46,7 +46,7 @@
             href="{{ .RelPermalink }}"
             class="nav-link nav-next"
             aria-label="Next post: {{ .Title }}">
-            <span class="nav-label">Next</span>
+            <span class="nav-label">{{ i18n "navNext" }}</span>
             <span class="nav-title">{{ .Title }}</span>
           </a>
         {{ end }}

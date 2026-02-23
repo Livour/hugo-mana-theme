@@ -67,6 +67,7 @@ Add your social media links:
 ```toml
 [params.social]
   github = "https://github.com/yourusername"
+  gitlab = "https://gitlab.com/yourusername"
   linkedin = "https://www.linkedin.com/in/yourprofile"
   email = "your.email@example.com"
 ```

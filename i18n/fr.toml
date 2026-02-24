@@ -23,7 +23,7 @@ toggleTheme = "Basculer le thème"
 language = "Langue"
 
 # Accessibilité
-skipToMain = "Passer au contenu principal "
+skipToMain = "Passer au contenu principal"
 scrollToTop = "Aller en haut de la page"
 
 # Accueil

@@ -1,0 +1,85 @@
+# 警告/注意の翻訳
+note = "補足"
+tip = "参考"
+important = "重要"
+warning = "警告"
+caution = "注意"
+info = "情報"
+success = "成功"
+question = "質問"
+danger = "危険"
+bug = "バグ"
+example = "例"
+
+# ヘッダーとナビゲーション
+menu = "メニュー"
+search = "検索"
+searchPlaceholder = "検索。。。"
+clearSearch = "検索をクリア"
+closeSearch = "検索を閉じる"
+toggleMenu = "メニューを切り替え"
+closeMenu = "メニューを閉じる"
+toggleTheme = "テーマを切り替え"
+language = "言語"
+
+# アクセシビリティ
+skipToMain = "メインコンテンツに戻る"
+scrollToTop = "上部へ戻る"
+
+# ホーム
+recentPosts = "最近の投稿"
+
+# リストとフィルター
+posts = "投稿"
+filters = "フィルター"
+searchTags = "タグを検索する。。。"
+tagsLabel = "タグ"
+yearMonth = "年と月"
+allDates = "すべての日付"
+clearFilters = "フィルターをクリア"
+
+# ページネーション
+pageOf = "%sページ中 %sページ目"
+postSingular = "投稿"
+postPlural = "投稿"
+pageSingular = "ページ"
+pagePlural = "ページ"
+postsOnThisPage = "このページに表示する"
+paginationFirst = "最初"
+paginationPrev = "前へ"
+paginationNext = "次へ"
+paginationLast = "最後"
+
+# ナビゲーションリンク
+backToHome = "ホームに戻る"
+allTags = "すべてのタグ"
+readMore = "続きを読む"
+
+# アーカイブ
+archive = "アーカイブ"
+
+# 単一投稿
+tags = "タグ"
+navPrev = "前へ"
+navNext = "次へ"
+
+# 投稿メタデータ
+wordCount = "語"
+readingTime = "分"
+
+# 目次
+tableOfContents = "目次"
+toggleToc = "目次を切り替える"
+
+# タグページ
+tagsHelp = "関連投稿を表示するにはタグをクリックしてください。"
+searchNoResults = "検索結果がありません。"
+searchNoTagsFound = "タグが見つかりません。"
+
+# Buy Me a Coffee
+buyMeACoffeeDescription = "Buy Me a Coffeeでご支援ください"
+
+# 404ページ
+404Title = "このページは存在しません"
+404DefaultMessage = "申し訳ありませんが、お探しのページは見つかりませんでした。"
+404ReturnHome = "ホームページに戻る"

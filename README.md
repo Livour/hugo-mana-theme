@@ -2,6 +2,12 @@
 
 Futuristic hugo theme featuring clean aesthetics, and modern functionality and responsive design.
 
+## Support
+
+If you enjoy this theme, consider buying me a coffee! Your support helps me keep updating and improving the project.
+
+[!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/purple_img.png)](https://www.buymeacoffee.com/livourmanab)
+
 ## Features
 
 - **Fully responsive** design with mobile-first approach

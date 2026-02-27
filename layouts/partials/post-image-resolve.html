@@ -44,6 +44,21 @@
       {{ break }}
     {{ end }}
   {{ end }}
+
+  {{/* For translated pages: inherit image from another translation when auto-discovery fails.
+      Images are typically named after the default-language title (e.g. English). */}}
+  {{ if not $image }}
+    {{ range .AllTranslations }}
+      {{ if ne .Lang $.Lang }}
+        {{ $resolved := partial "post-image-resolve.html" . }}
+        {{ if $resolved.image }}
+          {{ $image = $resolved.image }}
+          {{ $imageResource = $resolved.imageResource }}
+          {{ break }}
+        {{ end }}
+      {{ end }}
+    {{ end }}
+  {{ end }}
 {{ end }}
 
 {{ return (dict "image" $image "imageResource" $imageResource) }}

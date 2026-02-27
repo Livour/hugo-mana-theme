@@ -1,3 +1,9 @@
+# =============================================================================
+# Full example: Multi-folder, multi-language (translation by directory)
+# Content: content/en/posts/post.md + content/he/posts/post.md
+# See example-single-folder-*.toml and example-multi-folder-*.toml for other setups.
+# =============================================================================
+
 baseURL = 'https://example.com/'
 theme = "mana"
 defaultContentLanguage = "en"
@@ -127,7 +133,12 @@ defaultContentLanguage = "en"
 # 404: Set custom404Message per language in [languages.<lang>.params]
 # Add/remove languages by adding/removing [languages.<lang>] blocks.
 # Create themes/mana/i18n/<lang>.toml for each language (copy from en.toml, if not already exists).
-# Content goes in content/<lang>/ (e.g. content/en/, content/he/).
+#
+# Content layout (choose one):
+# - Translation by filename: Omit contentDir. Use content/posts/post.md + content/posts/post.es.md
+# - Translation by directory: Set contentDir per language (e.g. content/en/, content/he/)
+# See: https://gohugo.io/content-management/multilingual/
+#
 # For RTL languages (Hebrew, Arabic): set languageDirection = "rtl" in the language block.
 # =============================================================================
 

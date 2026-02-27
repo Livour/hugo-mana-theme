@@ -1,0 +1,142 @@
+# =============================================================================
+# Example: Multiple content folders, multiple languages (translation by directory)
+# Content: content/en/posts/post.md + content/es/posts/post.md (separate dirs)
+# Set contentDir per language. Hugo links pages by same path relative to contentDir.
+# See: https://gohugo.io/content-management/multilingual/
+# =============================================================================
+
+baseURL = 'https://example.com/'
+theme = "mana"
+defaultContentLanguage = "en"
+
+[pagination]
+  pageSize = 10
+
+[markup]
+  [markup.tableOfContents]
+    startLevel = 1
+    endLevel = 6
+    ordered = false
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+    [markup.goldmark.parser]
+      [markup.goldmark.parser.attribute]
+        block = true
+        title = true
+  [markup.highlight]
+    codeFences = true
+    guessSyntax = true
+    noClasses = false
+    style = "catppuccin-macchiato"
+
+[outputs]
+  home = ["HTML", "JSON"]
+
+[sitemap]
+  changefreq = "weekly"
+  priority = 0.5
+  filename = "sitemap.xml"
+
+[params]
+  enableIntegrity = false
+  description = "Your site description"
+  author = "Your Name"
+  heroTitleLine1 = "YOUR SITE NAME"
+  heroTitleLine2 = "YOUR TAGLINE"
+  footerText = "Built with Hugo and Mana theme"
+
+  [params.social]
+    github = "https://github.com/yourusername"
+    linkedin = "https://www.linkedin.com/in/yourprofile"
+    email = "your.email@example.com"
+
+  [params.buyMeACoffee]
+    enabled = false
+    id = "yourwidgetid"
+
+  [params.codeHighlight]
+    darkTheme = "catppuccin-macchiato"
+    lightTheme = "catppuccin-frappe"
+
+  [params.copyright]
+    startYear = 2025
+    owner = "Your Name"
+
+  [params.admonitions]
+    alertStyle = "favicon"
+
+# =============================================================================
+# Translation by directory: contentDir per language. Create themes/mana/i18n/<lang>.toml.
+# For RTL languages (Hebrew, Arabic): set languageDirection = "rtl".
+# =============================================================================
+
+[languages.en]
+  languageCode = "en-US"
+  languageName = "English"
+  languageDirection = "ltr"
+  contentDir = "content/en"
+  weight = 1
+  title = "Your Site Title"
+
+  [languages.en.params]
+    description = "Your site description"
+    heroTitleLine1 = "YOUR SITE NAME"
+    heroTitleLine2 = "YOUR TAGLINE"
+    custom404Message = "Sorry, the page you are looking for could not be found."
+    footerText = "Built with Hugo and Mana theme"
+
+  [[languages.en.menus.main]]
+    name = "Home"
+    pageRef = "/"
+    weight = 10
+
+  [[languages.en.menus.main]]
+    name = "Posts"
+    pageRef = "/posts"
+    weight = 20
+
+  [[languages.en.menus.main]]
+    name = "Tags"
+    pageRef = "/tags"
+    weight = 30
+
+  [[languages.en.menus.main]]
+    name = "About"
+    url = "/about/"
+    weight = 40
+
+[languages.es]
+  languageCode = "es-ES"
+  languageName = "Español"
+  languageDirection = "ltr"
+  contentDir = "content/es"
+  weight = 2
+  title = "Tu sitio"
+
+  [languages.es.params]
+    description = "La descripción de tu sitio"
+    heroTitleLine1 = "NOMBRE DE TU SITIO"
+    heroTitleLine2 = "TU ESLOGAN"
+    custom404Message = "Lo sentimos, no encontramos la página que buscas."
+    footerText = "Hecho con Hugo y Mana theme"
+
+  [[languages.es.menus.main]]
+    name = "Inicio"
+    pageRef = "/"
+    weight = 10
+
+  [[languages.es.menus.main]]
+    name = "Posts"
+    pageRef = "/posts"
+    weight = 20
+
+  [[languages.es.menus.main]]
+    name = "Etiquetas"
+    pageRef = "/tags"
+    weight = 30
+
+  [[languages.es.menus.main]]
+    name = "Acerca"
+    url = "/about/"
+    weight = 40

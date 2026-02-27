@@ -39,7 +39,7 @@ Then set `theme = "mana"` in your `hugo.toml` configuration file.
 
 ## Configuration
 
-Add the following configuration to your `hugo.toml` file. You can also reference the `example.toml` file in the theme root for a complete example configuration.
+Add the following configuration to your `hugo.toml` file. Reference `example.toml` for a complete config, or the `example-*-folder-*.toml` files for minimal configs per content layout (single/multi-folder, single/multi-language).
 
 ### Basic Configuration
 
@@ -280,7 +280,22 @@ The theme supports multiple languages with a language switcher in the header.
 
 **Remove a language:** Delete the `[languages.<lang>]` block. With only one language, the switcher is hidden.
 
-**Content:** Place content in `content/<lang>/` (e.g. `content/en/`, `content/he/`).
+**Content layout:** The theme supports both approaches from [Hugo's multilingual docs](https://gohugo.io/content-management/multilingual/):
+
+| Approach | Config | Content layout |
+|----------|--------|----------------|
+| **Translation by filename** | `[languages]` blocks, **omit contentDir** | `content/posts/post.md` + `content/posts/post.es.md` (same directory) |
+| **Translation by directory** | `contentDir = "content/en"` etc. per language | `content/en/posts/post.md` + `content/es/posts/post.md` (separate dirs) |
+
+**Example configs:** Use the example that matches your setup:
+
+| File | Use when |
+|------|----------|
+| `example-single-folder-single-lang.toml` | Single language, all content in `content/` |
+| `example-single-folder-multilang.toml` | Multiple languages, translation by filename |
+| `example-multi-folder-single-lang.toml` | Single language, content in `content/en/` |
+| `example-multi-folder-multilang.toml` | Multiple languages, translation by directory |
+| `example.toml` | Full reference (multi-folder, multi-language) |
 
 **RTL (Right-to-Left) support:** For Hebrew, Arabic, or other RTL languages, set `languageDirection = "rtl"` in the language block. The theme automatically applies:
 - Mirrored navigation and layout
@@ -290,7 +305,47 @@ The theme supports multiple languages with a language switcher in the header.
 
 **Buy Me a Coffee description:** Add `buyMeACoffeeDescription` to each language's i18n file instead of config.
 
-Example minimal config for English + Hebrew (RTL):
+**Linking pages with different basenames:** Use `translationKey` in front matter to link pages that don't share the same filename or path. See [Hugo's bypassing default linking](https://gohugo.io/content-management/multilingual/#bypassing-default-linking).
+
+Example minimal config for translation by filename (English + Spanish, no contentDir):
+
+```toml
+defaultContentLanguage = "en"
+
+[languages.en]
+  languageCode = "en-US"
+  languageName = "English"
+  languageDirection = "ltr"
+  weight = 1
+  title = "Your Site Title"
+  # No contentDir - all languages use content/
+  [languages.en.params]
+    heroTitleLine1 = "YOUR SITE NAME"
+    heroTitleLine2 = "YOUR TAGLINE"
+  [[languages.en.menus.main]]
+    name = "Home"
+    pageRef = "/"
+    weight = 10
+  # ... other menu items
+
+[languages.es]
+  languageCode = "es-ES"
+  languageName = "Español"
+  languageDirection = "ltr"
+  weight = 2
+  title = "Tu sitio"
+  # No contentDir
+  [languages.es.params]
+    heroTitleLine1 = "NOMBRE DE TU SITIO"
+    heroTitleLine2 = "TU ESLOGAN"
+  [[languages.es.menus.main]]
+    name = "Inicio"
+    pageRef = "/"
+    weight = 10
+  # ... other menu items
+```
+
+Example minimal config for translation by directory (English + Hebrew, RTL):
 
 ```toml
 defaultContentLanguage = "en"
@@ -336,7 +391,7 @@ defaultContentLanguage = "en"
   # ... other menu items (see example.toml for full reference)
 ```
 
-See `example.toml` for a complete reference.
+See `example.toml` for a complete reference, or the `example-*-folder-*.toml` files for minimal configs per setup.
 
 ### 404 Page Configuration
 

@@ -94,13 +94,33 @@
   text-align: right;
 }
 
-/* Tag page post cards: direction rtl for correct punctuation in titles and summaries */
+/* Tag page post cards: RTL direction for layout and correct punctuation */
+.rtl .tag-post-content {
+  direction: rtl;
+  text-align: right;
+}
+
 .rtl .tag-post-title {
   direction: rtl;
 }
 
 .rtl .tag-post-summary {
   direction: rtl;
+}
+
+/* Tag page: date and tags aligned to the right (flex-start = right when direction: rtl) */
+.rtl .tag-post-header {
+  align-items: flex-start;
+  text-align: right;
+}
+
+.rtl .tag-post-date {
+  text-align: right;
+  align-self: flex-start;
+}
+
+.rtl .tag-post-tags {
+  justify-content: flex-start;
 }
 
 .rtl .post-card {

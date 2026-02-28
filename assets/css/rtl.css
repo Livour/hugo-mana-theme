@@ -233,3 +233,54 @@
   padding: 0 calc(var(--spacing-lg) + 1.5rem + var(--spacing-md)) 0
     calc(var(--spacing-lg) + 2rem + var(--spacing-sm) + 2rem + var(--spacing-lg));
 }
+
+/* Admonitions/blockquotes: accent strip on the right in RTL */
+.rtl .post-content-main blockquote.blockquote-regular {
+  border-left: none;
+  border-right: 4px solid var(--accent-primary);
+}
+
+[data-theme="light"] .rtl .post-content-main blockquote.blockquote-regular {
+  border-left: none;
+  border-right-color: var(--accent-primary);
+}
+
+.rtl .post-content-main .alert-note,
+.rtl .post-content-main .alert-tip,
+.rtl .post-content-main .alert-important,
+.rtl .post-content-main .alert-warning,
+.rtl .post-content-main .alert-caution,
+.rtl .post-content-main .alert-info,
+.rtl .post-content-main .alert-success,
+.rtl .post-content-main .alert-question,
+.rtl .post-content-main .alert-danger,
+.rtl .post-content-main .alert-bug,
+.rtl .post-content-main .alert-example {
+  border-left: none;
+  border-right: 4px solid;
+}
+
+.rtl .post-content-main .alert-note { border-right-color: #3b82f6; }
+.rtl .post-content-main .alert-tip { border-right-color: #10b981; }
+.rtl .post-content-main .alert-important { border-right-color: #f59e0b; }
+.rtl .post-content-main .alert-warning { border-right-color: #f59e0b; }
+.rtl .post-content-main .alert-caution { border-right-color: #ef4444; }
+.rtl .post-content-main .alert-info { border-right-color: #3b82f6; }
+.rtl .post-content-main .alert-success { border-right-color: #10b981; }
+.rtl .post-content-main .alert-question { border-right-color: #8b5cf6; }
+.rtl .post-content-main .alert-danger { border-right-color: #ef4444; }
+.rtl .post-content-main .alert-bug { border-right-color: #f97316; }
+.rtl .post-content-main .alert-example { border-right-color: #6366f1; }
+
+/* Alert header: icon on right in RTL */
+.rtl .post-content-main .alert-header {
+  flex-direction: row-reverse;
+  text-align: right;
+}
+
+/* Alert content: lists RTL padding */
+.rtl .post-content-main .alert-content ul,
+.rtl .post-content-main .alert-content ol {
+  padding-left: 0;
+  padding-right: 1.5em;
+}

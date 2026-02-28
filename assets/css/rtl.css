@@ -168,6 +168,14 @@
   padding-left: 0;
 }
 
+/* Code blocks: always LTR - programming code is typically in English */
+.rtl .post-content-main .code-block-wrapper,
+.rtl .post-content-main .highlight,
+.rtl .post-content-main pre {
+  direction: ltr;
+  text-align: left;
+}
+
 /* TOC: RTL active indicator and nested lists */
 .rtl .toc-nav a {
   border-left: none;

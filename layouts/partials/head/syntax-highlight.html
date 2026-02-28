@@ -6,16 +6,25 @@
 
 {{- if $syntaxDark -}}
   {{- $syntaxDarkMin := $syntaxDark | minify | fingerprint -}}
+  {{- if site.Params.enableIntegrity }}
   <link
     rel="stylesheet"
     href="{{ $syntaxDarkMin.RelPermalink }}"
     integrity="{{ $syntaxDarkMin.Data.Integrity }}"
     id="syntax-dark-theme"
     class="syntax-theme">
+  {{- else }}
+  <link
+    rel="stylesheet"
+    href="{{ $syntaxDarkMin.RelPermalink }}"
+    id="syntax-dark-theme"
+    class="syntax-theme">
+  {{- end }}
 {{- end -}}
 
 {{- if $syntaxLight -}}
   {{- $syntaxLightMin := $syntaxLight | minify | fingerprint -}}
+  {{- if site.Params.enableIntegrity }}
   <link
     rel="stylesheet"
     href="{{ $syntaxLightMin.RelPermalink }}"
@@ -23,6 +32,14 @@
     id="syntax-light-theme"
     class="syntax-theme"
     disabled>
+  {{- else }}
+  <link
+    rel="stylesheet"
+    href="{{ $syntaxLightMin.RelPermalink }}"
+    id="syntax-light-theme"
+    class="syntax-theme"
+    disabled>
+  {{- end }}
 {{- end -}}
 
 

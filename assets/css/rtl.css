@@ -143,8 +143,19 @@
   }
 }
 
-/* TOC toggle: right-align in RTL */
+/* TOC: RTL direction for section titles and layout */
+.rtl .post-toc {
+  direction: rtl;
+}
+
+.rtl .toc-nav {
+  direction: rtl;
+  text-align: right;
+}
+
+/* TOC toggle: RTL layout - icon right, chevron left */
 .rtl .toc-toggle {
+  flex-direction: row-reverse;
   text-align: right;
 }
 

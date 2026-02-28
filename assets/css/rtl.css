@@ -94,6 +94,15 @@
   text-align: right;
 }
 
+/* Tag page post cards: direction rtl for correct punctuation in titles and summaries */
+.rtl .tag-post-title {
+  direction: rtl;
+}
+
+.rtl .tag-post-summary {
+  direction: rtl;
+}
+
 .rtl .post-card {
   flex-direction: row-reverse;
   text-align: right;
@@ -101,6 +110,16 @@
 
 .rtl .post-content {
   align-items: flex-end;
+}
+
+/* Post title and description: direction rtl ensures punctuation (periods, quotes) renders correctly */
+.rtl .post-title,
+.rtl .post-title a {
+  direction: rtl;
+}
+
+.rtl .post-description {
+  direction: rtl;
 }
 
 /* Single post header: RTL direction and right alignment */

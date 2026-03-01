@@ -16,6 +16,12 @@
   {{ end }}
   {{ $uniqueYearMonths := $yearMonths | uniq | sort }}
 
+  {{ $pages := cond (site.Params.listSectionsRecursive | default false)
+    .RegularPagesRecursive
+    .RegularPages
+  }}
+
+  {{ $paginator := .Paginate $pages }}
 
   <div class="list-container">
     <header class="list-header">
@@ -25,7 +31,7 @@
       {{ if .Description }}
         <p class="list-description">{{ .Description }}</p>
       {{ end }}
-      {{ partial "list-count.html" . }}
+      {{ partial "list-count.html" (dict "paginator" $paginator) }}
     </header>
 
     <!-- Filter Controls -->
@@ -97,7 +103,7 @@
     </div>
 
     <div class="posts-list" id="posts-container">
-      {{ range .Paginator.Pages }}
+      {{ range $paginator.Pages }}
         {{ $dataTags := "" }}
         {{ if .Params.tags }}
           {{ $dataTags = delimit .Params.tags "," }}

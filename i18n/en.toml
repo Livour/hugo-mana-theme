@@ -39,7 +39,7 @@ allDates = "All Dates"
 clearFilters = "Clear Filters"
 
 # Pagination
-pageOf = "Page %s of %s"
+pageOf = "Page %d of %d"
 postSingular = "post"
 postPlural = "posts"
 pageSingular = "page"

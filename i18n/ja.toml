@@ -39,7 +39,7 @@ allDates = "すべての日付"
 clearFilters = "フィルターをクリア"
 
 # ページネーション
-pageOf = "%sページ中 %sページ目"
+pageOf = "%dページ中 %dページ目"
 postSingular = "投稿"
 postPlural = "投稿"
 pageSingular = "ページ"

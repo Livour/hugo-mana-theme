@@ -39,7 +39,7 @@ allDates = "כל התאריכים"
 clearFilters = "נקה מסננים"
 
 # Pagination
-pageOf = "עמוד %s מתוך %s"
+pageOf = "עמוד %d מתוך %d"
 postSingular = "פוסט"
 postPlural = "פוסטים"
 pageSingular = "עמוד"

@@ -22,23 +22,28 @@
     {{ $imageResource = resources.Get $image }}
   {{ end }}
 {{ else }}
-  {{/* Auto-discovery: try to find image based on title */}}
-  {{ $titleSlug := .Title | urlize }}
+  {{/* Auto-discovery: try to find image based on title or filename */}}
+  {{ $titleSlug := "" }}
+  {{ if .File }}
+    {{ $titleSlug = .File.TranslationBaseName | urlize }}
+  {{ else }}
+    {{ $titleSlug = .Title | urlize }}
+  {{ end }}
   {{ $imageExtensions := slice ".png" ".jpg" ".jpeg" ".webp" }}
   {{ range $imageExtensions }}
     {{ $potentialImage := printf "/images/%s%s" $titleSlug . }}
     {{ $staticPath := printf "static/images/%s%s" $titleSlug . }}
     {{ $assetPath := printf "assets/images/%s%s" $titleSlug . }}
     
-    {{/* Check static folder first (files served directly) */}}
-    {{ if (fileExists $staticPath) }}
+    {{/* Check static folder first. Skip fileExists if path has % (Windows invalid) */}}
+    {{ if and (not (findRE "%" $staticPath)) (fileExists $staticPath) }}
       {{ $image = $potentialImage }}
       {{/* Files in static/ are served directly, no resource needed */}}
       {{ break }}
     {{ end }}
     
-    {{/* Check assets folder (processed as resources) */}}
-    {{ if (fileExists $assetPath) }}
+    {{/* Check assets folder (processed as resources). Skip fileExists if path has % (Windows invalid) */}}
+    {{ if and (not (findRE "%" $assetPath)) (fileExists $assetPath) }}
       {{ $image = $potentialImage }}
       {{ $imageResource = resources.Get (printf "images/%s%s" $titleSlug .) }}
       {{ break }}

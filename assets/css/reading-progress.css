@@ -1,0 +1,21 @@
+.reading-progress-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0%;
+  height: 3px;
+  background-color: var(--accent-primary);
+  transition: width 0.1s linear;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.reading-progress-bar.reading-progress-active {
+  opacity: 1;
+}
+
+/* RTL support */
+.rtl .reading-progress-bar {
+  left: auto;
+  right: 0;
+}

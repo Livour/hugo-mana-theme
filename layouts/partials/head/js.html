@@ -10,5 +10,6 @@
 {{ $blockquotes := resources.Get "js/blockquotes.js" }}
 {{ $languageSwitcher := resources.Get "js/language-switcher.js" }}
 {{ $pageTransitions := resources.Get "js/page-transitions.js" }}
-{{ $js := slice $constants $utils $themeToggle $search $scrollToTop $navigation $toc $filters $codeBlocks $blockquotes $languageSwitcher $pageTransitions | resources.Concat "js/main.js" | minify | fingerprint }}
+{{ $readingProgress := resources.Get "js/reading-progress.js" }}
+{{ $js := slice $constants $utils $themeToggle $search $scrollToTop $navigation $toc $filters $codeBlocks $blockquotes $languageSwitcher $pageTransitions $readingProgress | resources.Concat "js/main.js" | minify | fingerprint }}
 <script src="{{ $js.RelPermalink }}" defer></script>

@@ -23,25 +23,61 @@
 
   function getCurrentMenuIndex() {
     var desktopMenuLinks = Array.from(document.querySelectorAll('.header-menu .menu-link'));
-    // Prefer active class match
+    // 1. Prefer active class match (Hugo marks the exact current menu page)
     var activeIdx = desktopMenuLinks.findIndex(function (link) {
       return link.classList.contains('active');
     });
     if (activeIdx !== -1) return activeIdx;
-    // Fall back to URL match
-    return getMenuIndex(window.location.href);
+    // 2. Exact URL match
+    var exactIdx = getMenuIndex(window.location.href);
+    if (exactIdx !== -1) return exactIdx;
+    // 3. Section prefix match — e.g. /posts/my-post/ resolves to the Posts section.
+    // Uses the longest matching menu prefix (excludes root "/" which matches everything).
+    try {
+      var currentNorm = normalizePathname(new URL(window.location.href).pathname);
+      var bestIdx = -1;
+      var bestLen = 0;
+      desktopMenuLinks.forEach(function (link, i) {
+        try {
+          var linkNorm = normalizePathname(new URL(link.href).pathname);
+          if (linkNorm === '/') return;
+          if (currentNorm.startsWith(linkNorm) && linkNorm.length > bestLen) {
+            bestLen = linkNorm.length;
+            bestIdx = i;
+          }
+        } catch (e) {}
+      });
+      return bestIdx;
+    } catch (e) {
+      return -1;
+    }
   }
 
   function isRTL() {
     return document.body.classList.contains('rtl');
   }
 
-  // Clean up data-page-enter after the entrance transition completes
+  // Clean up data-page-enter after the entrance transition completes.
+  // Primary: pagereveal + viewTransition.finished (Chrome 123+) fires exactly when
+  // the animation ends and cancels the fallback timer.
+  // Fallback: a 500 ms timer covers environments where pagereveal doesn't fire
+  // (e.g. Playwright headless, older browsers without view-transition support).
   var enterDir = document.documentElement.getAttribute('data-page-enter');
   if (enterDir) {
-    setTimeout(function () {
+    var cleanup = function () {
       document.documentElement.removeAttribute('data-page-enter');
-    }, 450);
+    };
+    var fallbackTimer = setTimeout(cleanup, 500);
+    if ('onpagereveal' in window) {
+      window.addEventListener('pagereveal', function (e) {
+        clearTimeout(fallbackTimer);
+        if (e.viewTransition) {
+          e.viewTransition.finished.then(cleanup);
+        } else {
+          cleanup();
+        }
+      }, { once: true });
+    }
   }
 
   // Guard against bfcache restoration with a stale data-page-enter attribute.
@@ -70,7 +106,7 @@
         if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
         var currentIdx = getCurrentMenuIndex();
         var targetIdx = getMenuIndex(link.href);
-        // If either page is not in the menu (e.g. a post page), fall back to crossfade
+        // If either index is unresolvable, fall back to crossfade
         if (currentIdx === -1 || targetIdx === -1 || currentIdx === targetIdx) return;
         var goingForward = targetIdx > currentIdx;
         var rtl = isRTL();

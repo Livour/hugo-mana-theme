@@ -44,6 +44,24 @@
     }, 450);
   }
 
+  // Guard against bfcache restoration with a stale data-page-enter attribute.
+  // pageshow fires with persisted === true on bfcache restore; no transition is
+  // occurring at that point, so the attribute must be cleared immediately.
+  window.addEventListener('pageshow', function (e) {
+    if (e.persisted) {
+      document.documentElement.removeAttribute('data-page-enter');
+      sessionStorage.removeItem('mana_pt');
+    }
+  });
+
+  // Failsafe: remove the attribute the moment the tab goes hidden, before the
+  // browser can freeze the cleanup timer and bfcache the page with it still set.
+  document.addEventListener('visibilitychange', function () {
+    if (document.visibilityState === 'hidden') {
+      document.documentElement.removeAttribute('data-page-enter');
+    }
+  });
+
   // Attach click listeners to both desktop and mobile menu links
   function initPageTransitions() {
     var allMenuLinks = document.querySelectorAll('.header-menu .menu-link, .mobile-menu-nav .menu-link');

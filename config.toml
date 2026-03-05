@@ -4,7 +4,7 @@
 # See example-single-folder-*.toml and example-multi-folder-*.toml for other setups.
 # =============================================================================
 
-baseURL = 'https://example.com/'
+baseURL = 'https://longhang.github.io/'
 theme = "mana"
 defaultContentLanguage = "en"
 

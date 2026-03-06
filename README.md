@@ -2,6 +2,8 @@
 
 Futuristic hugo theme featuring clean aesthetics, and modern functionality and responsive design.
 
+**[Demo](https://managuide.blog/)**
+
 ## Support
 
 If you enjoy this theme, consider buying me a coffee! Your support helps me keep updating and improving the project.

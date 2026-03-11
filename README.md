@@ -425,6 +425,19 @@ To use Umami:
 
 The Umami script will be automatically included in your site's `<head>` section.
 
+### Sections & listSectionsRecursive
+
+If you want to use [sections](https://gohugo.io/content-management/sections/) (e.g. to allow you to list all posts in a given folder hierarchy) the theme supports optionally listing all posts recursively. This would mean that accessing `/posts/2026/` would show everything not only in `2026`, but also everything in `2026/01` and `2026/01/01` (if that's the sort of folder hierarchy you use).
+
+Add this to your config:
+
+```toml
+[params] # You should already have this line, so just find that section.
+  listSectionsRecursive = true # This is the line to add. Note that it defaults to false if you don't specify it.
+```
+
+Note, however, that if you want this option to work properly, you need to convert *all* relevant paths in the target folder hierarhcy to sections. Given that managing sections can become quite tedious (creating an `_index.md` for every folder, and setting the title) we have included a [python script](./scripts/sections.py) to handle that for you. You can also get a bit more context about it in the associated [readme](./scripts/README.md).
+
 ## Post Frontmatter
 
 The theme supports standard Hugo frontmatter. For post images, add an `image` parameter:

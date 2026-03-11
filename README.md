@@ -436,7 +436,7 @@ Add this to your config:
   listSectionsRecursive = true # This is the line to add. Note that it defaults to false if you don't specify it.
 ```
 
-Also, given that managing sections can become quite tedious (creating an `_index.md` for every folder, and setting the title) we have included a [python script](./scripts/sections.py) to handle that for you. You can also get a bit more context about it in the associated [readme](./scripts/README.md).
+Note, however, that if you want this option to work properly, you need to convert *all* relevant paths in the target folder hierarhcy to sections. Given that managing sections can become quite tedious (creating an `_index.md` for every folder, and setting the title) we have included a [python script](./scripts/sections.py) to handle that for you. You can also get a bit more context about it in the associated [readme](./scripts/README.md).
 
 ## Post Frontmatter
 

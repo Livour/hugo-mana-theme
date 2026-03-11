@@ -433,7 +433,7 @@ Add this to your config:
 
 ```toml
 [params] # You should already have this line, so just find that section.
-  listSectionsRecursive = true # This is the line to add.
+  listSectionsRecursive = true # This is the line to add. Note that it defaults to false if you don't specify it.
 ```
 
 Also, given that managing sections can become quite tedious (creating an `_index.md` for every folder, and setting the title) we have included a [python script](./scripts/sections.py) to handle that for you. You can also get a bit more context about it in the associated [readme](./scripts/README.md).
